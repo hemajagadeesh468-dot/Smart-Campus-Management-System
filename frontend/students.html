@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusIQ | Students</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <h2>Campus<span>IQ</span></h2>
+        </div>
+
+        <p class="nav-label">GENERAL</p>
+
+        <nav class="navigation">
+            <a href="dashboard.html" class="nav-link"><span>⌂</span> Dashboard</a>
+            <a href="students.html" class="nav-link active"><span>♙</span> Students</a>
+            <a href="faculty.html" class="nav-link"><span>♧</span> Faculty</a>
+            <a href="courses.html" class="nav-link"><span>▤</span> Courses</a>
+
+            <p class="nav-label second-label">CAMPUS MANAGEMENT</p>
+
+            <a href="resources.html" class="nav-link"><span>▣</span> Resources</a>
+            <a href="activities.html" class="nav-link"><span>◷</span> Activities</a>
+            <a href="bookings.html" class="nav-link"><span>▧</span> Bookings</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin-avatar">A</div>
+            <div class="admin-info">
+                <h4>Administrator</h4>
+                <p>Campus Admin</p>
+            </div>
+            <span class="profile-menu">⋯</span>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="welcome-heading">
+            <div>
+                <p class="eyebrow">CAMPUSIQ-STUDENTS MANAGEMENT</p>
+                <h1>Student Management</h1>
+                <h2>Manage student records and academic performance.</h2>
+            </div>
+
+            <div class="header-right">
+                <button id="themeToggle" class="theme-toggle">☀ Light Mode</button>
+                <span id="currentDate"></span>
+                <div class="header-avatar">A</div>
+            </div>
+        </header>
+
+        <!-- PAGE ACTIONS -->
+        <section class="student-page-actions">
+            <div>
+                <h2>Students Overview</h2>
+                <p class="muted-text">Academic year 2026–2027</p>
+            </div>
+
+            <div class="student-action-buttons">
+                <button class="student-print-btn" id="printStudents">Print Report</button>
+                <button class="create-button" id="addStudentBtn">+ Add Student</button>
+            </div>
+        </section>
+
+        <!-- STATISTICS -->
+        <section class="student-stats-grid">
+
+            <div class="panel student-stat-card">
+                <div class="student-stat-top">
+                    <span>Total Students</span>
+                    <span class="student-stat-icon">♙</span>
+                </div>
+                <h2 id="totalStudents">0</h2>
+                <p class="muted-text">Registered students</p>
+            </div>
+
+            <div class="panel student-stat-card">
+                <div class="student-stat-top">
+                    <span>Departments</span>
+                    <span class="student-stat-icon">▤</span>
+                </div>
+                <h2 id="totalStudentDepartments">0</h2>
+                <p class="muted-text">Departments represented</p>
+            </div>
+
+            <div class="panel student-stat-card">
+                <div class="student-stat-top">
+                    <span>Active Students</span>
+                    <span class="student-stat-icon">✓</span>
+                </div>
+                <h2 id="activeStudents">0</h2>
+                <p class="muted-text">Currently enrolled</p>
+            </div>
+
+            <div class="panel student-stat-card">
+                <div class="student-stat-top">
+                    <span>Average Attendance</span>
+                    <span class="student-stat-icon">◷</span>
+                </div>
+                <h2 id="averageAttendance">0%</h2>
+                <p class="muted-text">Across listed students</p>
+            </div>
+
+        </section>
+
+        <!-- PERFORMANCE AND SUMMARY -->
+        <section class="student-insights-grid">
+
+            <div class="panel student-performance-panel">
+                <div class="student-section-heading">
+                    <div>
+                        <h3>Academic Performance</h3>
+                        <p class="muted-text">Student performance distribution</p>
+                    </div>
+                    <span class="student-insight-label">Overview</span>
+                </div>
+
+                <div class="student-performance-content">
+
+                    <div class="student-performance-item">
+                        <div class="student-performance-label">
+                            <span>Excellent</span>
+                            <strong>90–100%</strong>
+                        </div>
+                        <div class="student-progress">
+                            <div class="student-progress-fill excellent-fill" style="width: 35%"></div>
+                        </div>
+                    </div>
+
+                    <div class="student-performance-item">
+                        <div class="student-performance-label">
+                            <span>Good</span>
+                            <strong>75–89%</strong>
+                        </div>
+                        <div class="student-progress">
+                            <div class="student-progress-fill good-fill" style="width: 40%"></div>
+                        </div>
+                    </div>
+
+                    <div class="student-performance-item">
+                        <div class="student-performance-label">
+                            <span>Average</span>
+                            <strong>50–74%</strong>
+                        </div>
+                        <div class="student-progress">
+                            <div class="student-progress-fill average-fill" style="width: 18%"></div>
+                        </div>
+                    </div>
+
+                    <div class="student-performance-item">
+                        <div class="student-performance-label">
+                            <span>Needs Improvement</span>
+                            <strong>Below 50%</strong>
+                        </div>
+                        <div class="student-progress">
+                            <div class="student-progress-fill low-fill" style="width: 7%"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="panel student-summary-panel">
+                <div class="student-section-heading">
+                    <div>
+                        <h3>Department Summary</h3>
+                        <p class="muted-text">Student distribution</p>
+                    </div>
+                    <span class="student-stat-icon">▥</span>
+                </div>
+
+                <div id="studentDepartmentSummary" class="student-department-summary">
+                    <!-- Generated by JavaScript -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- STUDENT DIRECTORY -->
+        <section class="panel student-directory">
+
+            <div class="student-directory-heading">
+                <div>
+                    <h3>Student Directory</h3>
+                    <p class="muted-text">View and manage student information</p>
+                </div>
+                <span class="student-record-count" id="studentRecordCount">0 Records</span>
+            </div>
+
+            <!-- FILTERS -->
+            <div class="student-filters">
+
+                <input
+                    type="text"
+                    id="studentSearch"
+                    placeholder="Search by name, ID or email..."
+                >
+
+                <select id="studentDepartmentFilter">
+                    <option value="">All Departments</option>
+                    <option value="Data Science">Data Science</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Information Science">Information Science</option>
+                    <option value="Electronics">Electronics</option>
+                </select>
+
+                <select id="studentYearFilter">
+                    <option value="">All Years</option>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+                </select>
+
+            </div>
+
+            <!-- TABLE -->
+            <div class="student-table-wrapper">
+
+                <table class="student-table">
+
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Department</th>
+                            <th>Year</th>
+                            <th>Email</th>
+                            <th>Attendance</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="studentTableBody">
+
+                        <tr>
+                            <td>STU001</td>
+                            <td>Aarav Sharma</td>
+                            <td>Data Science</td>
+                            <td>2nd Year</td>
+                            <td>aarav@gmail.com</td>
+                            <td>92%</td>
+                            <td><span class="student-status active-status">Active</span></td>
+                            <td><button class="student-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>STU002</td>
+                            <td>Priya Kumar</td>
+                            <td>Computer Science</td>
+                            <td>2nd Year</td>
+                            <td>priya@gmail.com</td>
+                            <td>88%</td>
+                            <td><span class="student-status active-status">Active</span></td>
+                            <td><button class="student-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>STU003</td>
+                            <td>Rahul Reddy</td>
+                            <td>Information Science</td>
+                            <td>3rd Year</td>
+                            <td>rahul@gmail.com</td>
+                            <td>76%</td>
+                            <td><span class="student-status active-status">Active</span></td>
+                            <td><button class="student-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>STU004</td>
+                            <td>Ananya Rao</td>
+                            <td>Data Science</td>
+                            <td>2nd Year</td>
+                            <td>ananya@gmail.com</td>
+                            <td>95%</td>
+                            <td><span class="student-status active-status">Active</span></td>
+                            <td><button class="student-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>STU005</td>
+                            <td>Vikram Singh</td>
+                            <td>Electronics</td>
+                            <td>1st Year</td>
+                            <td>vikram@gmail.com</td>
+                            <td>65%</td>
+                            <td><span class="student-status inactive-status">Inactive</span></td>
+                            <td><button class="student-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>STU006</td>
+                            <td>Meera Nair</td>
+                            <td>Computer Science</td>
+                            <td>3rd Year</td>
+                            <td>meera@gmail.com</td>
+                            <td>84%</td>
+                            <td><span class="student-status active-status">Active</span></td>
+                            <td><button class="student-delete-btn">Delete</button></td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p class="student-table-note">
+                Student records shown here are sample records for demonstration.
+            </p>
+
+        </section>
+
+        <footer class="student-footer">
+            CampusIQ Student Management System
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

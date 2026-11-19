@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusIQ | Resources</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <h2>Campus<span>IQ</span></h2>
+        </div>
+
+        <p class="nav-label">GENERAL</p>
+
+        <nav class="navigation">
+            <a href="dashboard.html" class="nav-link"><span>⌂</span> Dashboard</a>
+            <a href="students.html" class="nav-link"><span>♙</span> Students</a>
+            <a href="faculty.html" class="nav-link"><span>♧</span> Faculty</a>
+            <a href="courses.html" class="nav-link"><span>▤</span> Courses</a>
+
+            <p class="nav-label second-label">CAMPUS MANAGEMENT</p>
+
+            <a href="resources.html" class="nav-link active"><span>▣</span> Resources</a>
+            <a href="activities.html" class="nav-link"><span>◷</span> Activities</a>
+            <a href="bookings.html" class="nav-link"><span>▧</span> Bookings</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin-avatar">A</div>
+            <div class="admin-info">
+                <h4>Administrator</h4>
+                <p>Campus Admin</p>
+            </div>
+            <span class="profile-menu">⋯</span>
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="welcome-heading">
+            <div>
+                <p class="eyebrow">CAMPUSIQ-RESOURCES MANAGEMENT</p>
+                <h1>Resources</h1>
+                <h2>Manage campus facilities and equipment.</h2>
+            </div>
+
+            <div class="header-right">
+                <button id="themeToggle" class="theme-toggle">☀ Light Mode</button>
+                <span id="currentDate"></span>
+                <div class="header-avatar">A</div>
+            </div>
+        </header>
+
+        <!-- RESOURCE STATISTICS -->
+        <section class="resource-stats-grid">
+
+            <div class="panel resource-stat-card">
+                <p>Total Resources</p>
+                <h2 id="totalResources">08</h2>
+                <span>Registered resources</span>
+            </div>
+
+            <div class="panel resource-stat-card">
+                <p>Available</p>
+                <h2 id="availableResources">06</h2>
+                <span>Ready for use</span>
+            </div>
+
+            <div class="panel resource-stat-card">
+                <p>Under Maintenance</p>
+                <h2 id="maintenanceResources">02</h2>
+                <span>Currently unavailable</span>
+            </div>
+
+        </section>
+
+        <!-- RESOURCE DIRECTORY -->
+        <section class="panel resource-directory">
+
+            <div class="resource-directory-heading">
+                <div>
+                    <h2>Resource Directory</h2>
+                    <p class="muted-text">View and manage campus resources.</p>
+                </div>
+
+                <button class="create-button" id="addResourceBtn">
+                    + Add Resource
+                </button>
+            </div>
+
+            <div class="resource-search-area">
+                <input
+                    type="text"
+                    id="resourceSearch"
+                    placeholder="Search resources by name, type or location..."
+                >
+            </div>
+
+            <div class="resource-table-wrapper">
+
+                <table class="resource-table">
+                    <thead>
+                        <tr>
+                            <th>Resource ID</th>
+                            <th>Resource Name</th>
+                            <th>Type</th>
+                            <th>Location</th>
+                            <th>Capacity</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="resourceTableBody">
+
+                        <tr>
+                            <td>RES001</td>
+                            <td>Computer Lab 1</td>
+                            <td>Laboratory</td>
+                            <td>Block A</td>
+                            <td>60</td>
+                            <td><span class="resource-status available-status">Available</span></td>
+                            <td><button class="resource-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>RES002</td>
+                            <td>Seminar Hall</td>
+                            <td>Classroom</td>
+                            <td>Block B</td>
+                            <td>150</td>
+                            <td><span class="resource-status available-status">Available</span></td>
+                            <td><button class="resource-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>RES003</td>
+                            <td>Physics Lab</td>
+                            <td>Laboratory</td>
+                            <td>Block C</td>
+                            <td>40</td>
+                            <td><span class="resource-status maintenance-status">Maintenance</span></td>
+                            <td><button class="resource-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>RES004</td>
+                            <td>Smart Classroom</td>
+                            <td>Classroom</td>
+                            <td>Block A</td>
+                            <td>70</td>
+                            <td><span class="resource-status available-status">Available</span></td>
+                            <td><button class="resource-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>RES005</td>
+                            <td>Projector Set</td>
+                            <td>Equipment</td>
+                            <td>Admin Office</td>
+                            <td>10</td>
+                            <td><span class="resource-status available-status">Available</span></td>
+                            <td><button class="resource-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>RES006</td>
+                            <td>Chemistry Lab</td>
+                            <td>Laboratory</td>
+                            <td>Block C</td>
+                            <td>45</td>
+                            <td><span class="resource-status available-status">Available</span></td>
+                            <td><button class="resource-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>RES007</td>
+                            <td>Conference Room</td>
+                            <td>Classroom</td>
+                            <td>Block B</td>
+                            <td>35</td>
+                            <td><span class="resource-status maintenance-status">Maintenance</span></td>
+                            <td><button class="resource-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>RES008</td>
+                            <td>Laptop Set</td>
+                            <td>Equipment</td>
+                            <td>Library</td>
+                            <td>25</td>
+                            <td><span class="resource-status available-status">Available</span></td>
+                            <td><button class="resource-delete-btn">Delete</button></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

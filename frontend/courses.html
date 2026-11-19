@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusIQ | Courses</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <h2>Campus<span>IQ</span></h2>
+        </div>
+
+        <p class="nav-label">GENERAL</p>
+
+        <nav class="navigation">
+            <a href="dashboard.html" class="nav-link"><span>⌂</span> Dashboard</a>
+            <a href="students.html" class="nav-link"><span>♙</span> Students</a>
+            <a href="faculty.html" class="nav-link"><span>♧</span> Faculty</a>
+            <a href="courses.html" class="nav-link active"><span>▤</span> Courses</a>
+
+            <p class="nav-label second-label">CAMPUS MANAGEMENT</p>
+
+            <a href="resources.html" class="nav-link"><span>▣</span> Resources</a>
+            <a href="activities.html" class="nav-link"><span>◷</span> Activities</a>
+            <a href="bookings.html" class="nav-link"><span>▧</span> Bookings</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin-avatar">A</div>
+            <div class="admin-info">
+                <h4>Administrator</h4>
+                <p>Campus Admin</p>
+            </div>
+            <span class="profile-menu">⋯</span>
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="welcome-heading">
+            <div>
+                <p class="eyebrow">CAMPUSIQ-ACADEMIC MANAGEMENT</p>
+                <h1>Courses</h1>
+                <h2>Manage academic courses and departments.</h2>
+            </div>
+
+            <div class="header-right">
+                <button id="themeToggle" class="theme-toggle">☀ Light Mode</button>
+                <span id="currentDate"></span>
+                <div class="header-avatar">A</div>
+            </div>
+        </header>
+
+        <!-- COURSE STATISTICS -->
+        <section class="course-stats-grid">
+
+            <div class="panel course-stat-card">
+                <p>Total Courses</p>
+                <h2 id="totalCourses">06</h2>
+                <span>Registered courses</span>
+            </div>
+
+            <div class="panel course-stat-card">
+                <p>Active Courses</p>
+                <h2 id="activeCourses">05</h2>
+                <span>Currently offered</span>
+            </div>
+
+            <div class="panel course-stat-card">
+                <p>Departments</p>
+                <h2 id="totalDepartments">04</h2>
+                <span>Academic departments</span>
+            </div>
+
+        </section>
+
+        <!-- COURSE DIRECTORY -->
+        <section class="panel course-directory">
+
+            <div class="course-directory-heading">
+                <div>
+                    <h2>Course Directory</h2>
+                    <p class="muted-text">View and manage all academic courses.</p>
+                </div>
+
+                <button class="create-button" id="addCourseBtn">
+                    + Add Course
+                </button>
+            </div>
+
+            <div class="course-search-area">
+                <input
+                    type="text"
+                    id="courseSearch"
+                    placeholder="Search by course name, code or department..."
+                >
+            </div>
+
+            <div class="course-table-wrapper">
+
+                <table class="course-table">
+                    <thead>
+                        <tr>
+                            <th>Course ID</th>
+                            <th>Course Name</th>
+                            <th>Department</th>
+                            <th>Duration</th>
+                            <th>Credits</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="courseTableBody">
+
+                        <tr>
+                            <td>CRS001</td>
+                            <td>Data Structures</td>
+                            <td>Computer Science</td>
+                            <td>6 Months</td>
+                            <td>4</td>
+                            <td><span class="course-status active-status">Active</span></td>
+                            <td><button class="course-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>CRS002</td>
+                            <td>Database Management</td>
+                            <td>Computer Science</td>
+                            <td>6 Months</td>
+                            <td>4</td>
+                            <td><span class="course-status active-status">Active</span></td>
+                            <td><button class="course-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>CRS003</td>
+                            <td>Machine Learning</td>
+                            <td>Data Science</td>
+                            <td>6 Months</td>
+                            <td>4</td>
+                            <td><span class="course-status active-status">Active</span></td>
+                            <td><button class="course-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>CRS004</td>
+                            <td>Operating Systems</td>
+                            <td>Computer Science</td>
+                            <td>6 Months</td>
+                            <td>3</td>
+                            <td><span class="course-status active-status">Active</span></td>
+                            <td><button class="course-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>CRS005</td>
+                            <td>Business Analytics</td>
+                            <td>Management</td>
+                            <td>6 Months</td>
+                            <td>3</td>
+                            <td><span class="course-status inactive-status">Inactive</span></td>
+                            <td><button class="course-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>CRS006</td>
+                            <td>Digital Electronics</td>
+                            <td>Electronics</td>
+                            <td>6 Months</td>
+                            <td>4</td>
+                            <td><span class="course-status active-status">Active</span></td>
+                            <td><button class="course-delete-btn">Delete</button></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

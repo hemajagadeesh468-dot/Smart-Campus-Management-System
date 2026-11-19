@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusIQ | Faculty Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <h2>Campus<span>IQ</span></h2>
+        </div>
+
+        <p class="nav-label">GENERAL</p>
+
+        <nav class="navigation">
+            <a href="dashboard.html" class="nav-link"><span>⌂</span> Dashboard</a>
+            <a href="students.html" class="nav-link"><span>♙</span> Students</a>
+            <a href="faculty.html" class="nav-link active"><span>♧</span> Faculty</a>
+            <a href="courses.html" class="nav-link"><span>▤</span> Courses</a>
+
+            <p class="nav-label second-label">CAMPUS MANAGEMENT</p>
+
+            <a href="resources.html" class="nav-link"><span>▣</span> Resources</a>
+            <a href="activities.html" class="nav-link"><span>◷</span> Activities</a>
+            <a href="bookings.html" class="nav-link"><span>▧</span> Bookings</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin-avatar">A</div>
+            <div class="admin-info">
+                <h4>Administrator</h4>
+                <p>Campus Admin</p>
+            </div>
+            <span class="profile-menu">⋯</span>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="welcome-heading">
+
+            <div>
+                <p class="eyebrow">CAMPUSIQ-FACULTY MANAGEMENT</p>
+                <h1>Faculty Management</h1>
+                <h2>Manage your teaching professionals.</h2>
+            </div>
+
+            <div class="header-right">
+                <button id="themeToggle" class="theme-toggle">
+                    ☀ Light Mode
+                </button>
+
+                <span id="currentDate"></span>
+                <div class="header-avatar">A</div>
+            </div>
+
+        </header>
+
+
+        <!-- FACULTY STATISTICS -->
+        <section class="faculty-stats-grid">
+
+            <div class="panel faculty-stat-card">
+                <div class="faculty-stat-heading">
+                    <span class="heading-icon">♧</span>
+                    <span>Total Faculty</span>
+                </div>
+                <h2 id="totalFaculty">4</h2>
+                <p>Registered faculty members</p>
+            </div>
+
+            <div class="panel faculty-stat-card">
+                <div class="faculty-stat-heading">
+                    <span class="heading-icon">✓</span>
+                    <span>Active Faculty</span>
+                </div>
+                <h2>3</h2>
+                <p>Currently teaching</p>
+            </div>
+
+            <div class="panel faculty-stat-card">
+                <div class="faculty-stat-heading">
+                    <span class="heading-icon">▤</span>
+                    <span>Departments</span>
+                </div>
+                <h2>4</h2>
+                <p>Academic departments</p>
+            </div>
+
+        </section>
+
+
+        <!-- FACULTY DIRECTORY -->
+        <section class="panel faculty-directory">
+
+            <div class="faculty-directory-heading">
+
+                <div>
+                    <p class="eyebrow">FACULTY RECORDS</p>
+                    <h2>Faculty Directory</h2>
+                    <p class="muted-text">View and manage faculty information.</p>
+                </div>
+
+                <button class="create-button" id="addFacultyBtn">
+                    + Add Faculty
+                </button>
+
+            </div>
+
+
+            <!-- SEARCH -->
+            <div class="faculty-search-area">
+                <input
+                    type="text"
+                    id="facultySearch"
+                    placeholder="Search by name, ID or department..."
+                >
+            </div>
+
+
+            <!-- TABLE -->
+            <div class="faculty-table-wrapper">
+
+                <table class="faculty-table">
+
+                    <thead>
+                        <tr>
+                            <th>FACULTY ID</th>
+                            <th>FACULTY NAME</th>
+                            <th>DEPARTMENT</th>
+                            <th>DESIGNATION</th>
+                            <th>EMAIL</th>
+                            <th>STATUS</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="facultyTableBody">
+
+                        <tr>
+                            <td>FAC001</td>
+                            <td>Dr. Priya Sharma</td>
+                            <td>Data Science</td>
+                            <td>Professor</td>
+                            <td>priya@example.com</td>
+                            <td><span class="faculty-status active-status">Active</span></td>
+                            <td><button class="faculty-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>FAC002</td>
+                            <td>Mr. Arjun Rao</td>
+                            <td>Computer Science</td>
+                            <td>Assistant Professor</td>
+                            <td>arjun@example.com</td>
+                            <td><span class="faculty-status active-status">Active</span></td>
+                            <td><button class="faculty-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>FAC003</td>
+                            <td>Dr. Meera Nair</td>
+                            <td>Information Science</td>
+                            <td>Associate Professor</td>
+                            <td>meera@example.com</td>
+                            <td><span class="faculty-status inactive-status">Inactive</span></td>
+                            <td><button class="faculty-delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>FAC004</td>
+                            <td>Mr. Rahul Kumar</td>
+                            <td>Data Science</td>
+                            <td>Lecturer</td>
+                            <td>rahul@example.com</td>
+                            <td><span class="faculty-status active-status">Active</span></td>
+                            <td><button class="faculty-delete-btn">Delete</button></td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+            © 2026 CampusIQ. Smart Campus Integrated Management System.
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

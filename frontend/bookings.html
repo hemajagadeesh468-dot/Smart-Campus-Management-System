@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings | CampusIQ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    
+<aside class="sidebar">
+
+    <div class="sidebar-brand">
+        <div class="brand-logo">C</div>
+        <h2>CampusIQ</h2>
+    </div>
+
+    <nav class="sidebar-nav">
+
+        <a href="dashboard.html">
+            <span>▦</span> Dashboard
+        </a>
+
+        <a href="students.html">
+            <span>♙</span> Students
+        </a>
+
+        <a href="faculty.html">
+            <span>♧</span> Faculty
+        </a>
+
+        <a href="courses.html">
+            <span>▤</span> Courses
+        </a>
+
+        <div class="sidebar-section-title">
+            CAMPUS MANAGEMENT
+        </div>
+
+        <a href="resources.html">
+            <span>▣</span> Resources
+        </a>
+
+        <a href="activities.html">
+            <span>◷</span> Activities
+        </a>
+
+        <a href="bookings.html" class="active">
+            <span>▧</span> Bookings
+        </a>
+
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="admin-avatar">A</div>
+        <div class="admin-details">
+            <strong>Administrator</strong>
+            <small>Campus Admin</small>
+        </div>
+        <span class="admin-menu">•••</span>
+    </div>
+
+</aside>
+
+
+    <main class="main-content">
+
+        <header class="page-header">
+            <div>
+                <p class="page-subtitle">CAMPUS MANAGEMENT</p>
+                <h1>Bookings Management</h1>
+                <p>Manage and track campus resource bookings.</p>
+            </div>
+            <button class="primary-btn" id="addBookingBtn">+ Add Booking</button>
+        </header>
+
+        <section class="booking-stats-grid">
+            <div class="booking-stat-card">
+                <span>Total Bookings</span>
+                <h2 id="totalBookings">0</h2>
+                <small>All booking records</small>
+            </div>
+            <div class="booking-stat-card">
+                <span>Approved</span>
+                <h2 id="approvedBookings">0</h2>
+                <small>Confirmed bookings</small>
+            </div>
+            <div class="booking-stat-card">
+                <span>Pending</span>
+                <h2 id="pendingBookings">0</h2>
+                <small>Awaiting approval</small>
+            </div>
+        </section>
+
+        <section class="booking-directory">
+            <div class="booking-section-heading">
+                <div>
+                    <h2>Booking Directory</h2>
+                    <p>View, search and manage resource reservations.</p>
+                </div>
+            </div>
+
+            <div class="booking-search-area">
+                <input type="text" id="bookingSearch"
+                    placeholder="Search by booking ID, person or resource...">
+
+                <select id="bookingResourceFilter">
+                    <option value="">All Resources</option>
+                </select>
+
+                <select id="bookingStatusFilter">
+                    <option value="">All Statuses</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+
+                <input type="date" id="bookingDateFilter"
+                    title="Filter by booking date">
+            </div>
+
+            <div class="booking-table-wrapper">
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Booked By</th>
+                            <th>Resource</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingTableBody"></tbody>
+                </table>
+                <p id="bookingEmptyMessage" class="booking-empty-message">
+                    No bookings found.
+                </p>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- Add/Edit Booking Modal -->
+<div class="booking-modal" id="bookingModal">
+    <div class="booking-modal-content">
+        <div class="booking-modal-header">
+            <div>
+                <h2 id="bookingModalTitle">Add New Booking</h2>
+                <p>Enter the booking details below.</p>
+            </div>
+            <button type="button" id="closeBookingModal"
+                class="modal-close-btn">&times;</button>
+        </div>
+
+        <form id="bookingForm">
+            <input type="hidden" id="bookingEditId">
+
+            <label for="bookingPerson">Booked By</label>
+            <input type="text" id="bookingPerson"
+                placeholder="Enter person or department name" required>
+
+            <label for="bookingResource">Resource</label>
+            <input type="text" id="bookingResource"
+                placeholder="Example: Seminar Hall" required>
+
+            <label for="bookingDate">Booking Date</label>
+            <input type="date" id="bookingDate" required>
+
+            <div class="booking-time-grid">
+                <div>
+                    <label for="bookingStartTime">Start Time</label>
+                    <input type="time" id="bookingStartTime" required>
+                </div>
+                <div>
+                    <label for="bookingEndTime">End Time</label>
+                    <input type="time" id="bookingEndTime" required>
+                </div>
+            </div>
+
+            <label for="bookingStatus">Status</label>
+            <select id="bookingStatus" required>
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Cancelled">Cancelled</option>
+            </select>
+
+            <div class="booking-modal-actions">
+                <button type="button" id="cancelBookingBtn"
+                    class="secondary-btn">Cancel</button>
+                <button type="submit" class="primary-btn"
+                    id="saveBookingBtn">Save Booking</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusIQ | Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <h2>Campus<span>IQ</span></h2>
+        </div>
+
+        <p class="nav-label">GENERAL</p>
+
+        <nav class="navigation">
+            <a href="dashboard.html" class="nav-link active"><span>⌂</span> Dashboard</a>
+            <a href="students.html" class="nav-link"><span>♙</span> Students</a>
+            <a href="faculty.html" class="nav-link"><span>♧</span> Faculty</a>
+            <a href="courses.html" class="nav-link"><span>▤</span> Courses</a>
+
+            <p class="nav-label second-label">CAMPUS MANAGEMENT</p>
+
+            <a href="resources.html" class="nav-link"><span>▣</span> Resources</a>
+            <a href="activities.html" class="nav-link"><span>◷</span> Activities</a>
+            <a href="bookings.html" class="nav-link"><span>▧</span> Bookings</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin-avatar">A</div>
+            <div class="admin-info">
+                <h4>Administrator</h4>
+                <p>Campus Admin</p>
+            </div>
+            <span class="profile-menu">⋯</span>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="welcome-heading">
+
+            <div>
+                <p class="eyebrow">CAMPUSIQ OVERVIEW</p>
+                <h1>Hi, Administrator!</h1>
+                <h2>What would you like to manage today?</h2>
+            </div>
+
+            <div class="header-right">
+                <button id="themeToggle" class="theme-toggle">
+                    ☀ Light Mode
+                </button>
+
+                <span id="currentDate"></span>
+                <div class="header-avatar">A</div>
+            </div>
+
+        </header>
+
+
+        <!-- TOP DASHBOARD SECTION -->
+        <section class="top-grid">
+
+            <!-- STUDENT CARD -->
+            <div class="panel student-card">
+
+                <div class="card-heading">
+                    <div class="heading-icon">♙</div>
+                    <h3>Students</h3>
+                    <a href="students.html" class="view-link">View all ↗</a>
+                </div>
+
+                <h2 class="big-number">2,450</h2>
+                <p class="muted-text">Total registered students</p>
+
+                <div class="student-visual">
+
+                    <div class="student-bar">
+                        <div class="bar-fill"></div>
+                    </div>
+
+                    <div class="student-bar second-bar">
+                        <div class="bar-fill"></div>
+                    </div>
+
+                </div>
+
+                <div class="student-legend">
+                    <span><i class="dot pink"></i> Active students</span>
+                    <strong>90%</strong>
+                </div>
+
+                <div class="student-legend">
+                    <span><i class="dot muted-dot"></i> Other records</span>
+                    <strong>10%</strong>
+                </div>
+
+            </div>
+
+
+            <!-- COLLEGE IMAGE BANNER -->
+            <div class="feature-card">
+
+                <img
+                    src="images/campus.jpg"
+                    alt="College Campus"
+                    class="campus-image"
+                >
+
+                <div class="campus-overlay">
+
+                    <p class="feature-label">
+                        SMART CAMPUS MANAGEMENT
+                    </p>
+
+                    <h2>Campus <span>Intelligence</span></h2>
+
+                    <p>
+                        Empowering education through smarter
+                        campus management.
+                    </p>
+
+                </div>
+
+                <div class="feature-bottom">
+                    <span>CONNECTED CAMPUS</span>
+                    <span>01 / 07</span>
+                </div>
+
+            </div>
+
+
+            <!-- CALENDAR AND ACTIVITIES -->
+            <div class="panel calendar-card">
+
+                <div class="calendar-heading">
+
+                    <button id="prevMonth" aria-label="Previous month">‹</button>
+
+                    <h3 id="calendarMonth"></h3>
+
+                    <button id="nextMonth" aria-label="Next month">›</button>
+
+                </div>
+
+                <div class="calendar-weekdays">
+                    <span>Sun</span>
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span>Sat</span>
+                </div>
+
+                <div class="calendar-days" id="calendarDays"></div>
+
+                <div class="upcoming-heading">
+                    <h3>Upcoming Activities</h3>
+                    <a href="activities.html">View all</a>
+                </div>
+
+                
+                <div class="upcoming-activity-list" id="upcomingActivityList">
+
+                    <!-- Activities will appear here automatically -->
+
+                </div>
+                <a href="activities.html" class="create-button">
+                    + Create Activity
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- BOTTOM DASHBOARD SECTION -->
+        <section class="bottom-grid">
+
+            <div class="small-stats">
+
+                <!-- FACULTY -->
+                <div class="panel mini-card">
+
+                    <div class="mini-card-heading">
+                        <span class="heading-icon">♧</span>
+                        <span>Faculty</span>
+                        <a href="faculty.html">↗</a>
+                    </div>
+
+                    <h2>128</h2>
+                    <p>Teaching professionals</p>
+                    <span class="mini-highlight">Faculty records</span>
+
+                </div>
+
+
+                <!-- COURSES -->
+                <div class="panel mini-card">
+
+                    <div class="mini-card-heading">
+                        <span class="heading-icon">▤</span>
+                        <span>Courses</span>
+                        <a href="courses.html">↗</a>
+                    </div>
+
+                    <h2>36</h2>
+                    <p>Available courses</p>
+                    <span class="mini-highlight">Academic programs</span>
+
+                </div>
+
+
+                <!-- RESOURCES -->
+                <div class="panel mini-card">
+
+                    <div class="mini-card-heading">
+                        <span class="heading-icon">▣</span>
+                        <span>Resources</span>
+                        <a href="resources.html">↗</a>
+                    </div>
+
+                    <h2>84</h2>
+                    <p>Campus facilities</p>
+                    <span class="mini-highlight">Available resources</span>
+
+                </div>
+
+
+                <!-- BOOKINGS -->
+                <div class="panel mini-card">
+
+                    <div class="mini-card-heading">
+                        <span class="heading-icon">▧</span>
+                        <span>Bookings</span>
+                        <a href="bookings.html">↗</a>
+                    </div>
+
+                    <h2>42</h2>
+                    <p>Booking records</p>
+                    <span class="mini-highlight">Resource requests</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESOURCE OVERVIEW -->
+            <div class="panel resource-overview">
+
+                <div class="resource-heading">
+
+                    <div>
+                        <h3>Resource Overview</h3>
+                        <p>Campus resource availability</p>
+                    </div>
+
+                    <a href="resources.html">View all ↗</a>
+
+                </div>
+
+
+                <div class="resource-list">
+
+                    <div class="resource-item">
+
+                        <div class="resource-info">
+                            <span>Classrooms</span>
+                            <strong>75%</strong>
+                        </div>
+
+                        <div class="resource-track">
+                            <div class="resource-progress classroom-progress"></div>
+                        </div>
+
+                        <p>12 of 16 classrooms available</p>
+
+                    </div>
+
+
+                    <div class="resource-item">
+
+                        <div class="resource-info">
+                            <span>Laboratories</span>
+                            <strong>60%</strong>
+                        </div>
+
+                        <div class="resource-track">
+                            <div class="resource-progress lab-progress"></div>
+                        </div>
+
+                        <p>6 of 10 laboratories available</p>
+
+                    </div>
+
+
+                    <div class="resource-item">
+
+                        <div class="resource-info">
+                            <span>Equipment</span>
+                            <strong>85%</strong>
+                        </div>
+
+                        <div class="resource-track">
+                            <div class="resource-progress equipment-progress"></div>
+                        </div>
+
+                        <p>85 of 100 equipment units available</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOOKING REQUESTS -->
+                <div class="booking-summary">
+
+                    <div class="booking-summary-heading">
+                        <h4>Booking Requests</h4>
+                        <a href="bookings.html">Manage ↗</a>
+                    </div>
+
+                    <div class="booking-status">
+                        <div>
+                            <span class="status-dot pending-dot"></span>
+                            Pending
+                        </div>
+                        <strong>08</strong>
+                    </div>
+
+                    <div class="booking-status">
+                        <div>
+                            <span class="status-dot approved-dot"></span>
+                            Approved
+                        </div>
+                        <strong>24</strong>
+                    </div>
+
+                    <div class="booking-status">
+                        <div>
+                            <span class="status-dot rejected-dot"></span>
+                            Rejected
+                        </div>
+                        <strong>03</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+            © 2026 CampusIQ. Smart Campus Integrated Management System.
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
