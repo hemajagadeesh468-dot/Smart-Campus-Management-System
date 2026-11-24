@@ -15,13 +15,22 @@ public class FacultyMenu {
             System.out.println("\n===== CAMPUSIQ FACULTY MANAGEMENT =====");
             System.out.println("1. Add Faculty");
             System.out.println("2. View All Faculty");
-            System.out.println("3. Update Faculty Department");
-            System.out.println("4. Delete Faculty");
-            System.out.println("5. Exit");
+            System.out.println("3. Search Faculty");
+            System.out.println("4. Update Faculty Department");
+            System.out.println("5. Delete Faculty");
+            System.out.println("6. Exit");
 
             System.out.print("Enter your choice: ");
-            int choice = sc.nextInt();
-            sc.nextLine();
+            int choice;
+
+            try {
+                choice = sc.nextInt();
+                sc.nextLine();
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Invalid input! Please enter a number.");
+                sc.nextLine();
+                continue;
+            }
 
             switch (choice) {
 
@@ -47,6 +56,12 @@ public class FacultyMenu {
                     break;
 
                 case 3:
+                    System.out.print("Enter name, email or department to search: ");
+                    String keyword = sc.nextLine();
+                    dao.searchFaculty(keyword);
+                    break;
+
+                case 4:
                     System.out.print("Enter Faculty ID: ");
                     int updateId = sc.nextInt();
                     sc.nextLine();
@@ -57,7 +72,7 @@ public class FacultyMenu {
                     dao.updateDepartment(updateId, newDepartment);
                     break;
 
-                case 4:
+                case 5:
                     System.out.print("Enter Faculty ID: ");
                     int deleteId = sc.nextInt();
                     sc.nextLine();
@@ -65,8 +80,7 @@ public class FacultyMenu {
                     dao.deleteFaculty(deleteId);
                     break;
 
-                
-                case 5:
+                case 6:
                     System.out.println("Returning to CampusIQ Main Menu...");
                     return;
 

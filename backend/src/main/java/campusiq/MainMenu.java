@@ -19,13 +19,15 @@ public class MainMenu {
             System.out.println("3. Course Management");
             System.out.println("4. Resource Management");
             System.out.println("5. Booking Management");
-            System.out.println("6. Exit");
+            System.out.println("6. Campus Activity Management");
+            System.out.println("7. Exit");
             System.out.println("================================");
             System.out.print("Enter your choice: ");
 
             choice = sc.nextInt();
 
             switch (choice) {
+
                 case 1:
                     StudentMenu.main(args);
                     break;
@@ -47,6 +49,10 @@ public class MainMenu {
                     break;
 
                 case 6:
+                    ActivityMenu.main(args);
+                    break;
+
+                case 7:
                     System.out.println("Thank you for using CampusIQ!");
                     break;
 
@@ -54,7 +60,7 @@ public class MainMenu {
                     System.out.println("Invalid choice! Try again.");
             }
 
-        } while (choice != 6);
+        } while (choice != 7);
 
         sc.close();
     }

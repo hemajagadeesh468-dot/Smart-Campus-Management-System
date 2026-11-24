@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusIQ | Administrator Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <h2>Campus<span>IQ</span></h2>
+        </div>
+
+        <p class="nav-label">GENERAL</p>
+
+        <nav class="navigation">
+            <a href="dashboard.html" class="nav-link">
+                <span>⌂</span> Dashboard
+            </a>
+
+            <a href="students.html" class="nav-link">
+                <span>♙</span> Students
+            </a>
+
+            <a href="faculty.html" class="nav-link">
+                <span>♧</span> Faculty
+            </a>
+
+            <a href="courses.html" class="nav-link">
+                <span>▤</span> Courses
+            </a>
+
+            <p class="nav-label second-label">CAMPUS MANAGEMENT</p>
+
+            <a href="resources.html" class="nav-link">
+                <span>▣</span> Resources
+            </a>
+
+            <a href="activities.html" class="nav-link">
+                <span>◷</span> Activities
+            </a>
+
+            <a href="bookings.html" class="nav-link">
+                <span>▧</span> Bookings
+            </a>
+        </nav>
+
+        <!-- ADMINISTRATOR -->
+        <a href="profile.html" class="sidebar-bottom profile-sidebar-link">
+
+            <div class="admin-avatar" id="sidebarAvatar">A</div>
+
+            <div class="admin-info">
+                <h4 id="sidebarName">Administrator</h4>
+                <p>Campus Admin</p>
+            </div>
+
+            <span class="profile-menu">⋯</span>
+
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- PROFILE HEADER -->
+        <header class="profile-header">
+
+            <div>
+                <p class="eyebrow">ACCOUNT MANAGEMENT</p>
+
+                <h1>Administrator Profile</h1>
+
+                <p class="profile-subtitle">
+                    Manage your personal information and account.
+                </p>
+            </div>
+
+            <button id="themeToggle" class="theme-toggle">
+                ☀ Light Mode
+            </button>
+
+        </header>
+
+        
+        <a href="dashboard.html" class="back-dashboard">
+            ← Back to Dashboard
+        </a>
+        <br></br>
+
+        <!-- PROFILE CARD -->
+        <section class="profile-card">
+
+            <div class="profile-top">
+
+                <div class="large-avatar" id="profileAvatar">A</div>
+
+                <div>
+                    <h2 id="displayName">Administrator</h2>
+
+                    <p>College Administrator</p>
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE DETAILS -->
+            <div class="profile-details">
+
+                <div class="detail-item">
+                    <label>FULL NAME</label>
+                    <p id="nameDisplay">Administrator</p>
+                </div>
+
+                <div class="detail-item">
+                    <label>EMAIL ADDRESS</label>
+                    <p id="emailDisplay">admin@campusiq.edu</p>
+                </div>
+
+                <div class="detail-item">
+                    <label>DESIGNATION</label>
+                    <p>College Administrator</p>
+                </div>
+
+                <div class="detail-item">
+                    <label>DEPARTMENT</label>
+                    <p>Administration</p>
+                </div>
+
+                <div class="detail-item">
+                    <label>PHONE NUMBER</label>
+                    <p id="phoneDisplay">Not provided</p>
+                </div>
+
+                <div class="detail-item">
+                    <label>ACCOUNT TYPE</label>
+                    <p>Administrator</p>
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE ACTIONS -->
+            <div class="profile-actions">
+
+                <button class="action-button" id="editProfileBtn">
+                    Edit Profile
+                </button>
+
+                <a href="settings.html" class="action-button secondary-button">
+                    Settings
+                </a>
+
+                <button class="action-button logout-button" id="logoutBtn">
+                    Logout
+                </button>
+
+            </div>
+
+
+            <!-- EDIT PROFILE FORM -->
+            <form class="profile-form" id="profileForm">
+
+                <h3>Edit Personal Information</h3>
+
+                <div class="profile-input-group">
+                    <label for="editName">Full Name</label>
+                    <input type="text" id="editName" required>
+                </div>
+
+                <div class="profile-input-group">
+                    <label for="editEmail">Email Address</label>
+                    <input type="email" id="editEmail" required>
+                </div>
+
+                <div class="profile-input-group">
+                    <label for="editPhone">Phone Number</label>
+                    <input type="tel" id="editPhone">
+                </div>
+
+                <div class="profile-form-actions">
+
+                    <button type="submit" class="action-button">
+                        Save Changes
+                    </button>
+
+                    <button type="button"
+                            class="action-button secondary-button"
+                            id="cancelEditBtn">
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <footer class="profile-footer">
+            © 2026 CampusIQ | Smart Campus Management System
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

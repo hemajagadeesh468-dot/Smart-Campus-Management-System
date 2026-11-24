@@ -8,26 +8,69 @@ import java.sql.SQLException;
 
 public class BookingDAO {
 
-    // Add a new booking
+    
+    // Add a new booking with availability check
     public void addBooking(Booking booking) {
 
-        String sql = "INSERT INTO bookings (student_id, resource_id, booking_date, status) VALUES (?, ?, ?, ?)";
+        String checkSql = """
+            SELECT COUNT(*) FROM bookings
+            WHERE resource_id = ?
+            AND booking_date = ?
+            AND status = 'booked'
+            """;
 
-        try (Connection con = DatabaseConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+        String insertSql = """
+            INSERT INTO bookings
+            (student_id, resource_id, booking_date, status)
+            VALUES (?, ?, ?, ?)
+            """;
 
-            ps.setInt(1, booking.getStudentId());
-            ps.setInt(2, booking.getResourceId());
-            ps.setString(3, booking.getBookingDate());
-            ps.setString(4, booking.getStatus());
+        try (Connection con = DatabaseConnection.getConnection()) {
 
-            ps.executeUpdate();
+            // Check whether the resource is already booked
+            try (PreparedStatement check =
+                    con.prepareStatement(checkSql)) {
 
-            System.out.println("Booking added successfully!");
+                check.setInt(1, booking.getResourceId());
+                check.setString(2, booking.getBookingDate());
+
+                ResultSet rs = check.executeQuery();
+
+                if (rs.next() && rs.getInt(1) > 0) {
+                    System.out.println(
+                        "Booking failed! Resource is already booked on this date."
+                    );
+                    return;
+                }
+            }
+
+            // Insert booking if resource is available
+            try (PreparedStatement ps =
+                    con.prepareStatement(insertSql)) {
+
+                ps.setInt(1, booking.getStudentId());
+                ps.setInt(2, booking.getResourceId());
+                ps.setString(3, booking.getBookingDate());
+                ps.setString(4, booking.getStatus());
+
+                ps.executeUpdate();
+
+                System.out.println("Booking added successfully!");
+            }
 
         } catch (SQLException e) {
-            System.out.println("Error adding booking!");
-            e.printStackTrace();
+
+            if (e.getMessage() != null &&
+                e.getMessage().contains("UNIQUE constraint failed")) {
+
+                System.out.println(
+                    "Booking failed! Resource is already booked on this date."
+                );
+
+            } else {
+                System.out.println("Error adding booking!");
+                e.printStackTrace();
+            }
         }
     }
 

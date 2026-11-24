@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusIQ | Settings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="settings-page">
+
+        <a href="profile.html" class="back-dashboard">
+            ← Back to Profile
+        </a>
+        <br></br>
+        <div class="settings-header">
+            <h1>Administrator Settings</h1>
+            <p>Manage your CampusIQ account preferences.</p>
+        </div>
+
+        <div class="settings-card">
+
+            <h2>Account Settings</h2>
+
+            <div class="setting-item">
+                <div>
+                    <h3>Administrator Account</h3>
+                    <p>Manage your administrator profile information.</p>
+                </div>
+                <a href="profile.html" class="settings-link">View Profile</a>
+            </div>
+
+            <div class="setting-item">
+                <div>
+                    <h3>Email Address</h3>
+                    <p id="settingsEmail">admin@campusiq.edu</p>
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <div>
+                    <h3>Account Type</h3>
+                    <p>College Administrator</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="settings-card">
+
+            <h2>Application Settings</h2>
+
+        
+
+            <div class="setting-item">
+                <div>
+                    <h3>Notifications</h3>
+                    <p>Notification preferences can be configured here.</p>
+                </div>
+                <span class="settings-status">0</span>
+            </div>
+
+        </div>
+
+        <div class="settings-footer">
+            CampusIQ Administrator Panel
+        </div>
+
+    </div>
+
+    <script>
+        const email = localStorage.getItem("adminEmail")
+            || "admin@campusiq.edu";
+
+        document.getElementById("settingsEmail").textContent = email;
+    </script>
+
+</body>
+</html>

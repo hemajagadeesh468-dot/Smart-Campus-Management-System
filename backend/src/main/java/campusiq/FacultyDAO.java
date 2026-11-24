@@ -99,4 +99,50 @@ public class FacultyDAO {
             System.out.println("Unable to delete faculty: " + e.getMessage());
         }
     }
+
+    // SEARCH: Search faculty by name, email or department
+    public void searchFaculty(String keyword) {
+
+        String sql = "SELECT * FROM faculty WHERE name LIKE ? " +
+                     "OR email LIKE ? OR department LIKE ?";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            String searchValue = "%" + keyword + "%";
+
+            ps.setString(1, searchValue);
+            ps.setString(2, searchValue);
+            ps.setString(3, searchValue);
+
+            try (ResultSet rs = ps.executeQuery()) {
+
+                boolean found = false;
+
+                System.out.println("\n----- FACULTY SEARCH RESULTS -----");
+
+                while (rs.next()) {
+
+                    Faculty faculty = new Faculty(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("department")
+                    );
+
+                    faculty.displayDetails();
+                    System.out.println("---------------------------");
+                    found = true;
+                }
+
+                if (!found) {
+                    System.out.println("No matching faculty found!");
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Unable to search faculty: " + e.getMessage());
+        }
+    }
+
 }

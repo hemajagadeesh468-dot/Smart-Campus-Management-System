@@ -100,4 +100,51 @@ public class StudentDAO {
             System.out.println("Unable to delete student: " + e.getMessage());
         }
     }
+
+    // SEARCH: Search student by name, email or department
+    public void searchStudent(String keyword) {
+
+        String sql = "SELECT * FROM students WHERE name LIKE ? " +
+                     "OR email LIKE ? OR department LIKE ?";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            String searchValue = "%" + keyword + "%";
+
+            ps.setString(1, searchValue);
+            ps.setString(2, searchValue);
+            ps.setString(3, searchValue);
+
+            try (ResultSet rs = ps.executeQuery()) {
+
+                boolean found = false;
+
+                System.out.println("\n----- SEARCH RESULTS -----");
+
+                while (rs.next()) {
+
+                    Student student = new Student(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("department"),
+                        rs.getInt("year")
+                    );
+
+                    student.displayDetails();
+                    System.out.println("---------------------------");
+                    found = true;
+                }
+
+                if (!found) {
+                    System.out.println("No matching student found!");
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Unable to search student: " + e.getMessage());
+        }
+    }
+
 }

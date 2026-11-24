@@ -40,3 +40,33 @@ CREATE TABLE IF NOT EXISTS bookings (
     FOREIGN KEY (student_id) REFERENCES students(id),
     FOREIGN KEY (resource_id) REFERENCES resources(id)
 );
+
+-- Campus Activity Management
+
+CREATE TABLE IF NOT EXISTS campus_activities (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    activity_name TEXT NOT NULL,
+    description TEXT NOT NULL,
+    activity_date TEXT NOT NULL,
+    location TEXT NOT NULL
+);
+
+-- Prevent duplicate active bookings
+CREATE UNIQUE INDEX IF NOT EXISTS
+idx_unique_resource_booking
+ON bookings (resource_id, booking_date)
+WHERE status = 'booked';
+
+
+-- Administrator Management
+
+CREATE TABLE IF NOT EXISTS administrators (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    salt TEXT NOT NULL,
+    designation TEXT NOT NULL,
+    department TEXT NOT NULL,
+    phone TEXT
+);
