@@ -150,24 +150,34 @@ if (upcomingActivityList) {
 
         upcomingActivityList.innerHTML = "";
 
-        const savedActivities = JSON.parse(
-            localStorage.getItem("campusIQActivities") || "[]"
-        );
+        let savedActivities = [];
+
+        try {
+            savedActivities = JSON.parse(
+                localStorage.getItem("campusIQActivities") || "[]"
+            );
+
+            if (!Array.isArray(savedActivities)) {
+                savedActivities = [];
+            }
+        } catch (error) {
+            savedActivities = [];
+        }
 
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
-        // Keep only future and today's activities
         const upcomingActivities = savedActivities
             .filter(activity => {
-                const [year, month, day] = activity.dateKey.split("-").map(Number);
+                if (!activity.date) return false;
+
+                const [year, month, day] = activity.date.split("-").map(Number);
                 const activityDate = new Date(year, month - 1, day);
 
-                return activityDate >= today;
+                return !isNaN(activityDate.getTime()) &&
+                    activityDate >= today;
             })
-            // Sort nearest date first
-            .sort((a, b) => a.dateKey.localeCompare(b.dateKey))
-            // Show the nearest three activities
+            .sort((a, b) => a.date.localeCompare(b.date))
             .slice(0, 3);
 
         if (upcomingActivities.length === 0) {
@@ -177,7 +187,7 @@ if (upcomingActivityList) {
 
         upcomingActivities.forEach(activity => {
 
-            const [year, month, day] = activity.dateKey.split("-");
+            const [year, month, day] = activity.date.split("-");
 
             const eventItem = document.createElement("div");
             eventItem.className = "event-item";
@@ -195,30 +205,27 @@ if (upcomingActivityList) {
             const eventType = document.createElement("p");
             eventType.textContent = activity.type + " • " + activity.venue;
 
-            eventDetails.appendChild(eventName);
-            eventDetails.appendChild(eventType);
+            eventDetails.append(eventName, eventType);
 
             const eventMonth = document.createElement("span");
             eventMonth.className = "event-time";
 
-            const monthName = new Date(
+            eventMonth.textContent = new Date(
                 Number(year),
                 Number(month) - 1,
                 Number(day)
-            ).toLocaleString("en-IN", { month: "short" });
+            ).toLocaleString("en-IN", {
+                month: "short"
+            });
 
-            eventMonth.textContent = monthName;
-
-            eventItem.appendChild(eventDate);
-            eventItem.appendChild(eventDetails);
-            eventItem.appendChild(eventMonth);
-
+            eventItem.append(eventDate, eventDetails, eventMonth);
             upcomingActivityList.appendChild(eventItem);
         });
     }
 
     displayUpcomingActivities();
 }
+
 
 /* =====================================
    CAMPUSIQ - STUDENT MANAGEMENT

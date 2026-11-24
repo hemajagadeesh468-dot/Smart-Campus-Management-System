@@ -3819,7 +3819,7 @@ body:not(.light-theme) .sidebar-nav a {
 /* Navigation hover */
 body:not(.light-theme) .sidebar-nav a:hover {
     background: #39322B !important;
-    color: #F4EEE5 !important;
+    color: #F4EEE5 !important; 
 }
 
 /* Active navigation */
