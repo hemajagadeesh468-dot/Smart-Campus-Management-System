@@ -40,13 +40,16 @@ button {
 
 .sidebar {
     width: 235px;
-    min-height: 100vh;
+    height: 100vh;
+    min-height: 0;
     background: #171513;
     border-right: 1px solid var(--border);
     padding: 28px 17px;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .brand {
