@@ -4244,3 +4244,25 @@ body:not(.light-theme) .sidebar-footer span {
 body:not(.light-theme) .sidebar-footer small {
     color: #B9AA98 !important;
 }
+/* SIDEBAR SCROLLBAR */
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #b8aa91 transparent;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #b8aa91;
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #8f8068;
+}
