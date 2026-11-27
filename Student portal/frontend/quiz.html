@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Hub | CampusIQ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <div class="brand-name">CampusIQ</div>
+        </div>
+
+        <p class="nav-heading">MAIN MENU</p>
+        <nav>
+            <a href="dashboard.html" class="nav-link active">▦ Dashboard</a>
+            <a href="attendance.html" class="nav-link">◷ Attendance</a>
+            <a href="calendar.html" class="nav-link">▦ Calendar</a>
+            <a href="payment.html" class="nav-link">₹ Payments</a>
+            <a href="timetable.html" class="nav-link">◴ Timetable</a>
+            <a href="results.html" class="nav-link">◎ Grade Sheet</a>
+            <a href="assignments.html" class="nav-link">▤ Assignments</a>
+            <a href="quiz.html" class="nav-link">✦ Quiz</a>
+            <a href="quiz-results.html" class="nav-link">✦ Quiz Results</a>
+            <a href="events.html" class="nav-link">✧ Events</a>
+            <a href="grievance.html" class="nav-link">✉ Grievance</a>
+            <a href="Library OPAC.html" class="nav-link">▥ Library</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-card">
+                <strong>Need assistance?</strong>
+                <p>We're here to help you.</p>
+                <a href="grievance.html">Contact support →</a>
+            </div>
+            <div class="user-mini">
+                <div class="avatar">ST</div>
+                <div>
+                    <strong>Student</strong>
+                    <small>Student Portal</small>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div class="breadcrumb">Student Portal / Attendance</div>
+            <div class="top-actions">
+                <button class="menu-button" aria-label="Open menu">☰</button>
+                <button class="theme-button" aria-label="Toggle theme">🌙</button>
+                <a href="profile.html" class="profile-shortcut">
+                    <div class="avatar">👤</div>
+                    <span>My Profile</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="page quiz-hub-page">
+
+            <!-- HERO -->
+            <section class="quiz-hero">
+                <div class="quiz-hero-content">
+                    <span class="quiz-eyebrow">CAM﻿PUSIQ · KNOWLEDGE ARENA</span>
+                    <h1>Think fast.<br><em>Learn smarter.</em></h1>
+                    <p>
+                        Your next big learning moment starts here.
+                        Explore subject quizzes, test your understanding
+                        and track your improvement.
+                    </p>
+                    <a href="#available-quizzes" class="quiz-hero-link">
+                        Explore quizzes <span>↘</span>
+                    </a>
+                </div>
+
+                <div class="quiz-hero-art">
+                    <div class="quiz-orbit orbit-one"></div>
+                    <div class="quiz-orbit orbit-two"></div>
+                    <div class="quiz-trophy">✦</div>
+                    <span class="floating-symbol symbol-one">?</span>
+                    <span class="floating-symbol symbol-two">+</span>
+                    <span class="floating-symbol symbol-three">A+</span>
+                    <div class="quiz-art-caption">
+                        <strong>YOUR MIND</strong>
+                        <span>IS YOUR BEST TOOL</span>
+                    </div>
+                </div>
+
+                <div class="quiz-hero-bottom">
+                    <span>01 / EXPLORE</span>
+                    <span>02 / ATTEMPT</span>
+                    <span>03 / IMPROVE</span>
+                </div>
+            </section>
+
+            <!-- QUICK STATS -->
+            <section class="quiz-quick-stats">
+                <div class="quiz-stat">
+                    <span class="quiz-stat-icon">◈</span>
+                    <div>
+                        <strong>12</strong>
+                        <small>Available quizzes</small>
+                    </div>
+                </div>
+                <div class="quiz-stat">
+                    <span class="quiz-stat-icon">◷</span>
+                    <div>
+                        <strong>15–30</strong>
+                        <small>Minutes per quiz</small>
+                    </div>
+                </div>
+                <div class="quiz-stat">
+                    <span class="quiz-stat-icon">✦</span>
+                    <div>
+                        <strong>04</strong>
+                        <small>Subject categories</small>
+                    </div>
+                </div>
+                <div class="quiz-stat">
+                    <span class="quiz-stat-icon">◎</span>
+                    <div>
+                        <strong>80%</strong>
+                        <small>Target accuracy</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUIZ CATEGORIES -->
+            <section class="quiz-category-section" id="available-quizzes">
+                <div class="quiz-section-heading">
+                    <div>
+                        <span class="quiz-section-label">CHOOSE YOUR CHALLENGE</span>
+                        <h2>Explore by subject</h2>
+                        <p>Pick a topic and test what you know.</p>
+                    </div>
+                    <a href="quiz-results.html" class="quiz-text-link">
+                        View quiz history →
+                    </a>
+                </div>
+
+                <div class="quiz-category-grid">
+
+                    <article class="quiz-category-card category-programming">
+                        <div class="category-card-top">
+                            <span class="category-icon">⌘</span>
+                            <span class="category-tag">01 · TECH</span>
+                        </div>
+                        <h3>Programming</h3>
+                        <p>Logic, coding concepts, Java and Python fundamentals.</p>
+                        <div class="category-card-bottom">
+                            <span>04 QUIZZES</span>
+                            <span>Beginner – Advanced</span>
+                        </div>
+                        <a href="#quiz-list" class="category-open">Explore quizzes ↗</a>
+                    </article>
+
+                    <article class="quiz-category-card category-datascience">
+                        <div class="category-card-top">
+                            <span class="category-icon">◉</span>
+                            <span class="category-tag">02 · ANALYTICS</span>
+                        </div>
+                        <h3>Data Science</h3>
+                        <p>Statistics, data analysis, visualization and machine learning.</p>
+                        <div class="category-card-bottom">
+                            <span>03 QUIZZES</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <a href="#quiz-list" class="category-open">Explore quizzes ↗</a>
+                    </article>
+
+                    <article class="quiz-category-card category-mathematics">
+                        <div class="category-card-top">
+                            <span class="category-icon">∑</span>
+                            <span class="category-tag">03 · LOGIC</span>
+                        </div>
+                        <h3>Mathematics</h3>
+                        <p>Probability, algebra, discrete mathematics and reasoning.</p>
+                        <div class="category-card-bottom">
+                            <span>03 QUIZZES</span>
+                            <span>Beginner – Advanced</span>
+                        </div>
+                        <a href="#quiz-list" class="category-open">Explore quizzes ↗</a>
+                    </article>
+
+                    <article class="quiz-category-card category-database">
+                        <div class="category-card-top">
+                            <span class="category-icon">▤</span>
+                            <span class="category-tag">04 · SYSTEMS</span>
+                        </div>
+                        <h3>Database & Web</h3>
+                        <p>SQL, database concepts, HTML, CSS and web technologies.</p>
+                        <div class="category-card-bottom">
+                            <span>02 QUIZZES</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <a href="#quiz-list" class="category-open">Explore quizzes ↗</a>
+                    </article>
+
+                </div>
+            </section>
+
+
+            <!-- AVAILABLE QUIZZES -->
+            <section class="quiz-list-section" id="quiz-list">
+                <div class="quiz-section-heading">
+                    <div>
+                        <span class="quiz-section-label">THE CHALLENGE BOARD</span>
+                        <h2>Available quizzes</h2>
+                        <p>Choose a challenge based on your preparation.</p>
+                    </div>
+                    <span class="quiz-live-label">● 12 QUIZZES LISTED</span>
+                </div>
+
+                <div class="quiz-challenge-list">
+
+                    <article class="quiz-challenge">
+                        <div class="challenge-number">01</div>
+                        <div class="challenge-info">
+                            <span class="challenge-subject">PROGRAMMING · JAVA</span>
+                            <h3>Object Oriented Programming</h3>
+                            <p>Classes, objects, inheritance, polymorphism and abstraction.</p>
+                            <div class="challenge-meta">
+                                <span>◷ 20 min</span>
+                                <span>▤ 20 questions</span>
+                                <span class="difficulty-medium">Intermediate</span>
+                            </div>
+                        </div>
+                        <div class="challenge-action">
+                            <span class="challenge-points">20 POINTS</span>
+                            <a href="quiz-attempt.html?quiz=1" class="challenge-button quiz-take-link">Take Quiz ↗</a><a href="quiz-review.html?quiz=1" class="challenge-review-link" data-review-quiz="1" hidden>View Results ↗</a>
+                        </div>
+                    </article>
+
+                    <article class="quiz-challenge">
+                        <div class="challenge-number">02</div>
+                        <div class="challenge-info">
+                            <span class="challenge-subject">DATA SCIENCE</span>
+                            <h3>Introduction to Statistics</h3>
+                            <p>Mean, median, probability, distributions and sampling.</p>
+                            <div class="challenge-meta">
+                                <span>◷ 15 min</span>
+                                <span>▤ 15 questions</span>
+                                <span class="difficulty-easy">Beginner</span>
+                            </div>
+                        </div>
+                        <div class="challenge-action">
+                            <span class="challenge-points">15 POINTS</span>
+                            <a href="quiz-attempt.html?quiz=2" class="challenge-button quiz-take-link">Take Quiz ↗</a><a href="quiz-review.html?quiz=2" class="challenge-review-link" data-review-quiz="2" hidden>View Results ↗</a>
+                        </div>
+                    </article>
+
+                    <article class="quiz-challenge">
+                        <div class="challenge-number">03</div>
+                        <div class="challenge-info">
+                            <span class="challenge-subject">DATABASE SYSTEMS</span>
+                            <h3>SQL Knowledge Check</h3>
+                            <p>Queries, joins, keys, normalization and database operations.</p>
+                            <div class="challenge-meta">
+                                <span>◷ 25 min</span>
+                                <span>▤ 25 questions</span>
+                                <span class="difficulty-hard">Advanced</span>
+                            </div>
+                        </div>
+                        <div class="challenge-action">
+                            <span class="challenge-points">25 POINTS</span>
+                            <a href="quiz-attempt.html?quiz=3" class="challenge-button quiz-take-link">Take Quiz ↗</a><a href="quiz-review.html?quiz=3" class="challenge-review-link" data-review-quiz="3" hidden>View Results ↗</a>
+                        </div>
+                    </article>
+
+                    <article class="quiz-challenge">
+                        <div class="challenge-number">04</div>
+                        <div class="challenge-info">
+                            <span class="challenge-subject">WEB TECHNOLOGY</span>
+                            <h3>HTML & CSS Essentials</h3>
+                            <p>Web structure, styling, selectors and responsive design.</p>
+                            <div class="challenge-meta">
+                                <span>◷ 15 min</span>
+                                <span>▤ 15 questions</span>
+                                <span class="difficulty-easy">Beginner</span>
+                            </div>
+                        </div>
+                        <div class="challenge-action">
+                            <span class="challenge-points">15 POINTS</span>
+                            <a href="quiz-attempt.html?quiz=4" class="challenge-button quiz-take-link">Take Quiz ↗</a><a href="quiz-review.html?quiz=4" class="challenge-review-link" data-review-quiz="4" hidden>View Results ↗</a>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            
+
+            <!-- QUIZ RULES -->
+            <section class="quiz-rules">
+                <div class="rules-symbol">✧</div>
+                <div>
+                    <span class="quiz-section-label">BEFORE YOU BEGIN</span>
+                    <h2>Play fair. Learn more.</h2>
+                    <p>
+                        Read each question carefully, manage your time and
+                        complete your quiz independently. Your results help
+                        you understand where you can improve.
+                    </p>
+                </div>
+                <a href="quiz-results.html">My performance →</a>
+            </section>
+
+        </section>
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

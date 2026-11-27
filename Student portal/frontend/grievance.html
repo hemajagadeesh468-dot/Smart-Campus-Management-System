@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Support Centre | CampusIQ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <div class="brand-name">CampusIQ</div>
+        </div>
+
+        <p class="nav-heading">MAIN MENU</p>
+        <nav>
+            <a href="dashboard.html" class="nav-link active">▦ Dashboard</a>
+            <a href="attendance.html" class="nav-link">◷ Attendance</a>
+            <a href="calendar.html" class="nav-link">▦ Calendar</a>
+            <a href="payment.html" class="nav-link">₹ Payments</a>
+            <a href="timetable.html" class="nav-link">◴ Timetable</a>
+            <a href="results.html" class="nav-link">◎ Grade Sheet</a>
+            <a href="assignments.html" class="nav-link">▤ Assignments</a>
+            <a href="quiz.html" class="nav-link">✦ Quiz</a>
+            <a href="quiz-results.html" class="nav-link">✦ Quiz Results</a>
+            <a href="events.html" class="nav-link">✧ Events</a>
+            <a href="grievance.html" class="nav-link">✉ Grievance</a>
+            <a href="Library OPAC.html" class="nav-link">▥ Library</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-card">
+                <strong>Need assistance?</strong>
+                <p>We're here to help you.</p>
+                <a href="grievance.html">Contact support →</a>
+            </div>
+
+            <div class="user-mini">
+                <div class="avatar">ST</div>
+                <div>
+                    <strong>Student</strong>
+                    <small>Student Portal</small>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div class="breadcrumb">Student Portal / Attendance</div>
+            <div class="top-actions">
+                <button class="menu-button" aria-label="Open menu">☰</button>
+                <button class="theme-button" aria-label="Toggle theme">🌙</button>
+                <a href="profile.html" class="profile-shortcut">
+                    <div class="avatar">👤</div>
+                    <span>My Profile</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="page support-page">
+
+            <!-- EDITORIAL HEADER -->
+            <section class="support-welcome">
+
+                <div class="support-welcome-text">
+                    <span class="support-overline">CAMPUSIQ · STUDENT CARE</span>
+
+                    <h1>
+                        We're here.<br>
+                        <em>Let's make things better.</em>
+                    </h1>
+
+                    <p>
+                        Whether you have a question, concern or suggestion,
+                        this is your space to speak up. Every concern matters.
+                    </p>
+
+                    <div class="support-welcome-links">
+                        <a href="#new-grievance" class="support-primary-link">
+                            Start a conversation →
+                        </a>
+                        <a href="#support-faq" class="support-secondary-link">
+                            Explore FAQs
+                        </a>
+                    </div>
+                </div>
+
+                <div class="support-illustration">
+                    <div class="support-illustration-ring"></div>
+                    <div class="support-illustration-inner">
+                        <span>✉</span>
+                    </div>
+                    <div class="support-note note-one">Your voice matters.</div>
+                    <div class="support-note note-two">We're listening ✓</div>
+                    <div class="support-illustration-star">✳</div>
+                </div>
+
+            </section>
+
+            <!-- QUICK SUPPORT STRIP -->
+            <div class="support-quick-strip">
+                <div>
+                    <span class="quick-strip-icon">01</span>
+                    <p><strong>Tell us</strong><small>Describe your concern</small></p>
+                </div>
+
+                <div>
+                    <span class="quick-strip-icon">02</span>
+                    <p><strong>We review</strong><small>It reaches the right team</small></p>
+                </div>
+
+                <div>
+                    <span class="quick-strip-icon">03</span>
+                    <p><strong>We respond</strong><small>Follow the progress</small></p>
+                </div>
+            </div>
+
+            <!-- SUPPORT WORKSPACE -->
+            <div class="support-workspace" id="new-grievance">
+
+                <!-- FORM SIDE -->
+                <div class="support-form-area">
+
+                    <div class="support-section-heading">
+                        <span>01 / SHARE YOUR CONCERN</span>
+                        <h2>How can we help?</h2>
+                        <p>Give us a little context so we can direct your concern correctly.</p>
+                    </div>
+
+                    <form class="support-form" id="grievanceForm">
+
+                        <div class="support-input-group">
+                            <label for="grievanceName">Your name</label>
+                            <input
+                                type="text"
+                                id="grievanceName"
+                                placeholder="Enter your full name"
+                                required>
+                        </div>
+
+                        <div class="support-input-row">
+
+                            <div class="support-input-group">
+                                <label for="grievanceId">Student ID</label>
+                                <input
+                                    type="text"
+                                    id="grievanceId"
+                                    placeholder="Student ID"
+                                    required>
+                            </div>
+
+                            <div class="support-input-group">
+                                <label for="grievanceEmail">Email address</label>
+                                <input
+                                    type="email"
+                                    id="grievanceEmail"
+                                    placeholder="Your email"
+                                    required>
+                            </div>
+
+                        </div>
+
+                        <div class="support-input-group">
+                            <label for="grievanceCategory">What is this about?</label>
+                            <select id="grievanceCategory" required>
+                                <option value="">Choose a category</option>
+                                <option>Academic Issues</option>
+                                <option>Attendance Related</option>
+                                <option>Examination Issues</option>
+                                <option>Fee & Payment Issues</option>
+                                <option>Infrastructure</option>
+                                <option>Library Services</option>
+                                <option>Faculty Related</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="support-input-group">
+                            <label for="grievanceSubject">Give it a title</label>
+                            <input
+                                type="text"
+                                id="grievanceSubject"
+                                placeholder="A short description of the issue"
+                                required>
+                        </div>
+
+                        <div class="support-input-group">
+                            <label for="grievancePriority">How urgent is it?</label>
+                            <select id="grievancePriority" required>
+                                <option value="">Select urgency</option>
+                                <option>Low</option>
+                                <option>Medium</option>
+                                <option>High</option>
+                            </select>
+                        </div>
+
+                        <div class="support-input-group">
+                            <label for="grievanceDescription">Tell us what happened</label>
+                            <textarea
+                                id="grievanceDescription"
+                                rows="5"
+                                placeholder="Explain your concern. Include any details that may help us understand it..."
+                                required></textarea>
+                        </div>
+
+                        <div class="support-form-consent">
+                            <span>♧</span>
+                            <p>Your information will be used to review and respond to this concern.</p>
+                        </div>
+
+                        <button type="submit" class="support-submit">
+                            Send my concern <span>→</span>
+                        </button>
+
+                    </form>
+
+                </div>
+
+                <!-- INFORMATION SIDE -->
+                <aside class="support-information">
+
+                    <div class="support-info-top">
+                        <span>YOUR SUPPORT SPACE</span>
+                        <h2>Not sure where to begin?</h2>
+                        <p>
+                            Start by choosing the category that best matches
+                            your concern. Our support process is designed
+                            to keep things clear and organised.
+                        </p>
+                    </div>
+
+                    <div class="support-category-list">
+
+                        <div>
+                            <span>▤</span>
+                            <p><strong>Academic</strong><small>Classes, attendance and exams</small></p>
+                        </div>
+
+                        <div>
+                            <span>₹</span>
+                            <p><strong>Finance</strong><small>Fees and payment concerns</small></p>
+                        </div>
+
+                        <div>
+                            <span>⌂</span>
+                            <p><strong>Campus facilities</strong><small>Infrastructure and amenities</small></p>
+                        </div>
+
+                        <div>
+                            <span>▥</span>
+                            <p><strong>Library</strong><small>Books and library services</small></p>
+                        </div>
+
+                    </div>
+
+                    <div class="support-confidential">
+                        <span>✧</span>
+                        <div>
+                            <strong>Your concern deserves attention.</strong>
+                            <p>Share only relevant information and avoid including passwords or other sensitive details.</p>
+                        </div>
+                    </div>
+
+                </aside>
+
+            </div>
+
+            <!-- FAQ -->
+            <section class="support-faq-section" id="support-faq">
+
+                <div class="support-faq-heading">
+                    <div>
+                        <span>02 / QUICK ANSWERS</span>
+                        <h2>Frequently asked questions</h2>
+                    </div>
+                    <p>Some answers before you submit.</p>
+                </div>
+
+                <div class="support-faq-grid">
+
+                    <details class="support-faq-item">
+                        <summary>What happens after I submit a grievance?</summary>
+                        <p>
+                            Your concern can be reviewed by the relevant
+                            department. Once backend integration is active,
+                            you will be able to track its status.
+                        </p>
+                    </details>
+
+                    <details class="support-faq-item">
+                        <summary>Can I report an academic issue?</summary>
+                        <p>
+                            Yes. Select Academic Issues and describe the
+                            problem clearly, including relevant dates if needed.
+                        </p>
+                    </details>
+
+                    <details class="support-faq-item">
+                        <summary>How can I check my ticket status?</summary>
+                        <p>
+                            Visit the All Tickets page to view the ticket
+                            tracking interface. Live tracking will be connected
+                            to the backend later.
+                        </p>
+                    </details>
+
+                    <details class="support-faq-item">
+                        <summary>What if my concern is urgent?</summary>
+                        <p>
+                            Select High priority and provide clear details.
+                            For immediate safety or emergencies, contact
+                            campus authorities directly.
+                        </p>
+                    </details>
+
+                </div>
+
+            </section>
+
+            <!-- BOTTOM SUPPORT BANNER -->
+            <section class="support-bottom-banner">
+                <div>
+                    <span>STUDENT SUPPORT</span>
+                    <h2>A better campus starts with being heard.</h2>
+                    <p>Thank you for helping us improve campus life.</p>
+                </div>
+
+            </section>
+
+            <div class="support-demo-note">
+                Demo interface: grievance submission, ticket creation and
+                live status tracking will be connected to the Java backend later.
+            </div>
+
+        </section>
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable | CampusIQ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <div class="brand-name">CampusIQ</div>
+        </div>
+
+        <p class="nav-heading">MAIN MENU</p>
+        <nav>
+            <a href="dashboard.html" class="nav-link active">▦ Dashboard</a>
+            <a href="attendance.html" class="nav-link">◷ Attendance</a>
+            <a href="calendar.html" class="nav-link">▦ Calendar</a>
+            <a href="payment.html" class="nav-link">₹ Payments</a>
+            <a href="timetable.html" class="nav-link">◴ Timetable</a>
+            <a href="results.html" class="nav-link">◎ Grade Sheet</a>
+            <a href="assignments.html" class="nav-link">▤ Assignments</a>
+            <a href="quiz.html" class="nav-link">✦ Quiz</a>
+            <a href="quiz-results.html" class="nav-link">✦ Quiz Results</a>
+            <a href="events.html" class="nav-link">✧ Events</a>
+            <a href="grievance.html" class="nav-link">✉ Grievance</a>
+            <a href="Library OPAC.html" class="nav-link">▥ Library</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-card">
+                <strong>Need assistance?</strong>
+                <p>We're here to help you.</p>
+                <a href="grievance.html">Contact support →</a>
+            </div>
+            <div class="user-mini">
+                <div class="avatar">ST</div>
+                <div>
+                    <strong>Student</strong>
+                    <small>Student Portal</small>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div class="breadcrumb">Student Portal / Attendance</div>
+            <div class="top-actions">
+                <button class="menu-button" aria-label="Open menu">☰</button>
+                <button class="theme-button" aria-label="Toggle theme">🌙</button>
+                <a href="profile.html" class="profile-shortcut">
+                    <div class="avatar">👤</div>
+                    <span>My Profile</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="page timetable-page">
+
+            <!-- HERO -->
+            <div class="timetable-hero">
+                <div>
+                    <span class="timetable-eyebrow">ACADEMIC PLANNER · 2026</span>
+                    <h1>Make every<br>class count.</h1>
+                    <p>Stay organised, manage your learning hours and keep track of your weekly academic routine.</p>
+                    <div class="timetable-hero-meta">
+                        <span>◷ Monday – Saturday</span>
+                    </div>
+                </div>
+                <div class="timetable-hero-visual">
+                    <div class="clock-circle">◷</div>
+                    <div class="clock-caption">
+                        <strong>Stay on schedule</strong>
+                        <small>Plan. Learn. Achieve.</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="timetable-summary">
+                <article class="timetable-summary-card">
+                    <span class="summary-symbol">▤</span>
+                    <div>
+                        <small>Weekly Classes</small>
+                        <strong>30</strong>
+                        <span>Scheduled sessions</span>
+                    </div>
+                </article>
+
+                <article class="timetable-summary-card">
+                    <span class="summary-symbol">◷</span>
+                    <div>
+                        <small>Learning Hours</small>
+                        <strong>25 hrs</strong>
+                        <span>Per week</span>
+                    </div>
+                </article>
+
+                <article class="timetable-summary-card">
+                    <span class="summary-symbol">⌂</span>
+                    <div>
+                        <small>Classroom</small>
+                        <strong>Block A</strong>
+                        <span>Primary academic block</span>
+                    </div>
+                </article>
+
+                
+            </div>
+
+            
+            <!-- WEEKLY TIMETABLE -->
+            <div class="timetable-section-heading">
+                <div>
+                    <h2>Full Weekly Schedule</h2>
+                    <p>Monday to Saturday · Semester V</p>
+                </div>
+                <span class="semester-label">2026 – 2027</span>
+            </div>
+
+            <div class="weekly-table-wrapper">
+                <table class="weekly-table">
+                    <thead>
+                        <tr>
+                            <th>TIME</th>
+                            <th>MONDAY</th>
+                            <th>TUESDAY</th>
+                            <th>WEDNESDAY</th>
+                            <th>THURSDAY</th>
+                            <th>FRIDAY</th>
+                            <th>SATURDAY</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>9:00 – 10:00</th>
+                            <td><div class="week-class green">DBMS<small>Room A204</small></div></td>
+                            <td><div class="week-class gold">Python<small>Room A201</small></div></td>
+                            <td><div class="week-class blue">Statistics<small>Room A204</small></div></td>
+                            <td><div class="week-class green">Java<small>Room A202</small></div></td>
+                            <td><div class="week-class gold">DBMS<small>Room A204</small></div></td>
+                            <td><div class="week-class blue">Project Work<small>Lab 2</small></div></td>
+                        </tr>
+
+                        <tr>
+                            <th>10:00 – 11:00</th>
+                            <td><div class="week-class gold">Data Structures<small>Room A204</small></div></td>
+                            <td><div class="week-class blue">Operating Systems<small>Room A203</small></div></td>
+                            <td><div class="week-class green">Java<small>Room A202</small></div></td>
+                            <td><div class="week-class gold">Statistics<small>Room A204</small></div></td>
+                            <td><div class="week-class blue">Python<small>Room A201</small></div></td>
+                            <td><div class="week-class green">Seminar<small>Room A101</small></div></td>
+                        </tr>
+
+                        <tr class="break-row">
+                            <th>11:00 – 11:15</th>
+                            <td colspan="6">☕ SHORT BREAK</td>
+                        </tr>
+
+                        <tr>
+                            <th>11:15 – 12:15</th>
+                            <td><div class="week-class blue">Operating Systems<small>Room A204</small></div></td>
+                            <td><div class="week-class green">DBMS<small>Room A204</small></div></td>
+                            <td><div class="week-class gold">Data Structures<small>Room A203</small></div></td>
+                            <td><div class="week-class blue">Python<small>Room A201</small></div></td>
+                            <td><div class="week-class green">Java<small>Room A202</small></div></td>
+                            <td><div class="week-class gold">Library Hour<small>Library</small></div></td>
+                        </tr>
+
+                        <tr>
+                            <th>12:15 – 1:15</th>
+                            <td><div class="week-class green">Java Lab<small>Computer Lab 2</small></div></td>
+                            <td><div class="week-class blue">Statistics<small>Room A204</small></div></td>
+                            <td><div class="week-class gold">Python Lab<small>Computer Lab 1</small></div></td>
+                            <td><div class="week-class green">DBMS Lab<small>Computer Lab 2</small></div></td>
+                            <td><div class="week-class blue">Project Work<small>Innovation Lab</small></div></td>
+                            <td><div class="week-class green">Java Lab<small>Computer Lab 2</small></div></td>
+                        </tr>
+
+                        <tr class="break-row">
+                            <th>1:15 – 2:00</th>
+                            <td colspan="6">🍽 LUNCH BREAK</td>
+                        </tr>
+
+                        <tr>
+                            <th>2:00 – 3:00</th>
+                            <td><div class="week-class gold">Statistics<small>Room A204</small></div></td>
+                            <td><div class="week-class green">Data Structures<small>Room A203</small></div></td>
+                            <td><div class="week-class blue">Operating Systems<small>Room A204</small></div></td>
+                            <td><div class="week-class gold">Data Structures<small>Room A203</small></div></td>
+                            <td><div class="week-class green">Statistics<small>Room A204</small></div></td>
+                            <td><div class="week-class blue">Mentoring<small>Room A101</small></div></td>
+                        </tr>
+
+                        <tr>
+                            <th>3:00 – 4:00</th>
+                            <td><div class="week-class blue">Project Work<small>Innovation Lab</small></div></td>
+                            <td><div class="week-class gold">Communication<small>Room A101</small></div></td>
+                            <td><div class="week-class green">Assignment Hour<small>Room A204</small></div></td>
+                            <td><div class="week-class blue">Project Work<small>Innovation Lab</small></div></td>
+                            <td><div class="week-class gold">Activity Hour<small>Seminar Hall</small></div></td>
+                            <td><div class="week-class green">Club Activities<small>Activity Hall</small></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="timetable-legend">
+                <span><i class="legend-green"></i> Core Subjects</span>
+                <span><i class="legend-gold"></i> Practical / Activities</span>
+                <span><i class="legend-blue"></i> Labs / Other Sessions</span>
+            </div>
+
+
+            
+
+            <!-- FOOTER NOTE -->
+            <div class="timetable-note">
+                <span>✦</span>
+                <div>
+                    <strong>Stay prepared for your next class</strong>
+                    <p>Keep your notes ready and check your schedule regularly for academic updates.</p>
+                </div>
+            </div>
+
+        </section>
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusIQ | Administrator Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="admin-auth-page">
+
+    <main class="admin-auth-container">
+
+        <div class="admin-auth-brand">
+            <div class="admin-auth-icon">C</div>
+            <h1>Campus<span>IQ</span></h1>
+        </div>
+
+        <div class="admin-auth-heading">
+            <p>ADMINISTRATOR PORTAL</p>
+            <h2>Welcome Back!</h2>
+            <span>Sign in to manage your campus.</span>
+        </div>
+
+        <form id="adminBackendLoginForm">
+
+            <div class="admin-auth-field">
+                <label for="adminEmail">Administrator Email</label>
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="Enter your email"
+                    autocomplete="username"
+                    required>
+            </div>
+
+            <div class="admin-auth-field">
+                <label for="adminPassword">Password</label>
+
+                <div class="admin-auth-password">
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required>
+
+                    <button
+                        type="button"
+                        id="adminPasswordToggle">
+                        Show
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="admin-auth-submit">
+                Sign in to CampusIQ <span>→</span>
+            </button>
+
+            <p
+                class="admin-auth-message"
+                id="adminLoginMessage"
+                aria-live="polite">
+            </p>
+
+        </form>
+
+        <div class="admin-auth-divider">
+            <span>SECURE ADMINISTRATOR ACCESS</span>
+        </div>
+
+        <div class="admin-auth-support">
+            <span>✦</span>
+            <div>
+                <strong>Need assistance?</strong>
+                <p>Contact your system administrator for login support.</p>
+            </div>
+        </div>
+
+        <div class="admin-auth-footer">
+            CampusIQ Smart Campus Management System<br>
+            Administrator Access Only
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

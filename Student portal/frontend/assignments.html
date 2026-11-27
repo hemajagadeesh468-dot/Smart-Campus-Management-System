@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Studio | CampusIQ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <div class="brand-name">CampusIQ</div>
+        </div>
+
+        <p class="nav-heading">MAIN MENU</p>
+        <nav>
+            <a href="dashboard.html" class="nav-link active">▦ Dashboard</a>
+            <a href="attendance.html" class="nav-link">◷ Attendance</a>
+            <a href="calendar.html" class="nav-link">▦ Calendar</a>
+            <a href="payment.html" class="nav-link">₹ Payments</a>
+            <a href="timetable.html" class="nav-link">◴ Timetable</a>
+            <a href="results.html" class="nav-link">◎ Grade Sheet</a>
+            <a href="assignments.html" class="nav-link">▤ Assignments</a>
+            <a href="quiz.html" class="nav-link">✦ Quiz</a>
+            <a href="quiz-results.html" class="nav-link">✦ Quiz Results</a>
+            <a href="events.html" class="nav-link">✧ Events</a>
+            <a href="grievance.html" class="nav-link">✉ Grievance</a>
+            <a href="Library OPAC.html" class="nav-link">▥ Library</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-card">
+                <strong>Need assistance?</strong>
+                <p>We're here to help you.</p>
+                <a href="grievance.html">Contact support →</a>
+            </div>
+            <div class="user-mini">
+                <div class="avatar">ST</div>
+                <div>
+                    <strong>Student</strong>
+                    <small>Student Portal</small>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div class="breadcrumb">Student Portal / Attendance</div>
+            <div class="top-actions">
+                <button class="menu-button" aria-label="Open menu">☰</button>
+                <button class="theme-button" aria-label="Toggle theme">🌙</button>
+                <a href="profile.html" class="profile-shortcut">
+                    <div class="avatar">👤</div>
+                    <span>My Profile</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="page assignment-page">
+
+            <!-- INTRODUCTION -->
+            <section class="assignment-intro">
+                <div class="assignment-intro-content">
+                    <span class="assignment-overline">YOUR ACADEMIC WORKSPACE</span>
+                    <h1>Ideas become<br><em>achievements.</em></h1>
+                    <p>Every assignment is a step forward. Keep track of your tasks, meet your deadlines and submit your best work.</p>
+
+                    <div class="assignment-intro-bottom">
+                        <span>✦ Stay organised</span>
+                        <span>◷ Meet deadlines</span>
+                        <span>↗ Track progress</span>
+                    </div>
+                </div>
+
+                <div class="assignment-illustration">
+                    <div class="paper-shadow"></div>
+                    <div class="assignment-paper">
+                        <div class="paper-topline">
+                            <span>MY WORK</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="paper-symbol">✳</div>
+                        <div class="paper-line long"></div>
+                        <div class="paper-line medium"></div>
+                        <div class="paper-line short"></div>
+                        <div class="paper-check">✓</div>
+                        <div class="paper-stamp">IN<br>PROGRESS</div>
+                    </div>
+                    <div class="floating-star">✦</div>
+                    <div class="floating-circle"></div>
+                </div>
+            </section>
+
+            <!-- QUICK OVERVIEW -->
+            <section class="assignment-overview">
+                <div class="overview-item">
+                    <span class="overview-icon">◷</span>
+                    <div>
+                        <strong>04</strong>
+                        <span>Pending tasks</span>
+                    </div>
+                </div>
+
+                <div class="overview-item">
+                    <span class="overview-icon">✓</span>
+                    <div>
+                        <strong>12</strong>
+                        <span>Submitted</span>
+                    </div>
+                </div>
+
+                <div class="overview-item">
+                    <span class="overview-icon">!</span>
+                    <div>
+                        <strong>01</strong>
+                        <span>Overdue</span>
+                    </div>
+                </div>
+
+                <div class="overview-progress">
+                    <div class="overview-progress-heading">
+                        <span>Submission progress</span>
+                        <strong>75%</strong>
+                    </div>
+                    <div class="overview-progress-track">
+                        <div class="overview-progress-fill"></div>
+                    </div>
+                    <small>12 out of 16 assignments completed</small>
+                </div>
+            </section>
+
+            <!-- ASSIGNMENT WORKSPACE -->
+            <section class="assignment-workspace">
+
+                <div class="assignment-list-area">
+
+                    <div class="assignment-section-heading">
+                        <div>
+                            <span class="assignment-overline">YOUR TASK BOARD</span>
+                            <h2>Assignments</h2>
+                        </div>
+                        <span class="assignment-count">17 TOTAL</span>
+                    </div>
+
+                    <div class="assignment-tabs">
+                        <button class="assignment-tab active">All <span>17</span></button>
+                        <button class="assignment-tab">Pending <span>04</span></button>
+                        <button class="assignment-tab">Submitted <span>12</span></button>
+                        <button class="assignment-tab">Overdue <span>01</span></button>
+                    </div>
+
+                    <!-- ASSIGNMENT 1 -->
+                    <article class="assignment-task-card">
+                        <div class="task-subject-icon task-green">⌘</div>
+
+                        <div class="task-main">
+                            <div class="task-meta">
+                                <span>OBJECT ORIENTED PROGRAMMING</span>
+                                <span class="task-priority priority-high">HIGH PRIORITY</span>
+                            </div>
+
+                            <h3>Library Management System</h3>
+                            <p>Build a Java-based library management application using classes, objects and inheritance.</p>
+
+                            <div class="task-details">
+                                <span>◷ Due: 30 Nov 2026</span>
+                                <span>▤ PDF / ZIP</span>
+                                <span>★ 20 Marks</span>
+                            </div>
+                        </div>
+
+                        <div class="task-action">
+                            <span class="task-status status-pending">Pending</span>
+                            <button class="task-submit-button">Submit Work ↗</button>
+                        </div>
+                    </article>
+
+                    <!-- ASSIGNMENT 2 -->
+                    <article class="assignment-task-card">
+                        <div class="task-subject-icon task-gold">▦</div>
+
+                        <div class="task-main">
+                            <div class="task-meta">
+                                <span>DATABASE MANAGEMENT</span>
+                                <span class="task-priority priority-medium">MEDIUM</span>
+                            </div>
+
+                            <h3>SQL Queries and Database Design</h3>
+                            <p>Design relational tables and demonstrate joins, constraints and normalisation.</p>
+
+                            <div class="task-details">
+                                <span>◷ Due: 03 Dec 2026</span>
+                                <span>▤ PDF / SQL</span>
+                                <span>★ 15 Marks</span>
+                            </div>
+                        </div>
+
+                        <div class="task-action">
+                            <span class="task-status status-pending">Pending</span>
+                            <button class="task-submit-button">Submit Work ↗</button>
+                        </div>
+                    </article>
+
+                    <!-- ASSIGNMENT 3 -->
+                    <article class="assignment-task-card">
+                        <div class="task-subject-icon task-blue">⌘</div>
+
+                        <div class="task-main">
+                            <div class="task-meta">
+                                <span>DATA STRUCTURES</span>
+                                <span class="task-priority priority-medium">MEDIUM</span>
+                            </div>
+
+                            <h3>Searching and Sorting Techniques</h3>
+                            <p>Implement searching and sorting algorithms with their time complexity analysis.</p>
+
+                            <div class="task-details">
+                                <span>◷ Due: 05 Dec 2026</span>
+                                <span>▤ PDF / ZIP</span>
+                                <span>★ 25 Marks</span>
+                            </div>
+                        </div>
+
+                        <div class="task-action">
+                            <span class="task-status status-submitted">Submitted</span>
+                            <span class="submitted-label">✓ Completed</span>
+                        </div>
+                    </article>
+
+                    <!-- ASSIGNMENT 4 -->
+                    <article class="assignment-task-card">
+                        <div class="task-subject-icon task-red">∑</div>
+
+                        <div class="task-main">
+                            <div class="task-meta">
+                                <span>PROBABILITY & STATISTICS</span>
+                                <span class="task-priority priority-high">HIGH PRIORITY</span>
+                            </div>
+
+                            <h3>Statistical Data Analysis</h3>
+                            <p>Analyse a dataset using descriptive statistics, variance and probability distributions.</p>
+
+                            <div class="task-details">
+                                <span>◷ Due: 24 Nov 2026</span>
+                                <span>▤ PDF / XLSX</span>
+                                <span>★ 20 Marks</span>
+                            </div>
+                        </div>
+
+                        <div class="task-action">
+                            <span class="task-status status-overdue">Overdue</span>
+                            <span class="overdue-label">Deadline passed</span>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- RIGHT SIDE PANEL -->
+                <aside class="assignment-side-panel">
+
+                    <div class="deadline-card">
+                        <span class="assignment-overline">UP NEXT</span>
+                        <h3>Next Deadline</h3>
+
+                        <div class="deadline-date">
+                            <div class="deadline-day">30</div>
+                            <div>
+                                <strong>November</strong>
+                                <span>Monday · 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="deadline-divider"></div>
+
+                        <strong class="deadline-assignment">Library Management System</strong>
+                        <p>Object Oriented Programming</p>
+
+                        <span class="deadline-reminder">◷ Submission approaching</span>
+                    </div>
+
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">↑</div>
+                        <h4>Upload your work</h4>
+                        <p>PDF, DOCX, ZIP or other permitted files</p>
+
+                        <input
+                            type="file"
+                            id="assignmentFile"
+                            accept=".pdf,.doc,.docx,.zip,.txt,.java,.html,.css,.js"
+                            hidden
+                        >
+
+                        <p id="selectedFileName">No file selected</p>
+                    </div>
+
+                    <div class="submission-tip">
+                        <span>✦ A LITTLE REMINDER</span>
+                        <p>Double-check your file before submitting. Make sure it is the correct version and follows your faculty's instructions.</p>
+                    </div>
+
+                </aside>
+            </section>
+
+            <!-- SUBMISSION HISTORY -->
+            <section class="submission-history">
+                <div class="assignment-section-heading">
+                    <div>
+                        <span class="assignment-overline">YOUR RECENT ACTIVITY</span>
+                        <h2>Submission History</h2>
+                    </div>
+                    <span class="history-small-note">Recent records</span>
+                </div>
+
+                <div class="history-entry">
+                    <div class="history-entry-icon">✓</div>
+                    <div class="history-entry-main">
+                        <strong>Searching and Sorting Techniques</strong>
+                        <span>Data Structures · Submitted on 25 Nov 2026</span>
+                    </div>
+                    <span class="history-entry-status">Submitted</span>
+                </div>
+
+                <div class="history-entry">
+                    <div class="history-entry-icon">✓</div>
+                    <div class="history-entry-main">
+                        <strong>Operating System Case Study</strong>
+                        <span>Operating Systems · Submitted on 20 Nov 2026</span>
+                    </div>
+                    <span class="history-entry-status">Submitted</span>
+                </div>
+
+                <div class="history-entry">
+                    <div class="history-entry-icon">✓</div>
+                    <div class="history-entry-main">
+                        <strong>Java Collections Framework</strong>
+                        <span>Object Oriented Programming · Submitted on 16 Nov 2026</span>
+                    </div>
+                    <span class="history-entry-status">Submitted</span>
+                </div>
+            </section>
+
+            <div class="assignment-disclaimer">
+                <span>ⓘ</span>
+                Assignment records and deadlines currently use demonstration data. File upload and submission processing will be connected to the Java backend in a later step.
+            </div>
+
+        </section>
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

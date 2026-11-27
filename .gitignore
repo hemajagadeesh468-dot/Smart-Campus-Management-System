@@ -1,2 +1,6 @@
-backend/out/
+**/out/
+**/target/
 *.class
+
+Administrator portal/backend/students.txt
+Administrator portal/backend/database/campusiq.db

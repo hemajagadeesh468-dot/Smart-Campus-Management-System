@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Transcript | CampusIQ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <div class="brand-name">CampusIQ</div>
+        </div>
+
+        <p class="nav-heading">MAIN MENU</p>
+
+        <nav>
+            <a href="dashboard.html" class="nav-link active">▦ Dashboard</a>
+            <a href="attendance.html" class="nav-link">◷ Attendance</a>
+            <a href="calendar.html" class="nav-link">▦ Calendar</a>
+            <a href="payment.html" class="nav-link">₹ Payments</a>
+            <a href="timetable.html" class="nav-link">◴ Timetable</a>
+            <a href="results.html" class="nav-link">◎ Grade Sheet</a>
+            <a href="assignments.html" class="nav-link">▤ Assignments</a>
+            <a href="quiz.html" class="nav-link">✦ Quiz</a>
+            <a href="quiz-results.html" class="nav-link">✦ Quiz Results</a>
+            <a href="events.html" class="nav-link">✧ Events</a>
+            <a href="grievance.html" class="nav-link">✉ Grievance</a>
+            <a href="Library OPAC.html" class="nav-link">▥ Library</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-card">
+                <strong>Need assistance?</strong>
+                <p>We're here to help you.</p>
+                <a href="grievance.html">Contact support →</a>
+            </div>
+            <div class="user-mini">
+                <div class="avatar">ST</div>
+                <div>
+                    <strong>Student</strong>
+                    <small>Student Portal</small>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div class="breadcrumb">Student Portal / Attendance</div>
+            <div class="top-actions">
+                <button class="menu-button" aria-label="Open menu">☰</button>
+                <button class="theme-button" aria-label="Toggle theme">🌙</button>
+                <a href="profile.html" class="profile-shortcut">
+                    <div class="avatar">👤</div>
+                    <span>My Profile</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="page transcript-page">
+
+            <!-- TRANSCRIPT HERO -->
+            <section class="transcript-hero">
+                <div class="transcript-hero-top">
+                    <span>CAMPU﻿SIQ · STUDENT ACADEMIC RECORD</span>
+                    <span class="record-indicator">● ACADEMIC RECORD</span>
+                </div>
+
+                <div class="transcript-hero-main">
+                    <div>
+                        <p class="transcript-kicker">YOUR JOURNEY SO FAR</p>
+                        <h1>Every semester.<br><em>A new milestone.</em></h1>
+                        <p class="transcript-description">
+                            A complete view of your academic achievements, semester performance and progress.
+                        </p>
+                    </div>
+
+                    <div class="transcript-seal">
+                        <span>IQ</span>
+                        <small>ACADEMIC<br>RECORD</small>
+                    </div>
+                </div>
+
+                <div class="transcript-identity">
+                    <div>
+                        <span>STUDENT NAME</span>
+                        <strong>Student Name</strong>
+                    </div>
+                    <div>
+                        <span>REGISTER NUMBER</span>
+                        <strong>24DS001</strong>
+                    </div>
+                    <div>
+                        <span>PROGRAMME</span>
+                        <strong>B.Sc. Data Science</strong>
+                    </div>
+                    <div>
+                        <span>ACADEMIC YEAR</span>
+                        <strong>2026–2027</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PERFORMANCE SUMMARY -->
+            <section class="transcript-summary">
+                <div class="summary-heading">
+                    <div>
+                        <span class="transcript-section-label">PERFORMANCE OVERVIEW</span>
+                        <h2>Your academic snapshot</h2>
+                    </div>
+                    <span class="summary-caption" id="summaryCaption">All semesters</span>
+                </div>
+
+                <div class="transcript-metrics">
+                    <div class="transcript-metric cgpa-metric">
+                        <span class="metric-label">CUMULATIVE GPA</span>
+                        <strong id="cgpaValue">8.53</strong>
+                        <small>Overall CGPA</small>
+                    </div>
+
+                    <div class="transcript-metric">
+                        <span class="metric-label">SEMESTER GPA</span>
+                        <strong id="sgpaValue">8.90</strong>
+                        <small id="sgpaCaption">Latest semester</small>
+                    </div>
+
+                    <div class="transcript-metric">
+                        <span class="metric-label">CREDITS EARNED</span>
+                        <strong id="creditsValue">54</strong>
+                        <small>Successfully completed</small>
+                    </div>
+
+                    <div class="transcript-metric">
+                        <span class="metric-label">SUBJECTS CLEARED</span>
+                        <strong id="subjectsValue">15</strong>
+                        <small id="subjectsCaption">Across all semesters</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEMESTER SELECTOR -->
+            <section class="semester-control-section">
+                <div>
+                    <span class="transcript-section-label">EXPLORE YOUR RESULTS</span>
+                    <h2>Academic record</h2>
+                    <p>Select a semester to view its detailed marksheet.</p>
+                </div>
+
+                <div class="semester-picker" id="semesterPicker">
+                    <button class="semester-chip active" data-semester="all">All Semesters</button>
+                    <button class="semester-chip" data-semester="1">Semester 1</button>
+                    <button class="semester-chip" data-semester="2">Semester 2</button>
+                    <button class="semester-chip" data-semester="3">Semester 3</button>
+                </div>
+            </section>
+
+            <!-- MAIN RESULTS AREA -->
+            <section class="transcript-content">
+
+                <div class="marksheet-panel">
+
+                    <div class="marksheet-header">
+                        <div>
+                            <span class="transcript-section-label">OFFICIAL-STYLE MARKSHEET PREVIEW</span>
+                            <h2 id="marksheetTitle">Complete Academic Record</h2>
+                            <p id="marksheetSubtitle">All available semester records</p>
+                        </div>
+
+                        <div class="result-seal">
+                            <span>✓</span>
+                            <small>RECORD<br>PREVIEW</small>
+                        </div>
+                    </div>
+
+                    <div class="marksheet-meta">
+                        <div>
+                            <span>STUDENT</span>
+                            <strong>Student Name</strong>
+                        </div>
+                        <div>
+                            <span>REGISTER NO.</span>
+                            <strong>24DS001</strong>
+                        </div>
+                        <div>
+                            <span>DEPARTMENT</span>
+                            <strong>Data Science</strong>
+                        </div>
+                    </div>
+
+                    <div class="marksheet-table-wrap">
+                        <table class="marksheet-table">
+                            <thead>
+                                <tr>
+                                    <th>SUBJECT / COURSE</th>
+                                    <th>CODE</th>
+                                    <th>MARKS</th>
+                                    <th>CREDITS</th>
+                                    <th>GRADE</th>
+                                    <th>POINTS</th>
+                                    <th>RESULT</th>
+                                </tr>
+                            </thead>
+                            <tbody id="marksheetBody">
+                                <tr>
+                                    <td>Object Oriented Programming</td>
+                                    <td>DS301</td>
+                                    <td>92</td>
+                                    <td>4</td>
+                                    <td>A+</td>
+                                    <td>9</td>
+                                    <td>PASS</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="marksheet-footer">
+                        <div>
+                            <span>SEMESTER GPA</span>
+                            <strong id="marksheetSgpa">8.90</strong>
+                        </div>
+                        <div>
+                            <span>TOTAL CREDITS</span>
+                            <strong id="marksheetCredits">18</strong>
+                        </div>
+                        <div>
+                            <span>RESULT STATUS</span>
+                            <strong class="result-clear" id="marksheetStatus">PASSED</strong>
+                        </div>
+                    </div>
+
+                    <div class="marksheet-note">
+                        This academic record is a sample preview generated by CampusIQ.
+                        It is not an official university-issued marksheet.
+                    </div>
+                </div>
+
+                <!-- SIDE PANEL -->
+                <aside class="transcript-side">
+
+                    <div class="download-panel">
+                        <span class="transcript-section-label">YOUR DOCUMENTS</span>
+                        <h3>Take your results with you.</h3>
+                        <p>Save your academic performance for your personal records.</p>
+
+                        <button class="download-pdf-button" id="downloadPdf">
+                            <span>↓</span>
+                            Download Scorecard PDF
+                        </button>
+
+                        <button class="download-csv-button" id="downloadCsv">
+                            <span>▤</span>
+                            Export Marks as CSV
+                        </button>
+
+                        <small>PDF opens the print window. Choose "Save as PDF" to download.</small>
+                    </div>
+
+                    <div class="grade-scale-panel">
+                        <span class="transcript-section-label">GRADING REFERENCE</span>
+                        <h3>Grade scale</h3>
+
+                        <div class="grade-scale-row">
+                            <strong>A+</strong><span>90–100</span><small>9 Points</small>
+                        </div>
+                        <div class="grade-scale-row">
+                            <strong>A</strong><span>80–89</span><small>8 Points</small>
+                        </div>
+                        <div class="grade-scale-row">
+                            <strong>B+</strong><span>70–79</span><small>7 Points</small>
+                        </div>
+                        <div class="grade-scale-row">
+                            <strong>B</strong><span>60–69</span><small>6 Points</small>
+                        </div>
+                        <div class="grade-scale-row">
+                            <strong>C</strong><span>50–59</span><small>5 Points</small>
+                        </div>
+                        <div class="grade-scale-row">
+                            <strong>F</strong><span>Below 50</span><small>0 Points</small>
+                        </div>
+                    </div>
+
+                </aside>
+            </section>
+
+            <!-- SEMESTER TIMELINE -->
+            <section class="academic-timeline">
+                <div class="timeline-heading">
+                    <div>
+                        <span class="transcript-section-label">YOUR LEARNING JOURNEY</span>
+                        <h2>Semester milestones</h2>
+                    </div>
+                    <span>2024 — 2027</span>
+                </div>
+
+                <div class="timeline-list" id="timelineList">
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <div>
+                            <strong>Semester 1</strong>
+                            <span>Completed · SGPA 8.20</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <div>
+                            <strong>Semester 2</strong>
+                            <span>Completed · SGPA 8.50</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <div>
+                            <strong>Semester 3</strong>
+                            <span>Completed · SGPA 8.90</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item upcoming">
+                        <span class="timeline-dot"></span>
+                        <div>
+                            <strong>Semester 4</strong>
+                            <span>Sample record · SGPA 8.50</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="transcript-disclaimer">
+                <span>ⓘ</span>
+                All student names, marks, grades and academic records on this page are demonstration data. Replace them with actual records when the backend integration is completed.
+            </div>
+
+        </section>
+    </main>
+</div>
+
+<script src="app.js"></script>
+<script src="results.js"></script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments | CampusIQ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    </head>
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+   <aside class="sidebar">
+
+    <div class="brand">
+        <div class="brand-icon">C</div>
+        <div class="brand-name">Campus<span>IQ</span></div>
+    </div>
+
+    <nav>
+        <div class="nav-heading">Main Menu</div>
+
+        <a href="dashboard.html" class="nav-link">▦ Dashboard</a>
+        <a href="attendance.html" class="nav-link">◷ Attendance</a>
+        <a href="calendar.html" class="nav-link">▦ Calendar</a>
+        <a href="payment.html" class="nav-link active">₹ Payments</a>
+        <a href="timetable.html" class="nav-link">◴ Timetable</a>
+        <a href="results.html" class="nav-link">◎ Grade Sheet</a>
+        <a href="assignments.html" class="nav-link">▤ Assignments</a>
+        <a href="quiz-results.html" class="nav-link">✦ Quiz Results</a>
+        <a href="events.html" class="nav-link">✧ Events</a>
+        <a href="profile.html" class="nav-link">♙ My Profile</a>
+        <a href="grievance.html" class="nav-link">✉ Grievance</a>
+        <a href="library.html" class="nav-link">▥ Library</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <div class="help-card">
+            <h4>Need assistance?</h4>
+            <p>Raise a support request whenever you need help.</p>
+        </div>
+
+        <div class="user-mini">
+                <div class="avatar">ST</div>
+                <div>
+                    <strong>Student</strong>
+                    <small>Student Portal</small>
+                </div>
+            </div>
+
+    </div>
+
+</aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <header class="topbar">
+            <div class="breadcrumb">Student Portal / Attendance</div>
+            <div class="top-actions">
+                <button class="menu-button" aria-label="Open menu">☰</button>
+                <button class="theme-button" aria-label="Toggle theme">🌙</button>
+                <a href="profile.html" class="profile-shortcut">
+                    <div class="avatar">👤</div>
+                    <span>My Profile</span>
+                </a>
+            </div>
+        </header>
+
+        <br></br>
+
+        <!-- INTRO HERO -->
+        <section class="payment-hero">
+            <div class="payment-hero-content">
+                <span class="payment-eyebrow">
+                    <i class="fa-solid fa-wallet"></i> FEE MANAGEMENT
+                </span>
+                <h1>Stay on top of your <span>payments.</span></h1>
+                <p>
+                    Track your academic fees, review payment history,
+                    and keep your financial records organised in one place.
+                </p>
+                <div class="payment-hero-note">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Your payment information is organised securely.
+                </div>
+            </div>
+
+            <div class="payment-hero-art">
+                <div class="payment-art-circle"></div>
+                <div class="payment-art-card">
+                    <div class="art-card-top">
+                        <span>STUDENT ACCOUNT</span>
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="art-card-chip"></div>
+                    <div class="art-card-bottom">
+                        <span>CampusIQ</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+                <div class="payment-art-badge">
+                    <i class="fa-solid fa-check"></i>
+                    Fee records
+                </div>
+            </div>
+        </section>
+
+        <!-- SUMMARY CARDS -->
+        <section class="payment-summary">
+            <article class="payment-stat-card">
+                <div class="payment-stat-top">
+                    <div class="payment-stat-icon stat-total">
+                        <i class="fa-solid fa-user">💰</i>
+                    </div>
+                    <span class="stat-caption">ACADEMIC YEAR</span>
+                </div>
+                <p class="payment-stat-label">Total Fees</p>
+                <h2>₹85,000</h2>
+                <span class="payment-stat-foot">Current academic year</span>
+            </article>
+
+            <article class="payment-stat-card">
+                <div class="payment-stat-top">
+                    <div class="payment-stat-icon stat-paid">
+                        <i class="fa-solid fa-circle-check">💵</i>
+                    </div>
+                    <span class="stat-caption">COMPLETED</span>
+                </div>
+                <p class="payment-stat-label">Amount Paid</p>
+                <h2>₹60,000</h2>
+                <span class="payment-stat-foot">Successfully recorded</span>
+            </article>
+
+            <article class="payment-stat-card">
+                <div class="payment-stat-top">
+                    <div class="payment-stat-icon stat-pending">
+                        <i class="fa-solid fa-hourglass-half">⏳</i>
+                    </div>
+                    <span class="stat-caption">REMAINING</span>
+                </div>
+                <p class="payment-stat-label">Balance Amount</p>
+                <h2>₹25,000</h2>
+                <span class="payment-stat-foot">Pending fee balance</span>
+            </article>
+
+            <article class="payment-stat-card">
+                <div class="payment-stat-top">
+                    <div class="payment-stat-icon stat-date">
+                        <i class="fa-solid fa-calendar-day">📅</i>
+                    </div>
+                    <span class="stat-caption">NEXT DEADLINE</span>
+                </div>
+                <p class="payment-stat-label">Due Date</p>
+                <h2 class="due-date-value">15 Dec 2026</h2>
+                <span class="payment-stat-foot">Second semester fee</span>
+            </article>
+        </section>
+
+        <!-- PAYMENT PROGRESS AND ACTION -->
+        <section class="payment-main-grid">
+
+            <div class="payment-panel fee-progress-panel">
+                <div class="payment-panel-heading">
+                    <div>
+                        <span class="payment-section-kicker">FEE OVERVIEW</span>
+                        <h2>Payment progress</h2>
+                    </div>
+                    <span class="payment-year-tag">2026 – 2027</span>
+                </div>
+
+                <div class="fee-progress-content">
+                    <div class="fee-progress-circle">
+                        <div class="fee-progress-inner">
+                            <strong>70.6%</strong>
+                            <span>Paid</span>
+                        </div>
+                    </div>
+
+                    <div class="fee-progress-details">
+                        <div class="progress-detail-row">
+                            <span><i class="progress-dot dot-paid"></i> Paid amount</span>
+                            <strong>₹60,000</strong>
+                        </div>
+                        <div class="progress-detail-row">
+                            <span><i class="progress-dot dot-pending"></i> Remaining amount</span>
+                            <strong>₹25,000</strong>
+                        </div>
+                        <div class="progress-detail-row">
+                            <span><i class="progress-dot dot-total"></i> Total fees</span>
+                            <strong>₹85,000</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fee-progress-bar">
+                    <div class="fee-progress-bar-fill"></div>
+                </div>
+                <p class="progress-caption">You have completed 70.6% of your academic fee payment.</p>
+            </div>
+
+            <div class="payment-panel due-panel">
+                <div class="due-panel-icon">₹</div>
+                <span class="payment-section-kicker">UPCOMING PAYMENT</span>
+                <h2>Second Semester Fee</h2>
+                <p class="due-description">
+                    Complete your remaining semester fee before the due date.
+                </p>
+
+                <div class="due-amount">
+                    <span>Amount due</span>
+                    <strong>₹25,000</strong>
+                </div>
+
+                <div class="due-date-row">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>Due on <strong>15 December 2026</strong></span>
+                </div>
+
+                <button class="payment-action-button" type="button" onclick="alert('Online payment integration will be available in a future update.')">
+                    <i class="fa-solid fa-lock"></i> Pay Now
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <span class="payment-demo-note">Demo interface · No real payment will be processed</span>
+            </div>
+        </section>
+
+        <!-- PAYMENT HISTORY -->
+        <section class="payment-panel payment-history-panel">
+            <div class="payment-panel-heading history-heading">
+                <div>
+                    <span class="payment-section-kicker">TRANSACTION RECORDS</span>
+                    <h2>Payment history</h2>
+                    <p>Review your previous fee transactions.</p>
+                </div>
+                <button class="history-filter-button" type="button">
+                    <i class="fa-solid fa-sliders">₹</i> All transactions
+                </button>
+            </div>
+
+            <div class="payment-table-wrap">
+                <table class="payment-table">
+                    <thead>
+                        <tr>
+                            <th>TRANSACTION</th>
+                            <th>DATE</th>
+                            <th>PAYMENT METHOD</th>
+                            <th>AMOUNT</th>
+                            <th>STATUS</th>
+                            <th>RECEIPT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="transaction-info">
+                                    <div class="transaction-icon"><i class="fa-solid fa-graduation-cap">₹</i></div>
+                                    <div><strong>Admission Fee</strong><span>TXN2026A001</span></div>
+                                </div>
+                            </td>
+                            <td>12 Jun 2026</td>
+                            <td>Online Transfer</td>
+                            <td class="amount-cell">₹20,000</td>
+                            <td><span class="payment-status status-success">Paid</span></td>
+                            <td><button class="receipt-button" type="button" onclick="alert('Receipt download will be available after backend integration.')" aria-label="Download admission fee receipt"><i class="fa-solid fa-download"></i></button></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="transaction-info">
+                                    <div class="transaction-icon"><i class="fa-solid fa-book-open">₹</i></div>
+                                    <div><strong>Tuition Fee – Part 1</strong><span>TXN2026T014</span></div>
+                                </div>
+                            </td>
+                            <td>05 Jul 2026</td>
+                            <td>UPI</td>
+                            <td class="amount-cell">₹25,000</td>
+                            <td><span class="payment-status status-success">Paid</span></td>
+                            <td><button class="receipt-button" type="button" onclick="alert('Receipt download will be available after backend integration.')" aria-label="Download tuition fee receipt"><i class="fa-solid fa-download"></i></button></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="transaction-info">
+                                    <div class="transaction-icon"><i class="fa-solid fa-flask"></i>₹</div>
+                                    <div><strong>Laboratory Fee</strong><span>TXN2026L022</span></div>
+                                </div>
+                            </td>
+                            <td>18 Aug 2026</td>
+                            <td>Debit Card</td>
+                            <td class="amount-cell">₹5,000</td>
+                            <td><span class="payment-status status-success">Paid</span></td>
+                            <td><button class="receipt-button" type="button" onclick="alert('Receipt download will be available after backend integration.')" aria-label="Download laboratory fee receipt"><i class="fa-solid fa-download"></i></button></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="transaction-info">
+                                    <div class="transaction-icon"><i class="fa-solid fa-building"></i>₹</div>
+                                    <div><strong>Library & Facility Fee</strong><span>TXN2026F031</span></div>
+                                </div>
+                            </td>
+                            <td>02 Sep 2026</td>
+                            <td>Online Transfer</td>
+                            <td class="amount-cell">₹10,000</td>
+                            <td><span class="payment-status status-success">Paid</span></td>
+                            <td><button class="receipt-button" type="button" onclick="alert('Receipt download will be available after backend integration.')" aria-label="Download facility fee receipt"><i class="fa-solid fa-download"></i></button></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="transaction-info">
+                                    <div class="transaction-icon"><i class="fa-solid fa-book"></i>₹</div>
+                                    <div><strong>Tuition Fee – Part 2</strong><span>TXN2026T045</span></div>
+                                </div>
+                            </td>
+                            <td>15 Dec 2026</td>
+                            <td>Not paid</td>
+                            <td class="amount-cell">₹25,000</td>
+                            <td><span class="payment-status status-pending">Pending</span></td>
+                            <td><span class="receipt-unavailable">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- BOTTOM INFORMATION -->
+        <section class="payment-bottom-grid">
+            <div class="payment-info-card">
+                <div class="info-card-icon">ⓘ</div>
+                <div>
+                    <h3>Important payment information</h3>
+                    <p>
+                        Please verify your fee details before making a payment.
+                        Keep your transaction reference and receipt for future records.
+                    </p>
+                </div>
+            </div>
+
+            <div class="payment-support-card">
+                <div class="support-card-icon">📞</div>
+                <div>
+                    <h3>Need payment assistance?</h3>
+                    <p>Contact the campus administration for fee-related queries.</p>
+                    <a href="grievance.html">Contact Support <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="payment-footer">
+            <span>© 2026 CampusIQ · Student Portal</span>
+            <span>Making campus life simpler.</span>
+        </footer>
+
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

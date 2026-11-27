@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusIQ | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="dashboard">
+
+<div class="layout">
+
+    <aside class="sidebar" id="sidebar">
+        <a class="brand" href="dashboard.html">
+            <span class="brand-icon">C</span>
+            <span><b>CampusIQ</b><small>STUDENT PORTAL</small></span>
+        </a>
+
+        <p class="nav-heading">MAIN MENU</p>
+
+        <nav>
+            <a href="dashboard.html" class="nav-link active">▦ Dashboard</a>
+            <a href="attendance.html" class="nav-link">◷ Attendance</a>
+            <a href="calendar.html" class="nav-link">▦ Calendar</a>
+            <a href="payment.html" class="nav-link">₹ Payments</a>
+            <a href="timetable.html" class="nav-link">◴ Timetable</a>
+            <a href="results.html" class="nav-link">◎ Grade Sheet</a>
+            <a href="assignments.html" class="nav-link">▤ Assignments</a>
+            <a href="quiz.html" class="nav-link">✦ Quiz</a>
+            <a href="quiz-results.html" class="nav-link">✦ Quiz Results</a>
+            <a href="events.html" class="nav-link">✧ Events</a>
+            <a href="grievance.html" class="nav-link">✉ Grievance</a>
+            <a href="Library OPAC.html" class="nav-link">▥ Library</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-card">
+                <span>✦</span>
+                <h4>Need assistance?</h4>
+                <p>Our campus support team is ready to help.</p>
+                <a href="grievance.html">Get support →</a>
+            </div>
+            <div class="user-mini">
+                <div class="avatar">ST</div>
+                <div>
+                    <strong>Student</strong>
+                    <small>Student Portal</small>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div class="breadcrumb">Student Portal / Attendance</div>
+            <div class="top-actions">
+                <button class="menu-button" aria-label="Open menu">☰</button>
+                <button class="theme-button" aria-label="Toggle theme">🌙</button>
+                <a href="profile.html" class="profile-shortcut">
+                    <div class="avatar">👤</div>
+                    <span>My Profile</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="page">
+
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">CAMPUSIQ / STUDENT</span>
+                    <h1>Welcome back, Student!</h1>
+                    <p>Your academic life at a glance. Stay focused and make today count.</p>
+                </div>
+                <div class="date-box" id="todayDate"></div>
+            </div>
+
+            <div class="content-grid">
+
+                <!-- HERO -->
+                <section class="card span-12 dashboard-hero">
+                    <div class="hero-content">
+                        <span class="hero-label">YOUR CAMPUS • YOUR JOURNEY</span>
+                        <h2>Make every day <em>count.</em></h2>
+                        <p>Stay organized, track your progress and make the most of your college experience.</p>
+                        
+                    </div>
+                    <div class="hero-decoration">
+                        <span>✦</span>
+                        <b>CIQ</b>
+                        <small>STUDENT SPACE</small>
+                    </div>
+                </section>
+
+                <!-- STATISTICS -->
+                <section class="card stat-card span-3">
+                    <span class="stat-icon">◷</span>
+                    <div class="stat-label">Overall Attendance</div>
+                    <div class="stat-number">86.6%</div>
+                    <div class="stat-note">Above 75% requirement</div>
+                </section>
+
+                <section class="card stat-card span-3">
+                    <span class="stat-icon">✦</span>
+                    <div class="stat-label">Current CGPA</div>
+                    <div class="stat-number">8.42</div>
+                    <div class="stat-note">Academic performance</div>
+                </section>
+
+                <section class="card stat-card span-3">
+                    <span class="stat-icon">▤</span>
+                    <div class="stat-label">Pending Assignments</div>
+                    <div class="stat-number">04</div>
+                    <div class="stat-note">Requires your attention</div>
+                </section>
+
+                <section class="card stat-card span-3">
+                    <span class="stat-icon">✧</span>
+                    <div class="stat-label">Upcoming Events</div>
+                    <div class="stat-number">03</div>
+                    <div class="stat-note">Events this month</div>
+                </section>
+
+                <!-- ACADEMIC PERFORMANCE -->
+                <section class="card span-7">
+                    <div class="card-head">
+                        <div>
+                            <h3>Academic performance</h3>
+                            <p class="card-sub">Your semester progress overview</p>
+                        </div>
+                        <a href="attendance.html" class="btn secondary">View results →</a>
+                    </div>
+
+                    <div class="academic-layout">
+                        <div class="cgpa-display">
+                            <div class="cgpa-circle">
+                                <div>
+                                    <strong>8.42</strong>
+                                    <small>CGPA</small>
+                                </div>
+                            </div>
+                            <p>Current academic score</p>
+                        </div>
+
+                        <div class="academic-details">
+                            <div class="subject-row">
+                                <div><b>Attendance</b><small>86.6%</small></div>
+                                <div class="progress"><span style="width:86.6%"></span></div>
+                            </div>
+                            <div class="subject-row">
+                                <div><b>Assignment completion</b><small>75%</small></div>
+                                <div class="progress"><span style="width:75%"></span></div>
+                            </div>
+                            <div class="subject-row">
+                                <div><b>Quiz performance</b><small>84%</small></div>
+                                <div class="progress"><span style="width:84%"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TODAY'S SCHEDULE -->
+                <section class="card span-5">
+                    <div class="card-head">
+                        <div>
+                            <h3>Today's schedule</h3>
+                            <p class="card-sub">Your classes and activities</p>
+                        </div>
+                        <a href="timetable.html" class="btn secondary">Full timetable</a>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="schedule-time">09:00<br><small>10:00</small></div>
+                        <div class="schedule-info">
+                            <b>Object Oriented Programming</b>
+                            <small>Classroom 204 · Lecture</small>
+                        </div>
+                        <span class="schedule-dot completed"></span>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="schedule-time">11:00<br><small>12:00</small></div>
+                        <div class="schedule-info">
+                            <b>Database Management Systems</b>
+                            <small>Computer Lab 1 · Practical</small>
+                        </div>
+                        <span class="schedule-dot upcoming"></span>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="schedule-time">01:00<br><small>02:00</small></div>
+                        <div class="schedule-info">
+                            <b>Statistics</b>
+                            <small>Classroom 105 · Lecture</small>
+                        </div>
+                        <span class="schedule-dot upcoming"></span>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="schedule-time">02:00<br><small>03:00</small></div>
+                        <div class="schedule-info">
+                            <b>Operating Systems</b>
+                            <small>Classroom 202 · Lecture</small>
+                        </div>
+                        <span class="schedule-dot upcoming"></span>
+                    </div>
+                </section>
+
+                <!-- ASSIGNMENTS -->
+                <section class="card span-8">
+                    <div class="card-head">
+                        <div>
+                            <h3>Assignment tracker</h3>
+                            <p class="card-sub">Stay ahead of your deadlines</p>
+                        </div>
+                        <a href="assignments.html" class="btn secondary">All assignments →</a>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>SUBJECT</th>
+                                    <th>ASSIGNMENT</th>
+                                    <th>DUE DATE</th>
+                                    <th>STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>OOP</td>
+                                    <td>Class & Object Lab</td>
+                                    <td>29 Nov</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>DBMS</td>
+                                    <td>SQL Mini Project</td>
+                                    <td>02 Dec</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Statistics</td>
+                                    <td>Probability Worksheet</td>
+                                    <td>04 Dec</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>OS</td>
+                                    <td>Process Scheduling Report</td>
+                                    <td>20 Nov</td>
+                                    <td><span class="status good">Submitted</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ANNOUNCEMENTS -->
+                <section class="card span-4">
+                    <div class="card-head">
+                        <h3>Campus announcements</h3>
+                        <span class="status">Latest</span>
+                    </div>
+
+                    <div class="announcement-item">
+                        <span class="announcement-icon">✦</span>
+                        <div>
+                            <b>Hackathon registrations open</b>
+                            <small>Register for the upcoming campus hackathon.</small>
+                        </div>
+                    </div>
+
+                    <div class="announcement-item">
+                        <span class="announcement-icon">▤</span>
+                        <div>
+                            <b>Assignment submission reminder</b>
+                            <small>Check your upcoming submission deadlines.</small>
+                        </div>
+                    </div>
+
+                    <div class="announcement-item">
+                        <span class="announcement-icon">▥</span>
+                        <div>
+                            <b>Library book return reminder</b>
+                            <small>Check your issued books and due dates.</small>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EVENTS -->
+                <section class="card span-6">
+                    <div class="card-head">
+                        <div>
+                            <h3>Upcoming campus events</h3>
+                            <p class="card-sub">Don't miss what's happening around you</p>
+                        </div>
+                        <a href="events.html" class="btn secondary">Explore events →</a>
+                    </div>
+
+                    <div class="list-row">
+                        <div class="event-date">28<small>NOV</small></div>
+                        <div><b>Design Thinking Workshop</b><small>Auditorium · 10:00 AM</small></div>
+                    </div>
+                    <div class="list-row">
+                        <div class="event-date">02<small>DEC</small></div>
+                        <div><b>Hackathon 2026</b><small>Innovation Hub · 9:30 AM</small></div>
+                    </div>
+                    <div class="list-row">
+                        <div class="event-date">08<small>DEC</small></div>
+                        <div><b>Cultural Fest</b><small>Main Ground · 4:00 PM</small></div>
+                    </div>
+                </section>
+
+                <!-- FEES -->
+                <section class="card span-6">
+                    <div class="card-head">
+                        <div>
+                            <h3>Fee overview</h3>
+                            <p class="card-sub">Your illustrative semester fee summary</p>
+                        </div>
+                        <a href="payment.html" class="btn secondary">View details</a>
+                    </div>
+
+                    <div class="fee-amount">₹12,000</div>
+                    <p class="card-sub">Outstanding balance · Sample data</p>
+                    <div class="progress fee-progress">
+                        <span style="width:71%"></span>
+                    </div>
+                    <div class="fee-legend">
+                        <span>71% paid</span>
+                        <span>29% remaining</span>
+                    </div>
+                </section>
+
+                <!-- QUICK ACCESS -->
+                <section class="card span-12">
+                    <div class="card-head">
+                        <div>
+                            <h3>Quick access</h3>
+                            <p class="card-sub">Your frequently used student services</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-access-grid">
+                        <a href="attendance.html"><span>◷</span><b>Attendance</b><small>View records</small></a>
+                        <a href="assignments.html"><span>▤</span><b>Assignments</b><small>Submit work</small></a>
+                        <a href="library.html"><span>▥</span><b>Library</b><small>Find resources</small></a>
+                        <a href="results.html"><span>◎</span><b>Results</b><small>View grades</small></a>
+                        <a href="tickets.html"><span>▣</span><b>Support tickets</b><small>Get assistance</small></a>
+                        <a href="grievance.html"><span>✉</span><b>Grievance</b><small>Raise a concern</small></a>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+
+        <footer>
+            <span>© 2026 CampusIQ</span>
+            <span>Learn · Connect · Grow <b>✦</b></span>
+        </footer>
+
+    </main>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
