@@ -1,0 +1,19 @@
+﻿{
+  "name": "CampusIQ - Smart Campus Management",
+  "short_name": "CampusIQ",
+  "description": "Your complete smart campus experience",
+  "start_url": "/welcome.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F6F4EC",
+  "theme_color": "#315B45",
+  "icons": [
+    {
+      "src": "/campusiq-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

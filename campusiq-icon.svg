@@ -1,0 +1,7 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="110" fill="#315B45"/>
+  <path d="M80 190L256 105L432 190L256 275Z" fill="#F6F4EC"/>
+  <path d="M135 230V320L256 390L377 320V230L256 290Z" fill="#D8C3A5"/>
+  <text x="256" y="465" font-family="Arial" font-size="65"
+        font-weight="bold" text-anchor="middle" fill="#FFFFFF">IQ</text>
+</svg>

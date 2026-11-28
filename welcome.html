@@ -7,7 +7,8 @@
     <title>Welcome | CampusIQ</title>
 
     <link rel="stylesheet" href="welcome.css">
-
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#315B45">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -27,7 +28,7 @@
             </div>
         </a>
 
-        <a href="index.html" class="header-login">
+        <a href="portals.html" class="header-login">
             Portal Login <span>↗</span>
         </a>
 
@@ -61,7 +62,7 @@
 
                 <div class="hero-actions">
 
-                    <a href="index.html" class="primary-button">
+                    <a href="portals.html" class="primary-button">
                         Explore CampusIQ
                         <span>→</span>
                     </a>
@@ -178,7 +179,7 @@
 
             <h2>Ready to explore CampusIQ?</h2>
 
-            <a href="index.html">
+            <a href="portals.html">
                 Enter CampusIQ <span>→</span>
             </a>
 
@@ -197,6 +198,19 @@
         <p>Designed for a smarter campus.</p>
 
     </footer>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/service-worker.js")
+                    .then(registration => {
+                        console.log("CampusIQ Service Worker registered!");
+                    })
+                    .catch(error => {
+                        console.error("Service Worker registration failed:", error);
+                    });
+            });
+        }
+    </script>
 
 </body>
 </html>
