@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusIQ | Faculty Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="portal-page">
+
+    <aside class="faculty-sidebar" id="facultySidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-icon">C</div>
+            <div>
+                <h2>Campus<span>IQ</span></h2>
+                <p>FACULTY PORTAL</p>
+            </div>
+        </div>
+
+        <div class="sidebar-heading">WORKSPACE</div>
+
+        <nav class="faculty-nav">
+            <a href="dashboard.html" class="active">
+                <span class="nav-icon">▦</span> Dashboard
+            </a>
+            <a href="courses.html">
+                <span class="nav-icon">▤</span> My Courses
+            </a>
+            <a href="attendance.html">
+                <span class="nav-icon">◷</span> Attendance
+            </a>
+            <a href="assignments.html">
+                <span class="nav-icon">▧</span> Assignments
+            </a>
+            <a href="grades.html">
+                <span class="nav-icon">▥</span> Grade Management
+            </a>
+            <a href="timetable.html">
+                <span class="nav-icon">▦</span> Timetable
+            </a>
+        </nav>
+
+        <div class="sidebar-heading">CAMPUS</div>
+
+        <nav class="faculty-nav">
+            <a href="announcements.html">
+                <span class="nav-icon">◉</span> Announcements
+            </a>
+            <a href="events.html">
+                <span class="nav-icon">✧</span> Events
+            </a>
+            <a href="leave.html">
+                <span class="nav-icon">▱</span> Leave Requests
+            </a>
+            
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-user">
+                <div class="user-avatar">F</div>
+                <div>
+                    <strong>Faculty Member</strong>
+                    <span>Academic Staff</span>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+    <main class="dashboard-main">
+
+        <header class="topbar">
+            <div class="breadcrumb">Faculty Portal / Dashboard</div>
+
+            <div class="top-actions">
+                <button class="menu-button" id="menuButton"
+                        aria-label="Open menu">☰</button>
+
+                <button class="theme-button" aria-label="Toggle theme"
+                        title="Switch theme">☀️</button>
+
+                <a href="profile.html" class="profile-shortcut">
+                    <div class="avatar">👤</div>
+                    <span>My Profile</span>
+                </a>
+            </div>
+        </header>
+
+        <div class="page-content">
+
+            <section class="page-heading">
+                <div>
+                    <p class="eyebrow">FACULTY WORKSPACE / OVERVIEW</p>
+                    <h1>Dashboard</h1>
+                    <p class="heading-description">
+                        Welcome back! Here's your academic workspace overview.
+                    </p>
+                </div>
+
+                <div class="date-display" id="todayDate"></div>
+            </section>
+
+            <section class="welcome-banner">
+                <div class="welcome-content">
+                    <span class="welcome-tag">CAMPUSIQ FACULTY SPACE</span>
+
+                    <h2>Teach with purpose.<br>Inspire with knowledge.</h2>
+
+                    <p>
+                        Manage your courses, monitor student progress,
+                        organise academic activities and stay connected
+                        with your campus.
+                    </p>
+
+                    <a href="courses.html" class="primary-button">
+                        Explore My Courses →
+                    </a>
+                </div>
+
+                <div class="welcome-art">
+                    <div class="art-ring ring-one"></div>
+                    <div class="art-ring ring-two"></div>
+                    <div class="art-letter">C</div>
+                    <span>TEACH · INSPIRE · GROW</span>
+                </div>
+            </section>
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">AT A GLANCE</p>
+                        <h2>Academic Overview</h2>
+                    </div>
+                    <span class="semester-label">Current Semester</span>
+                </div>
+
+                <div class="overview-grid">
+
+                    <article class="overview-card">
+                        <div class="overview-top">
+                            <div class="overview-icon">▤</div>
+                            <span class="card-label">COURSES</span>
+                        </div>
+                        <h3>06</h3>
+                        <p>Assigned Courses</p>
+                        <small>Your teaching courses</small>
+                    </article>
+
+                    <article class="overview-card">
+                        <div class="overview-top">
+                            <div class="overview-icon">◎</div>
+                            <span class="card-label">STUDENTS</span>
+                        </div>
+                        <h3>184</h3>
+                        <p>Total Students</p>
+                        <small>Across assigned courses</small>
+                    </article>
+
+                    <article class="overview-card">
+                        <div class="overview-top">
+                            <div class="overview-icon">▧</div>
+                            <span class="card-label">TASKS</span>
+                        </div>
+                        <h3>08</h3>
+                        <p>Active Assignments</p>
+                        <small>Currently in progress</small>
+                    </article>
+
+                    <article class="overview-card">
+                        <div class="overview-top">
+                            <div class="overview-icon">◷</div>
+                            <span class="card-label">SCHEDULE</span>
+                        </div>
+                        <h3>04</h3>
+                        <p>Today's Classes</p>
+                        <small>Scheduled sessions</small>
+                    </article>
+
+                </div>
+            </section>
+
+            <section class="dashboard-lower">
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">YOUR SCHEDULE</p>
+                            <h2>Today's Classes</h2>
+                        </div>
+
+                        <a href="timetable.html">View Timetable →</a>
+                    </div>
+
+                    <div class="class-item">
+                        <div class="class-time">
+                            09:00
+                            <small>10:00 AM</small>
+                        </div>
+
+                        <div class="class-details">
+                            <strong>Java Programming</strong>
+                            <span>Section A · Room 204</span>
+                        </div>
+
+                        <span class="status completed">Completed</span>
+                    </div>
+
+                    <div class="class-item">
+                        <div class="class-time">
+                            10:30
+                            <small>11:30 AM</small>
+                        </div>
+
+                        <div class="class-details">
+                            <strong>Data Structures</strong>
+                            <span>Section B · Room 105</span>
+                        </div>
+
+                        <span class="status upcoming">Upcoming</span>
+                    </div>
+
+                    <div class="class-item">
+                        <div class="class-time">
+                            12:00
+                            <small>01:00 PM</small>
+                        </div>
+
+                        <div class="class-details">
+                            <strong>Database Management</strong>
+                            <span>Section A · Lab 02</span>
+                        </div>
+
+                        <span class="status upcoming">Upcoming</span>
+                    </div>
+
+                    <div class="class-item">
+                        <div class="class-time">
+                            02:00
+                            <small>03:00 PM</small>
+                        </div>
+
+                        <div class="class-details">
+                            <strong>Web Technologies</strong>
+                            <span>Section C · Room 301</span>
+                        </div>
+
+                        <span class="status upcoming">Upcoming</span>
+                    </div>
+
+                </div>
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">CAMPUS UPDATES</p>
+                            <h2>Recent Activity</h2>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-dot"></div>
+                        <div>
+                            <strong>Assignment Submission</strong>
+                            <p>New student submissions received.</p>
+                            <small>Today · 09:15 AM</small>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-dot"></div>
+                        <div>
+                            <strong>Academic Announcement</strong>
+                            <p>Department meeting scheduled.</p>
+                            <small>Yesterday · 03:30 PM</small>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-dot"></div>
+                        <div>
+                            <strong>Timetable Updated</strong>
+                            <p>Class schedule information updated.</p>
+                            <small>Yesterday · 11:00 AM</small>
+                        </div>
+                    </div>
+
+                    <a href="announcements.html" class="all-activity">
+                        View All Updates →
+                    </a>
+
+                </div>
+
+            </section>
+
+            <footer class="dashboard-footer">
+                <span>© 2026 CampusIQ · Faculty Portal</span>
+                <span>SMART CAMPUS MANAGEMENT SYSTEM</span>
+            </footer>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

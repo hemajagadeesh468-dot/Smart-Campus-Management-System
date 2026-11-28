@@ -1,238 +1,386 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 /* ==========================================
-   CAMPUSIQ ADMINISTRATOR LOGIN
+   CAMPUSIQ - ADMINISTRATOR LOGIN
+   Espresso & Bronze Premium Theme
 ========================================== */
 
-.admin-auth-page {
+body.administrator-login-page {
     min-height: 100vh;
     margin: 0;
     padding: 25px;
     box-sizing: border-box;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     background:
-        radial-gradient(circle at top left, #383027, transparent 45%),
-        #171513;
+        radial-gradient(circle at 12% 12%, #E3CDB5 0, transparent 36%),
+        radial-gradient(circle at 88% 88%, #D4B99D 0, transparent 38%),
+        linear-gradient(135deg, #F4EBDD, #E9D9C6);
+
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
-.admin-auth-container {
+/* MAIN CONTAINER */
+
+.administrator-login-page .admin-auth-container {
     width: 100%;
-    max-width: 420px;
+    max-width: 435px;
+    padding: 39px;
     box-sizing: border-box;
-    padding: 38px;
-    border-radius: 20px;
-    background: #24201c;
-    border: 1px solid rgba(216,195,165,0.2);
-    box-shadow: 0 15px 45px rgba(0,0,0,0.35);
+
+    background: #FFFCF7;
+    border: 1px solid #E6D8C7;
+    border-radius: 21px;
+
+    box-shadow: 0 20px 55px rgba(75, 48, 29, 0.14);
+
+    animation: adminLoginAppear 0.6s ease;
 }
 
-.admin-auth-brand {
+@keyframes adminLoginAppear {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* BRAND */
+
+.administrator-login-page .admin-auth-brand {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 35px;
+    gap: 13px;
+
+    margin-bottom: 34px;
 }
 
-.admin-auth-icon {
-    width: 43px;
-    height: 43px;
+.administrator-login-page .admin-auth-icon {
+    width: 49px;
+    height: 49px;
+
     display: grid;
     place-items: center;
-    border-radius: 12px;
-    background: #d8c3a5;
-    color: #171513;
-    font-size: 23px;
+
+    border-radius: 14px;
+
+    background: linear-gradient(145deg, #A77D59, #68452F);
+    color: #FFFFFF;
+
+    font-size: 24px;
     font-weight: 800;
+
+    box-shadow: 0 6px 16px rgba(104, 69, 47, 0.22);
 }
 
-.admin-auth-brand h1 {
+.administrator-login-page .admin-auth-brand h1 {
     margin: 0;
-    font-size: 26px;
-    color: #f4eee5;
+    color: #35251B;
+
+    font-size: 29px;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
-.admin-auth-brand h1 span {
-    color: #d8c3a5;
+.administrator-login-page .admin-auth-brand h1 span {
+    color: #A47750;
 }
 
-.admin-auth-heading {
+/* HEADING */
+
+.administrator-login-page .admin-auth-heading {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 31px;
 }
 
-.admin-auth-heading p {
-    margin-bottom: 10px;
-    color: #d8c3a5;
-    font-size: 11px;
+.administrator-login-page .admin-auth-heading p {
+    display: inline-block;
+    margin: 0 0 13px;
+    padding: 7px 13px;
+
+    background: #F1E5D7;
+    border: 1px solid #E8D7C3;
+    border-radius: 20px;
+
+    color: #805B3F;
+    font-size: 9px;
+    font-weight: 800;
     letter-spacing: 2px;
 }
 
-.admin-auth-heading h2 {
-    margin-bottom: 9px;
-    color: #f4eee5;
-    font-size: 25px;
+.administrator-login-page .admin-auth-heading h2 {
+    margin: 0 0 10px;
+
+    color: #35251B;
+    font-size: 27px;
+    font-weight: 750;
 }
 
-.admin-auth-heading > span {
-    color: #b9aa98;
+.administrator-login-page .admin-auth-heading > span {
+    color: #8D7968;
     font-size: 13px;
+    line-height: 1.6;
 }
 
-.admin-auth-field {
-    margin-bottom: 20px;
+/* INPUT FIELDS */
+
+.administrator-login-page .admin-auth-field {
+    margin-bottom: 21px;
 }
 
-.admin-auth-field label {
+.administrator-login-page .admin-auth-field label {
     display: block;
     margin-bottom: 9px;
-    color: #f4eee5;
+
+    color: #574333;
     font-size: 13px;
+    font-weight: 700;
 }
 
-.admin-auth-field input {
+.administrator-login-page .admin-auth-field input {
     width: 100%;
+    height: 49px;
     box-sizing: border-box;
-    padding: 13px 14px;
-    border: 1px solid rgba(216,195,165,0.2);
-    border-radius: 9px;
+    padding: 0 14px;
+
+    background: #F8F3EC;
+    border: 1px solid #E6D8C7;
+    border-radius: 10px;
+
     outline: none;
-    background: #171513;
-    color: #f4eee5;
+    color: #38271D;
+
+    font-family: inherit;
     font-size: 13px;
+    transition: 0.25s ease;
 }
 
-.admin-auth-field input:focus {
-    border-color: #d8c3a5;
-    box-shadow: 0 0 0 3px rgba(216,195,165,0.08);
+.administrator-login-page .admin-auth-field input::placeholder {
+    color: #AD9B89;
 }
 
-.admin-auth-password {
+.administrator-login-page .admin-auth-field input:focus {
+    background: #FFFFFF;
+    border-color: #98704F;
+
+    box-shadow: 0 0 0 3px rgba(152, 112, 79, 0.13);
+}
+
+/* PASSWORD SHOW / HIDE */
+
+.administrator-login-page .admin-auth-password {
     position: relative;
 }
 
-.admin-auth-password input {
+.administrator-login-page .admin-auth-password input {
     padding-right: 65px;
 }
 
-.admin-auth-password button {
+.administrator-login-page .admin-auth-password button {
     position: absolute;
     top: 50%;
-    right: 12px;
+    right: 13px;
+
     transform: translateY(-50%);
+
+    padding: 5px;
     border: none;
-    background: none;
-    color: #d8c3a5;
-    cursor: pointer;
+    background: transparent;
+
+    color: #8A6244;
     font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
-.admin-auth-submit {
+.administrator-login-page .admin-auth-password button:hover {
+    color: #35251B;
+}
+
+/* LOGIN BUTTON */
+
+.administrator-login-page .admin-auth-submit {
     width: 100%;
+    min-height: 51px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px;
-    margin-top: 8px;
+
+    padding: 0 17px;
+    margin-top: 9px;
+
     border: none;
-    border-radius: 9px;
-    background: #d8c3a5;
-    color: #171513;
+    border-radius: 10px;
+
+    background: linear-gradient(110deg, #98704F, #583923);
+    color: #FFFFFF;
+
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 750;
+
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+
+    box-shadow: 0 7px 17px rgba(88, 57, 35, 0.2);
 }
 
-.admin-auth-submit:hover {
-    background: #f4eee5;
+.administrator-login-page .admin-auth-submit:hover {
+    background: linear-gradient(110deg, #805B3F, #432B1D);
     transform: translateY(-2px);
+
+    box-shadow: 0 10px 21px rgba(88, 57, 35, 0.23);
 }
 
-.admin-auth-submit:disabled {
+.administrator-login-page .admin-auth-submit:active {
+    transform: translateY(0);
+}
+
+.administrator-login-page .admin-auth-submit:disabled {
     opacity: 0.65;
     cursor: not-allowed;
     transform: none;
 }
 
-.admin-auth-submit span {
-    font-size: 19px;
+.administrator-login-page .admin-auth-submit span {
+    font-size: 21px;
 }
 
-.admin-auth-message {
+/* LOGIN MESSAGE */
+
+.administrator-login-page .admin-auth-message {
     min-height: 18px;
-    margin-top: 14px;
-    color: #e59b91;
+    margin: 13px 0 0;
+
+    color: #A34F42;
     font-size: 12px;
     text-align: center;
 }
 
-.admin-auth-divider {
+/* SECURE ACCESS DIVIDER */
+
+.administrator-login-page .admin-auth-divider {
     display: flex;
     align-items: center;
     gap: 12px;
+
     margin: 25px 0;
-    color: #b9aa98;
+
+    color: #98704F;
     font-size: 9px;
+    font-weight: 750;
     letter-spacing: 1.5px;
     white-space: nowrap;
 }
 
-.admin-auth-divider::before,
-.admin-auth-divider::after {
+.administrator-login-page .admin-auth-divider::before,
+.administrator-login-page .admin-auth-divider::after {
     content: "";
     height: 1px;
     flex: 1;
-    background: rgba(216,195,165,0.2);
+
+    background: #E6D8C7;
 }
 
-.admin-auth-support {
+/* SUPPORT CARD */
+
+.administrator-login-page .admin-auth-support {
     display: flex;
-    gap: 12px;
-    padding: 15px;
-    border: 1px solid rgba(216,195,165,0.15);
+    align-items: flex-start;
+    gap: 13px;
+
+    padding: 16px;
+
+    background: #F5EDE2;
+    border: 1px solid #E8D8C5;
+    border-radius: 12px;
+
+    transition: 0.25s ease;
+}
+
+.administrator-login-page .admin-auth-support:hover {
+    background: #F0E4D5;
+}
+
+.administrator-login-page .admin-auth-support > span {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    background: #E8D4BE;
     border-radius: 10px;
-    background: #2b2620;
+
+    color: #805B3F;
+    font-size: 18px;
 }
 
-.admin-auth-support > span {
-    color: #d8c3a5;
-    font-size: 20px;
-}
-
-.admin-auth-support strong {
-    color: #f4eee5;
+.administrator-login-page .admin-auth-support strong {
+    color: #493323;
     font-size: 12px;
+    font-weight: 750;
 }
 
-.admin-auth-support p {
+.administrator-login-page .admin-auth-support p {
     margin: 5px 0 0;
-    color: #b9aa98;
+
+    color: #897663;
     font-size: 11px;
     line-height: 1.6;
 }
 
-.admin-auth-footer {
-    margin-top: 27px;
-    color: #b9aa98;
+/* FOOTER */
+
+.administrator-login-page .admin-auth-footer {
+    margin-top: 26px;
+    padding-top: 19px;
+
+    border-top: 1px solid #EDE3D7;
+
+    color: #A18C78;
     font-size: 11px;
-    line-height: 1.8;
+    line-height: 1.9;
     text-align: center;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE DESIGN */
 
 @media (max-width: 480px) {
-    .admin-auth-container {
-        padding: 28px 22px;
+    body.administrator-login-page {
+        padding: 15px;
     }
 
-    .admin-auth-heading h2 {
-        font-size: 23px;
+    .administrator-login-page .admin-auth-container {
+        padding: 29px 22px;
+        border-radius: 18px;
+    }
+
+    .administrator-login-page .admin-auth-brand {
+        margin-bottom: 29px;
+    }
+
+    .administrator-login-page .admin-auth-heading h2 {
+        font-size: 24px;
+    }
+
+    .administrator-login-page .admin-auth-divider {
+        font-size: 8px;
+        letter-spacing: 1px;
     }
 }
+
 
 :root {
     --carbon: #171513;

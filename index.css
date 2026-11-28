@@ -1,0 +1,607 @@
+
+/* ==========================================
+   CAMPUSIQ - NAVY BLUE & GOLD THEME
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.gateway-page {
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    background: #101D35;
+    overflow-x: hidden;
+}
+
+.gateway-container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 39% 61%;
+}
+
+
+/* ==========================================
+   LEFT CAMPUS SECTION
+========================================== */
+
+.campus-side {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #172B4D;
+}
+
+.campus-image {
+    position: absolute;
+    inset: 0;
+    background-image: url("Administrator portal/frontend/images/campus.jpg");
+    background-size: cover;
+    background-position: center bottom;
+}
+
+.campus-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(13, 29, 56, .88) 0%,
+        rgba(16, 34, 63, .65) 35%,
+        rgba(16, 34, 63, .20) 68%,
+        rgba(7, 22, 46, .65) 100%
+    );
+}
+
+.campus-side::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: -95px;
+    left: -15%;
+    width: 135%;
+    height: 185px;
+    background: #0B1930;
+    border-top: 4px solid #D8B979;
+    border-radius: 50% 50% 0 0;
+    transform: rotate(-5deg);
+}
+
+
+/* BRAND */
+
+.campus-brand {
+    position: absolute;
+    z-index: 2;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    color: #F5F3EE;
+}
+
+.brand-symbol {
+    width: 150px;
+    height: 105px;
+    margin: 0 auto 3px;
+}
+
+.brand-symbol svg {
+    width: 100%;
+    height: 100%;
+}
+
+.campus-brand h1 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 58px;
+    font-weight: 800;
+    letter-spacing: -4px;
+    line-height: 1;
+    color: #FFFFFF;
+}
+
+.campus-brand h1 span {
+    color: #D8B979;
+}
+
+.brand-tagline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    margin-top: 10px;
+}
+
+.brand-tagline span {
+    width: 35px;
+    height: 1px;
+    background: #D8B979;
+}
+
+.brand-tagline p {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: #E9D9B5;
+}
+
+.brand-tagline b {
+    padding: 0 8px;
+    color: #D8B979;
+}
+
+
+/* SLOGAN */
+
+.campus-slogan {
+    position: absolute;
+    z-index: 3;
+    bottom: 32px;
+    left: 12%;
+    color: #FFFFFF;
+}
+
+.campus-slogan p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 2.3vw, 34px);
+    font-style: italic;
+    line-height: 1.2;
+}
+
+.campus-slogan p:nth-child(2) {
+    margin-left: 48px;
+    color: #E9D9B5;
+}
+
+.campus-slogan span {
+    display: block;
+    width: 145px;
+    height: 3px;
+    margin: 10px 0 0 100px;
+    background: #D8B979;
+    border-radius: 50%;
+    transform: rotate(-9deg);
+}
+
+
+/* ==========================================
+   RIGHT SECTION
+========================================== */
+
+.portal-side {
+    min-height: 100vh;
+    padding: 3.5% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background:
+        radial-gradient(circle at 90% 10%, #29446B, transparent 45%),
+        linear-gradient(135deg, #101D35, #172B4D);
+    overflow: hidden;
+}
+
+.portal-side::before,
+.portal-side::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 120%;
+    top: -10%;
+    transform: rotate(32deg);
+    background: rgba(216,185,121,.045);
+}
+
+.portal-side::before {
+    left: 18%;
+}
+
+.portal-side::after {
+    right: 5%;
+}
+
+
+/* ==========================================
+   WHITE / IVORY PANEL
+========================================== */
+
+.portal-panel {
+    width: 100%;
+    max-width: 880px;
+    min-height: 555px;
+    padding: 25px 25px 18px;
+    position: relative;
+    z-index: 2;
+    background: #F8F7F2;
+    border: 1px solid rgba(216,185,121,.65);
+    border-radius: 23px;
+    box-shadow: 0 25px 65px rgba(0,0,0,.28);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* ==========================================
+   WELCOME HEADING
+========================================== */
+
+.welcome-heading {
+    text-align: center;
+}
+
+.heading-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    margin-bottom: 7px;
+}
+
+.heading-decoration > span {
+    width: 30%;
+    height: 1.5px;
+    background: #C7B58E;
+}
+
+.heading-decoration svg {
+    width: 62px;
+    height: 45px;
+    color: #172B4D;
+}
+
+.welcome-heading h2 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -1.6px;
+    color: #101D35;
+}
+
+.welcome-heading h2 span {
+    color: #A17B39;
+}
+
+.welcome-heading > p {
+    margin-top: 5px;
+    color: #687387;
+    font-size: 17px;
+}
+
+
+/* ==========================================
+   PORTAL CARDS
+========================================== */
+
+.portal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin: 19px 0;
+}
+
+.portal-card {
+    min-width: 0;
+    min-height: 295px;
+    padding: 17px 10px 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    background: #FFFFFF;
+    border: 1px solid #E2DCCF;
+    border-bottom: 5px solid #B89A62;
+    border-radius: 15px;
+    box-shadow: 0 6px 16px rgba(16,29,53,.08);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.portal-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 17px 30px rgba(16,29,53,.16);
+}
+
+
+/* ICONS */
+
+.portal-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin-bottom: 10px;
+    background: #F0E7D4;
+    color: #172B4D;
+}
+
+.portal-icon svg {
+    width: 65px;
+    height: 65px;
+}
+
+
+/* ADMIN */
+
+.admin-card {
+    border-bottom-color: #173D70;
+}
+
+.admin-card .portal-icon {
+    background: #DFE8F5;
+    color: #102B56;
+}
+
+.admin-card .login-button {
+    background: #142F59;
+}
+
+
+/* FACULTY */
+
+.faculty-card {
+    border-bottom-color: #A17B39;
+}
+
+.faculty-card .portal-icon {
+    background: #F0E5D2;
+    color: #70522C;
+}
+
+.faculty-card .login-button {
+    background: #80602F;
+}
+
+
+/* STUDENT */
+
+.student-card {
+    border-bottom-color: #6F8065;
+}
+
+.student-card .portal-icon {
+    background: #E5EBDD;
+    color: #243F36;
+}
+
+.student-card .login-button {
+    background: #405D49;
+}
+
+
+/* CARD TEXT */
+
+.portal-card h3 {
+    font-family: 'Manrope', sans-serif;
+    color: #142744;
+    font-size: 19px;
+    font-weight: 800;
+    margin-bottom: 7px;
+}
+
+.portal-card > p {
+    color: #667083;
+    font-size: 12px;
+    line-height: 1.6;
+    min-height: 42px;
+}
+
+
+/* LOGIN BUTTON */
+
+.login-button {
+    width: 90%;
+    max-width: 180px;
+    min-height: 42px;
+    margin-top: auto;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 700;
+    transition: gap .3s ease, filter .3s ease;
+}
+
+.portal-card:hover .login-button {
+    gap: 22px;
+    filter: brightness(1.15);
+}
+
+.login-button span {
+    font-size: 23px;
+    line-height: 1;
+}
+
+
+/* ==========================================
+   PANEL FOOTER
+========================================== */
+
+.panel-footer {
+    text-align: center;
+}
+
+.footer-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 5px;
+}
+
+.footer-decoration span {
+    width: 29%;
+    height: 1px;
+    background: #C7B58E;
+}
+
+.footer-decoration svg {
+    width: 35px;
+    height: 28px;
+    color: #172B4D;
+}
+
+.panel-footer > p {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #65748A;
+}
+
+.panel-footer b {
+    color: #A17B39;
+    padding: 0 5px;
+}
+
+
+/* ==========================================
+   SMALLER TABLETS
+========================================== */
+
+@media (min-width: 701px) and (max-width: 1050px) {
+
+    .portal-panel {
+        min-height: 510px;
+        padding: 22px 16px;
+    }
+
+    .portal-card {
+        min-height: 270px;
+    }
+
+    .portal-icon {
+        width: 85px;
+        height: 85px;
+    }
+
+    .portal-icon svg {
+        width: 55px;
+        height: 55px;
+    }
+
+    .welcome-heading h2 {
+        font-size: 27px;
+    }
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .gateway-container {
+        grid-template-columns: 1fr;
+    }
+
+    .campus-side {
+        min-height: 350px;
+    }
+
+    .campus-brand {
+        top: 20px;
+    }
+
+    .brand-symbol {
+        width: 95px;
+        height: 75px;
+    }
+
+    .campus-brand h1 {
+        font-size: 43px;
+    }
+
+    .campus-slogan {
+        bottom: 22px;
+        left: 8%;
+    }
+
+    .campus-slogan p {
+        font-size: 23px;
+    }
+
+    .campus-side::after {
+        bottom: -125px;
+    }
+
+    .portal-side {
+        min-height: auto;
+        padding: 22px 14px;
+    }
+
+    .portal-panel {
+        min-height: auto;
+        padding: 22px 14px 18px;
+    }
+
+    .heading-decoration {
+        gap: 13px;
+    }
+
+    .heading-decoration svg {
+        width: 56px;
+        height: 43px;
+    }
+
+    .welcome-heading h2 {
+        font-size: 25px;
+        letter-spacing: -1px;
+    }
+
+    .welcome-heading > p {
+        font-size: 14px;
+    }
+
+    .portal-grid {
+        grid-template-columns: 1fr;
+        margin: 20px 0;
+        gap: 13px;
+    }
+
+    .portal-card {
+        min-height: 255px;
+        padding: 17px 12px 13px;
+    }
+
+    .portal-icon {
+        width: 90px;
+        height: 90px;
+    }
+
+    .portal-icon svg {
+        width: 58px;
+        height: 58px;
+    }
+
+    .portal-card h3 {
+        font-size: 21px;
+    }
+
+    .portal-card > p {
+        font-size: 14px;
+    }
+
+    .panel-footer > p {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+}
+
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+}

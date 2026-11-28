@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusIQ | Faculty Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="faculty-login-page">
+
+    <div class="login-card">
+
+        <div class="brand-symbol">C </div>
+        <h1>Campus<span>IQ</span></h1>
+        <p class="portal-label">FACULTY PORTAL</p>
+
+        <h2>Welcome Back</h2>
+        <p class="login-description">
+            Sign in to access your faculty account.
+        </p>
+
+        <form id="facultyLoginForm">
+
+            <div class="form-field">
+                <label for="facultyEmail">Email Address</label>
+                <input type="email" id="facultyEmail"
+                    placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-field">
+                <label for="facultyPassword">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="facultyPassword"
+                        placeholder="Enter your password" required
+                    >
+                </div>
+            </div>
+
+        
+            <button type="submit" class="login-button">
+                Sign In →
+            </button>
+
+            <p id="loginMessage" class="login-message"></p>
+
+        </form>
+
+        <div class="login-footer">
+            Secure Faculty Access · CampusIQ
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

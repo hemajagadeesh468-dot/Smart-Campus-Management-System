@@ -1,0 +1,5605 @@
+
+/* =========================================================
+   CAMPUSIQ - FACULTY DASHBOARD
+   Forest Green | Sage | Warm Cream | Charcoal
+========================================================= */
+
+/* 1. THEME VARIABLES */
+
+.portal-page {
+    --page-bg: #EDF3EB;
+    --surface: #F9FBF6;
+    --surface-soft: #E5EDE2;
+    --sidebar-bg: #202D27;
+    --sidebar-text: #C8D5CC;
+    --heading: #26382E;
+    --body-text: #526357;
+    --muted: #849187;
+    --border: #D9E4D7;
+    --green: #426B50;
+    --green-dark: #31583F;
+    --green-light: #DCE9DA;
+    --gold: #C4A66B;
+    --success: #39734B;
+    --success-bg: #E0EFE2;
+    --warning: #A77937;
+    --warning-bg: #F4EBD9;
+    --shadow: 0 8px 25px rgba(40, 65, 47, 0.07);
+
+    margin: 0;
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--body-text);
+    font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+/* DARK THEME */
+
+html[data-theme="dark"] .portal-page {
+    --page-bg: #1C2420;
+    --surface: #28332D;
+    --surface-soft: #34443A;
+    --sidebar-bg: #151E19;
+    --sidebar-text: #C5D2C8;
+    --heading: #EDF4EE;
+    --body-text: #C1CEC3;
+    --muted: #91A194;
+    --border: #3D4D41;
+    --green: #8BAF91;
+    --green-dark: #A5C4A8;
+    --green-light: #354B3B;
+    --gold: #C4A66B;
+    --success: #9AC7A0;
+    --success-bg: #304B37;
+    --warning: #D7B477;
+    --warning-bg: #4A402D;
+    --shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 2. RESET */
+
+.portal-page * {
+    box-sizing: border-box;
+}
+
+.portal-page button,
+.portal-page input {
+    font: inherit;
+}
+
+.portal-page a {
+    text-decoration: none;
+}
+
+.portal-page button {
+    cursor: pointer;
+}
+
+/* 3. SIDEBAR */
+
+.portal-page .faculty-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 255px;
+    height: 100vh;
+    padding: 27px 19px;
+    display: flex;
+    flex-direction: column;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.portal-page .sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px 29px;
+}
+
+.portal-page .brand-symbol {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: #A8C5A9;
+    color: #203529;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.portal-page .sidebar-brand h2 {
+    margin: 0;
+    color: #F0F5EF;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.portal-page .sidebar-brand h2 span {
+    color: #A8C5A9;
+}
+
+.portal-page .sidebar-brand p {
+    margin: 4px 0 0;
+    color: #9BAB9F;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.portal-page .sidebar-heading {
+    margin: 17px 9px 11px;
+    color: #829589;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+.portal-page .faculty-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.portal-page .faculty-nav a {
+    min-height: 44px;
+    padding: 11px 13px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    border-radius: 9px;
+    color: #C2D0C5;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.25s ease;
+}
+
+.portal-page .faculty-nav a:hover {
+    background: rgba(168, 197, 169, 0.12);
+    color: #FFFFFF;
+    transform: translateX(3px);
+}
+
+.portal-page .faculty-nav a.active {
+    background: #A8C5A9;
+    color: #203529;
+    font-weight: 750;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.portal-page .nav-icon {
+    width: 21px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.portal-page .sidebar-bottom {
+    margin-top: auto;
+    padding-top: 24px;
+}
+
+.portal-page .sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 14px 8px 4px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.portal-page .user-avatar {
+    width: 39px;
+    height: 39px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #A8C5A9;
+    color: #203529;
+    font-weight: 800;
+}
+
+.portal-page .sidebar-user strong {
+    display: block;
+    color: #F0F5EF;
+    font-size: 12px;
+}
+
+.portal-page .sidebar-user span {
+    display: block;
+    margin-top: 4px;
+    color: #94A69A;
+    font-size: 10px;
+}
+
+/* 4. MAIN CONTENT */
+
+.portal-page .dashboard-main {
+    min-height: 100vh;
+    width: calc(100% - 255px);
+    margin-left: 255px;
+}
+
+.portal-page .page-content {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 32px 36px 25px;
+}
+
+/* 5. TOP HEADER */
+
+.portal-page .topbar {
+    height: 74px;
+    padding: 0 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.portal-page .breadcrumb {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.portal-page .top-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.portal-page .menu-button {
+    display: none;
+    border: none;
+    background: transparent;
+    color: var(--heading);
+    font-size: 23px;
+}
+
+.portal-page .theme-button {
+    width: 39px;
+    height: 39px;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    background: var(--surface-soft);
+    color: var(--heading);
+    font-size: 17px;
+    transition: 0.25s;
+}
+
+.portal-page .theme-button:hover {
+    background: var(--green-light);
+    transform: rotate(10deg);
+}
+
+.portal-page .profile-shortcut {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--heading);
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.portal-page .avatar {
+    width: 37px;
+    height: 37px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 16px;
+}
+
+/* 6. PAGE HEADING */
+
+.portal-page .page-heading {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.portal-page .eyebrow {
+    margin: 0 0 8px;
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+
+.portal-page .page-heading h1 {
+    margin: 0;
+    color: var(--heading);
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.portal-page .heading-description {
+    margin: 9px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.portal-page .date-display {
+    padding: 11px 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--body-text);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* 7. WELCOME BANNER */
+
+.portal-page .welcome-banner {
+    position: relative;
+    min-height: 238px;
+    margin-bottom: 34px;
+    padding: 35px 39px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    border-radius: 18px;
+    background: linear-gradient(115deg, #203C2D 0%, #31583F 57%, #527B5B 100%);
+    box-shadow: 0 12px 28px rgba(38, 73, 48, 0.16);
+}
+
+.portal-page .welcome-banner::before {
+    content: "";
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    top: -190px;
+    right: 100px;
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 50%;
+}
+
+.portal-page .welcome-banner::after {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    right: -80px;
+    bottom: -150px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+}
+
+.portal-page .welcome-content {
+    position: relative;
+    z-index: 2;
+    max-width: 580px;
+}
+
+.portal-page .welcome-tag {
+    width: fit-content;
+    margin-bottom: 16px;
+    padding: 7px 12px;
+    display: inline-block;
+    border: 1px solid rgba(222, 239, 221, 0.3);
+    border-radius: 30px;
+    background: rgba(255,255,255,0.07);
+    color: #C8E0C7;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 1.5px;
+}
+
+.portal-page .welcome-content h2 {
+    margin: 0;
+    color: #F4F8F1;
+    font-size: clamp(27px, 3vw, 36px);
+    font-weight: 750;
+    line-height: 1.22;
+    letter-spacing: -0.8px;
+}
+
+.portal-page .welcome-content p {
+    max-width: 490px;
+    margin: 13px 0 22px;
+    color: #D1E0D2;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.portal-page .primary-button {
+    min-height: 43px;
+    padding: 12px 19px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    background: #C6DCC0;
+    color: #203C2D;
+    font-size: 12px;
+    font-weight: 800;
+    transition: 0.25s ease;
+}
+
+.portal-page .primary-button:hover {
+    background: #E0EDDA;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* 8. WELCOME ART */
+
+.portal-page .welcome-art {
+    position: relative;
+    width: 270px;
+    height: 195px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.portal-page .art-ring {
+    position: absolute;
+    border: 1px solid rgba(213, 235, 208, 0.28);
+    border-radius: 50%;
+}
+
+.portal-page .ring-one {
+    width: 165px;
+    height: 165px;
+}
+
+.portal-page .ring-two {
+    width: 220px;
+    height: 220px;
+}
+
+.portal-page .art-letter {
+    position: relative;
+    width: 104px;
+    height: 104px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 28px;
+    background: rgba(220, 239, 218, 0.13);
+    color: #D6E9D1;
+    font-size: 58px;
+    font-weight: 800;
+    transform: rotate(-8deg);
+    backdrop-filter: blur(5px);
+}
+
+.portal-page .welcome-art > span {
+    position: relative;
+    margin-top: 15px;
+    color: #C7DCC8;
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: 2px;
+}
+
+/* 9. DASHBOARD SECTION */
+
+.portal-page .dashboard-section {
+    margin-bottom: 33px;
+}
+
+.portal-page .section-heading {
+    margin-bottom: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.portal-page .section-heading h2 {
+    margin: 0;
+    color: var(--heading);
+    font-size: 20px;
+    font-weight: 750;
+}
+
+.portal-page .semester-label {
+    padding: 8px 13px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 11px;
+    font-weight: 750;
+}
+
+/* 10. OVERVIEW CARDS */
+
+.portal-page .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.portal-page .overview-card {
+    position: relative;
+    min-height: 178px;
+    padding: 21px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    transition: 0.25s ease;
+}
+
+.portal-page .overview-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--green);
+    box-shadow: 0 12px 25px rgba(40, 75, 48, 0.12);
+}
+
+.portal-page .overview-top {
+    margin-bottom: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.portal-page .overview-icon {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 20px;
+}
+
+.portal-page .card-label {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.portal-page .overview-card h3 {
+    margin: 0 0 5px;
+    color: var(--heading);
+    font-size: 29px;
+    font-weight: 800;
+}
+
+.portal-page .overview-card > p {
+    margin: 0 0 5px;
+    color: var(--body-text);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.portal-page .overview-card > small {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* Different card accent colours */
+
+.portal-page .overview-card:nth-child(1) .overview-icon {
+    background: #E0EDDE;
+    color: #47724F;
+}
+
+.portal-page .overview-card:nth-child(2) .overview-icon {
+    background: #DFEAE7;
+    color: #47786C;
+}
+
+.portal-page .overview-card:nth-child(3) .overview-icon {
+    background: #E9E6D6;
+    color: #8B7746;
+}
+
+.portal-page .overview-card:nth-child(4) .overview-icon {
+    background: #E1E5EF;
+    color: #65769B;
+}
+
+/* 11. LOWER DASHBOARD */
+
+.portal-page .dashboard-lower {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.portal-page .dashboard-panel {
+    min-width: 0;
+    padding: 23px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.portal-page .panel-heading {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.portal-page .panel-heading h2 {
+    margin: 0;
+    color: var(--heading);
+    font-size: 18px;
+    font-weight: 750;
+}
+
+.portal-page .panel-heading > a {
+    color: var(--green-dark);
+    font-size: 11px;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.portal-page .panel-heading > a:hover {
+    text-decoration: underline;
+}
+
+/* 12. CLASS SCHEDULE */
+
+.portal-page .class-item {
+    min-height: 73px;
+    padding: 13px 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.portal-page .class-item:last-child {
+    border-bottom: none;
+}
+
+.portal-page .class-time {
+    min-width: 73px;
+    padding: 9px 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    border-radius: 9px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.portal-page .class-time small {
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.portal-page .class-details {
+    min-width: 0;
+    flex: 1;
+}
+
+.portal-page .class-details strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--heading);
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.portal-page .class-details span {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* 13. CLASS STATUS */
+
+.portal-page .status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.portal-page .status.completed {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.portal-page .status.upcoming {
+    background: var(--warning-bg);
+    color: var(--warning);
+}
+
+/* 14. RECENT ACTIVITY */
+
+.portal-page .activity-item {
+    padding: 15px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.portal-page .activity-item:last-of-type {
+    border-bottom: none;
+}
+
+.portal-page .activity-dot {
+    width: 10px;
+    height: 10px;
+    margin-top: 5px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #66946D;
+    box-shadow: 0 0 0 4px var(--green-light);
+}
+
+.portal-page .activity-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--heading);
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.portal-page .activity-item p {
+    margin: 0 0 6px;
+    color: var(--body-text);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.portal-page .activity-item small {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.portal-page .all-activity {
+    margin-top: 14px;
+    display: inline-block;
+    color: var(--green-dark);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.portal-page .all-activity:hover {
+    text-decoration: underline;
+}
+
+/* 15. FOOTER */
+
+.portal-page .dashboard-footer {
+    margin-top: 29px;
+    padding: 17px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.3px;
+}
+
+/* 16. SCROLLBAR */
+
+.portal-page .faculty-sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.portal-page .faculty-sidebar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #52675A;
+}
+
+/* 17. TABLET RESPONSIVE */
+
+@media (max-width: 1150px) {
+    .portal-page .page-content {
+        padding: 28px 25px;
+    }
+
+    .portal-page .overview-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .portal-page .dashboard-lower {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 18. MOBILE NAVIGATION */
+
+@media (max-width: 900px) {
+    .portal-page .faculty-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .portal-page .faculty-sidebar.sidebar-open {
+        transform: translateX(0);
+    }
+
+    .portal-page .dashboard-main {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .portal-page .topbar {
+        height: 66px;
+        padding: 0 22px;
+    }
+
+    .portal-page .menu-button {
+        display: block;
+    }
+
+    .portal-page .page-content {
+        padding: 25px 22px;
+    }
+}
+
+/* 19. SMALL MOBILE */
+
+@media (max-width: 600px) {
+    .portal-page .topbar {
+        padding: 0 15px;
+    }
+
+    .portal-page .top-actions {
+        gap: 10px;
+    }
+
+    .portal-page .profile-shortcut span {
+        display: none;
+    }
+
+    .portal-page .page-content {
+        padding: 22px 15px;
+    }
+
+    .portal-page .page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .portal-page .page-heading h1 {
+        font-size: 28px;
+    }
+
+    .portal-page .date-display {
+        font-size: 11px;
+    }
+
+    .portal-page .welcome-banner {
+        min-height: 0;
+        padding: 27px 22px;
+    }
+
+    .portal-page .welcome-content h2 {
+        font-size: 27px;
+    }
+
+    .portal-page .welcome-content p {
+        font-size: 12px;
+    }
+
+    .portal-page .welcome-art {
+        display: none;
+    }
+
+    .portal-page .overview-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .portal-page .overview-card {
+        min-height: 155px;
+        padding: 15px;
+    }
+
+    .portal-page .overview-card h3 {
+        font-size: 25px;
+    }
+
+    .portal-page .dashboard-panel {
+        padding: 17px;
+    }
+
+    .portal-page .class-item {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .portal-page .dashboard-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+/* 20. VERY SMALL SCREENS */
+
+@media (max-width: 380px) {
+    .portal-page .overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portal-page .welcome-content h2 {
+        font-size: 24px;
+    }
+
+    .portal-page .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+
+/* =========================================================
+   CAMPUSIQ - COURSES & ATTENDANCE
+   Forest Green / Sage / Cream Theme
+========================================================= */
+
+/* ---------- THEME VARIABLES ---------- */
+
+.portal-page {
+    --page-bg: #EDF3EB;
+    --surface: #F9FBF6;
+    --surface-soft: #E5EDE2;
+    --heading: #26382E;
+    --body-text: #526357;
+    --muted: #849187;
+    --border: #D9E4D7;
+    --green: #426B50;
+    --green-dark: #31583F;
+    --green-light: #DCE9DA;
+    --success: #39734B;
+    --success-bg: #E0EFE2;
+    --warning: #A77937;
+    --warning-bg: #F4EBD9;
+    --danger: #A64F4F;
+    --danger-bg: #F5E3E1;
+    --shadow: 0 8px 25px rgba(40, 65, 47, 0.07);
+}
+
+html[data-theme="dark"] .portal-page {
+    --page-bg: #1C2420;
+    --surface: #28332D;
+    --surface-soft: #34443A;
+    --heading: #EDF4EE;
+    --body-text: #C1CEC3;
+    --muted: #91A194;
+    --border: #3D4D41;
+    --green: #8BAF91;
+    --green-dark: #A5C4A8;
+    --green-light: #354B3B;
+    --success: #9AC7A0;
+    --success-bg: #304B37;
+    --warning: #D7B477;
+    --warning-bg: #4A402D;
+    --danger: #E0A19A;
+    --danger-bg: #4B3231;
+    --shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.portal-page * {
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   SHARED SIDEBAR - COURSES AND ATTENDANCE
+========================================================= */
+
+/* Courses sidebar */
+
+.portal-page .faculty-layout .faculty-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 255px;
+    height: 100vh;
+    padding: 25px 19px;
+    display: flex;
+    flex-direction: column;
+    background: #202D27;
+    color: #C8D5CC;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* Attendance sidebar */
+
+.portal-page.attendance-page .faculty-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 255px;
+    height: 100vh;
+    padding: 25px 19px;
+    display: flex;
+    flex-direction: column;
+    background: #202D27;
+    color: #C8D5CC;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* Sidebar brand */
+
+.portal-page .sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px 28px;
+}
+
+.portal-page .brand-symbol {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: #A8C5A9;
+    color: #203529;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.portal-page .sidebar-brand h2 {
+    margin: 0;
+    color: #F0F5EF;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.portal-page .sidebar-brand h2 span {
+    color: #A8C5A9;
+}
+
+.portal-page .sidebar-brand p {
+    margin: 4px 0 0;
+    color: #9BAB9F;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Courses sidebar sections */
+
+.portal-page .sidebar-section {
+    margin-bottom: 15px;
+}
+
+.portal-page .sidebar-heading {
+    display: block;
+    margin: 17px 9px 11px;
+    color: #829589;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+/* Courses navigation */
+
+.portal-page .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.portal-page .sidebar-nav .nav-link {
+    min-height: 44px;
+    padding: 11px 13px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    border-radius: 9px;
+    color: #C2D0C5;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.25s;
+}
+
+.portal-page .sidebar-nav .nav-link > span {
+    width: 21px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.portal-page .sidebar-nav .nav-link:hover,
+.portal-page.attendance-page .faculty-nav a:hover {
+    background: rgba(168, 197, 169, 0.12);
+    color: #FFFFFF;
+    transform: translateX(3px);
+}
+
+.portal-page .sidebar-nav .nav-link.active,
+.portal-page.attendance-page .faculty-nav a.active {
+    background: #A8C5A9;
+    color: #203529;
+    font-weight: 750;
+}
+
+/* Attendance navigation */
+
+.portal-page.attendance-page .faculty-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.portal-page.attendance-page .faculty-nav a {
+    min-height: 44px;
+    padding: 11px 13px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    border-radius: 9px;
+    color: #C2D0C5;
+    font-size: 13px;
+    transition: 0.25s;
+}
+
+.portal-page.attendance-page .nav-icon {
+    width: 21px;
+    text-align: center;
+    font-size: 17px;
+}
+
+/* Sidebar bottom */
+
+.portal-page .sidebar-bottom {
+    margin-top: auto;
+    padding-top: 24px;
+}
+
+.portal-page .sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 14px 8px 4px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.portal-page .user-avatar {
+    width: 39px;
+    height: 39px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #A8C5A9;
+    color: #203529;
+    font-weight: 800;
+}
+
+.portal-page .sidebar-user strong {
+    display: block;
+    color: #F0F5EF;
+    font-size: 12px;
+}
+
+.portal-page .sidebar-user span {
+    display: block;
+    margin-top: 4px;
+    color: #94A69A;
+    font-size: 10px;
+}
+
+/* =========================================================
+   SHARED HEADER AND MAIN CONTENT
+========================================================= */
+
+.portal-page .dashboard-main {
+    min-height: 100vh;
+    width: calc(100% - 255px);
+    margin-left: 255px;
+}
+
+.portal-page .topbar {
+    height: 74px;
+    padding: 0 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.portal-page .breadcrumb {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.portal-page .top-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.portal-page .menu-button {
+    display: none;
+    border: none;
+    background: transparent;
+    color: var(--heading);
+    font-size: 23px;
+}
+
+.portal-page .theme-button {
+    width: 39px;
+    height: 39px;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    background: var(--surface-soft);
+    color: var(--heading);
+    font-size: 17px;
+}
+
+.portal-page .profile-shortcut {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--heading);
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.portal-page .avatar {
+    width: 37px;
+    height: 37px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--green-light);
+    color: var(--green-dark);
+}
+
+.portal-page .page-content {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 32px 36px 25px;
+}
+
+/* =========================================================
+   COURSES PAGE
+========================================================= */
+
+/* Page heading */
+
+.portal-page .section-eyebrow {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+
+.portal-page .page-heading {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.portal-page .page-heading h1 {
+    margin: 0;
+    color: var(--heading);
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+}
+
+.portal-page .page-heading > div > p {
+    margin: 9px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Active course count */
+
+.portal-page .course-count {
+    min-width: 135px;
+    padding: 13px 19px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.portal-page .course-count span {
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.portal-page .course-count strong {
+    color: var(--green-dark);
+    font-size: 26px;
+    font-weight: 800;
+}
+
+/* Course overview cards */
+
+.portal-page .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+    margin-bottom: 28px;
+}
+
+.portal-page .overview-card {
+    min-height: 125px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    transition: 0.25s;
+}
+
+.portal-page .overview-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--green);
+}
+
+.portal-page .overview-icon {
+    width: 47px;
+    height: 47px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 13px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 21px;
+}
+
+.portal-page .overview-card:nth-child(2) .overview-icon {
+    background: #DFEAE7;
+    color: #47786C;
+}
+
+.portal-page .overview-card:nth-child(3) .overview-icon {
+    background: #E9E6D6;
+    color: #8B7746;
+}
+
+.portal-page .overview-card p {
+    margin: 0 0 5px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.portal-page .overview-card h2 {
+    margin: 0 0 4px;
+    color: var(--heading);
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.portal-page .overview-card small {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* Assigned courses panel */
+
+.portal-page .content-panel {
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.portal-page .panel-header {
+    margin-bottom: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.portal-page .panel-header h2 {
+    margin: 0;
+    color: var(--heading);
+    font-size: 19px;
+    font-weight: 750;
+}
+
+.portal-page .panel-header p {
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* Search */
+
+.portal-page .course-search {
+    width: 245px;
+    min-height: 41px;
+    padding: 10px 13px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    background: var(--page-bg);
+    color: var(--heading);
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+.portal-page .course-search:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px var(--green-light);
+}
+
+.portal-page .course-search::placeholder {
+    color: var(--muted);
+}
+
+/* Course grid */
+
+.portal-page .course-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 19px;
+}
+
+/* Course card */
+
+.portal-page .course-card {
+    min-width: 0;
+    padding: 21px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: var(--page-bg);
+    transition: 0.25s ease;
+}
+
+.portal-page .course-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--green);
+    box-shadow: var(--shadow);
+}
+
+.portal-page .course-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.portal-page .course-code {
+    padding: 6px 10px;
+    border-radius: 7px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+.portal-page .status-active {
+    padding: 6px 11px;
+    border-radius: 20px;
+    background: var(--success-bg);
+    color: var(--success);
+    font-size: 10px;
+    font-weight: 750;
+}
+
+.portal-page .course-icon {
+    width: 49px;
+    height: 49px;
+    margin: 20px 0 13px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 24px;
+}
+
+.portal-page .course-card h3 {
+    margin: 0 0 7px;
+    color: var(--heading);
+    font-size: 17px;
+    font-weight: 750;
+}
+
+.portal-page .course-department {
+    margin: 0 0 17px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.portal-page .course-details {
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    color: var(--body-text);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.portal-page .course-footer {
+    padding-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.portal-page .course-footer > span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.portal-page .course-footer a {
+    color: var(--green-dark);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.portal-page .course-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Empty course message */
+
+.portal-page .empty-message {
+    padding: 25px;
+    border-radius: 10px;
+    background: var(--green-light);
+    color: var(--body-text);
+    font-size: 13px;
+    text-align: center;
+}
+
+.portal-page .page-footer {
+    margin-top: 28px;
+    padding: 17px 0;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+    text-align: center;
+}
+
+/* =========================================================
+   ATTENDANCE PAGE
+========================================================= */
+
+/* Heading */
+
+.portal-page.attendance-page .page-heading {
+    margin-bottom: 25px;
+    align-items: flex-end;
+}
+
+.portal-page.attendance-page .eyebrow {
+    margin: 0 0 8px;
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+
+.portal-page.attendance-page .page-heading h1 {
+    font-size: 31px;
+}
+
+.portal-page.attendance-page .heading-description {
+    margin: 9px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.portal-page.attendance-page .date-display {
+    padding: 11px 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--body-text);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Attendance summary cards */
+
+.portal-page .attendance-summary {
+    margin-bottom: 27px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.portal-page .attendance-stat {
+    min-width: 0;
+    min-height: 155px;
+    padding: 19px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    transition: 0.25s;
+}
+
+.portal-page .attendance-stat:hover {
+    transform: translateY(-4px);
+    border-color: var(--green);
+}
+
+.portal-page .attendance-stat-icon {
+    width: 39px;
+    height: 39px;
+    margin-bottom: 13px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.portal-page .attendance-stat:nth-child(2) .attendance-stat-icon {
+    background: #E0EDDE;
+    color: #47724F;
+}
+
+.portal-page .attendance-stat:nth-child(3) .attendance-stat-icon {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.portal-page .attendance-stat:nth-child(4) .attendance-stat-icon {
+    background: #E9E6D6;
+    color: #8B7746;
+}
+
+.portal-page .attendance-stat > p {
+    margin: 0 0 7px;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.portal-page .attendance-stat h2 {
+    margin: 0 0 6px;
+    color: var(--heading);
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.portal-page .attendance-stat small {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* Attendance panel */
+
+.portal-page .attendance-panel {
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.portal-page .attendance-panel-heading {
+    margin-bottom: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.portal-page .attendance-panel-heading .eyebrow {
+    margin-bottom: 7px;
+}
+
+.portal-page .attendance-panel-heading h2 {
+    margin: 0;
+    color: var(--heading);
+    font-size: 19px;
+    font-weight: 750;
+}
+
+.portal-page .attendance-date-label {
+    padding: 8px 12px;
+    border-radius: 20px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 10px;
+    font-weight: 750;
+}
+
+/* Attendance filters */
+
+.portal-page .attendance-filters {
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 15px;
+}
+
+.portal-page .attendance-filter {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.portal-page .attendance-filter label {
+    color: var(--heading);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.portal-page .attendance-filter select,
+.portal-page .attendance-filter input {
+    width: 100%;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    background: var(--page-bg);
+    color: var(--body-text);
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+.portal-page .attendance-filter select:focus,
+.portal-page .attendance-filter input:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px var(--green-light);
+}
+
+.portal-page .attendance-filter input::placeholder {
+    color: var(--muted);
+}
+
+/* Attendance table */
+
+.portal-page .attendance-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+}
+
+.portal-page .attendance-table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.portal-page .attendance-table thead {
+    background: var(--green-light);
+}
+
+.portal-page .attendance-table th {
+    padding: 15px 14px;
+    color: var(--green-dark);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+}
+
+.portal-page .attendance-table td {
+    padding: 15px 14px;
+    border-top: 1px solid var(--border);
+    color: var(--body-text);
+    font-size: 12px;
+}
+
+.portal-page .attendance-table tbody tr {
+    background: var(--surface);
+    transition: 0.2s;
+}
+
+.portal-page .attendance-table tbody tr:hover {
+    background: var(--page-bg);
+}
+
+/* Attendance status */
+
+.portal-page .attendance-status {
+    display: inline-block;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.portal-page .attendance-status.present {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.portal-page .attendance-status.absent {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+/* Change status button */
+
+.portal-page .attendance-action {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 10px;
+    font-weight: 750;
+    transition: 0.2s;
+}
+
+.portal-page .attendance-action:hover {
+    background: var(--green);
+    border-color: var(--green);
+    color: #FFFFFF;
+}
+
+/* Empty message */
+
+.portal-page .attendance-empty {
+    display: none;
+    padding: 23px;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Attendance bottom */
+
+.portal-page .attendance-bottom {
+    margin-top: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.portal-page .attendance-bottom span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.portal-page .attendance-bottom button {
+    padding: 9px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 11px;
+    font-weight: 750;
+    transition: 0.2s;
+}
+
+.portal-page .attendance-bottom button:hover {
+    background: var(--green);
+    color: #FFFFFF;
+}
+
+/* Attendance footer */
+
+.portal-page.attendance-page .dashboard-footer {
+    margin-top: 28px;
+    padding: 17px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+/* Tablets */
+
+@media (max-width: 1150px) {
+    .portal-page .page-content {
+        padding: 27px 24px;
+    }
+
+    .portal-page .attendance-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .portal-page .overview-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile sidebar */
+
+@media (max-width: 900px) {
+    .portal-page .faculty-layout .faculty-sidebar,
+    .portal-page.attendance-page .faculty-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .portal-page .faculty-layout .faculty-sidebar.sidebar-open,
+    .portal-page.attendance-page .faculty-sidebar.sidebar-open {
+        transform: translateX(0);
+    }
+
+    .portal-page .dashboard-main {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .portal-page .topbar {
+        height: 66px;
+        padding: 0 22px;
+    }
+
+    .portal-page .menu-button {
+        display: block;
+    }
+
+    .portal-page .page-content {
+        padding: 24px 21px;
+    }
+}
+
+/* Small mobile */
+
+@media (max-width: 600px) {
+    .portal-page .topbar {
+        padding: 0 15px;
+    }
+
+    .portal-page .top-actions {
+        gap: 10px;
+    }
+
+    .portal-page .profile-shortcut span {
+        display: none;
+    }
+
+    .portal-page .page-content {
+        padding: 21px 15px;
+    }
+
+    .portal-page .page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    .portal-page .page-heading h1 {
+        font-size: 27px;
+    }
+
+    .portal-page .course-count {
+        min-width: 115px;
+    }
+
+    .portal-page .overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portal-page .course-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portal-page .panel-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .portal-page .course-search {
+        width: 100%;
+    }
+
+    .portal-page .content-panel,
+    .portal-page .attendance-panel {
+        padding: 17px;
+    }
+
+    .portal-page .attendance-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 11px;
+    }
+
+    .portal-page .attendance-stat {
+        padding: 14px;
+        min-height: 140px;
+    }
+
+    .portal-page .attendance-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .portal-page .attendance-panel-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .portal-page .attendance-bottom,
+    .portal-page .attendance-page .dashboard-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+/* Very small screens */
+
+@media (max-width: 380px) {
+    .portal-page .attendance-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .portal-page .course-details {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .portal-page .course-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+/* =========================================================
+   CAMPUSIQ FACULTY PORTAL
+   ASSIGNMENTS + GRADES + TIMETABLE
+   Theme: Forest Green / Sage
+========================================================= */
+
+/* ---------- SHARED PAGE VARIABLES ---------- */
+
+.portal-page.assignments-page,
+.portal-page.grades-page,
+.portal-page.timetable-page {
+    --page-bg: #EDF3EB;
+    --surface: #F9FBF6;
+    --surface-soft: #E5EDE2;
+    --heading: #26382E;
+    --body-text: #526357;
+    --muted: #849187;
+    --border: #D9E4D7;
+    --green: #426B50;
+    --green-dark: #31583F;
+    --green-light: #DCE9DA;
+    --input-bg: #F5F8F2;
+    --shadow: 0 8px 28px rgba(38, 56, 46, 0.06);
+}
+
+/* DARK THEME */
+
+html[data-theme="dark"] .portal-page.assignments-page,
+html[data-theme="dark"] .portal-page.grades-page,
+html[data-theme="dark"] .portal-page.timetable-page {
+    --page-bg: #1C2420;
+    --surface: #28332D;
+    --surface-soft: #34443A;
+    --heading: #EDF4EE;
+    --body-text: #C1CEC3;
+    --muted: #91A194;
+    --border: #3D4D41;
+    --green: #8BAF91;
+    --green-dark: #A5C4A8;
+    --green-light: #354B3B;
+    --input-bg: #202B24;
+    --shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- SHARED PAGE BASE ---------- */
+
+.portal-page.assignments-page,
+.portal-page.grades-page,
+.portal-page.timetable-page {
+    background: var(--page-bg);
+    color: var(--body-text);
+}
+
+.portal-page.assignments-page .dashboard-main,
+.portal-page.grades-page .dashboard-main,
+.portal-page.timetable-page .dashboard-main {
+    background: var(--page-bg);
+    min-height: 100vh;
+}
+
+.portal-page.assignments-page .page-content,
+.portal-page.grades-page .page-content,
+.portal-page.timetable-page .page-content {
+    padding: 30px;
+}
+
+.portal-page.assignments-page .topbar,
+.portal-page.grades-page .topbar,
+.portal-page.timetable-page .topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.portal-page.assignments-page .breadcrumb,
+.portal-page.grades-page .breadcrumb,
+.portal-page.timetable-page .breadcrumb {
+    color: var(--muted);
+}
+
+.portal-page.assignments-page .page-heading,
+.portal-page.grades-page .page-heading,
+.portal-page.timetable-page .page-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.portal-page.assignments-page .eyebrow,
+.portal-page.grades-page .eyebrow,
+.portal-page.timetable-page .eyebrow {
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    margin-bottom: 10px;
+}
+
+.portal-page.assignments-page .page-heading h1,
+.portal-page.grades-page .page-heading h1,
+.portal-page.timetable-page .page-heading h1 {
+    color: var(--heading);
+    font-size: clamp(25px, 3vw, 32px);
+    font-weight: 750;
+    letter-spacing: -0.8px;
+    margin: 0 0 9px;
+}
+
+.portal-page.assignments-page .heading-description,
+.portal-page.grades-page .page-heading p,
+.portal-page.timetable-page .page-heading p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.portal-page.assignments-page .dashboard-footer,
+.portal-page.grades-page .dashboard-footer,
+.portal-page.timetable-page .dashboard-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 22px 0 5px;
+    margin-top: 30px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.4px;
+}
+
+/* ---------- SHARED SIDEBAR ---------- */
+
+.portal-page.assignments-page .faculty-sidebar,
+.portal-page.grades-page .faculty-sidebar,
+.portal-page.timetable-page .faculty-sidebar {
+    background: #202D27;
+    color: #DDE9DF;
+}
+
+.portal-page.assignments-page .sidebar-heading,
+.portal-page.grades-page .sidebar-heading,
+.portal-page.timetable-page .sidebar-heading {
+    color: #91A797;
+}
+
+.portal-page.assignments-page .faculty-nav a,
+.portal-page.grades-page .faculty-nav a,
+.portal-page.timetable-page .faculty-nav a {
+    color: #B8C8BC;
+    transition: 0.25s ease;
+}
+
+.portal-page.assignments-page .faculty-nav a:hover,
+.portal-page.grades-page .faculty-nav a:hover,
+.portal-page.timetable-page .faculty-nav a:hover {
+    background: rgba(168, 197, 169, 0.12);
+    color: #FFFFFF;
+}
+
+.portal-page.assignments-page .faculty-nav a.active,
+.portal-page.grades-page .faculty-nav a.active,
+.portal-page.timetable-page .faculty-nav a.active {
+    background: #354B3B;
+    color: #C5DFC8;
+    border-left: 3px solid #A8C5A9;
+}
+
+.portal-page.assignments-page .sidebar-user,
+.portal-page.grades-page .sidebar-user,
+.portal-page.timetable-page .sidebar-user {
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* =========================================================
+   1. ASSIGNMENTS PAGE
+========================================================= */
+
+/* CREATE BUTTON */
+
+.assignments-page .assignment-create-button {
+    border: none;
+    background: var(--green);
+    color: #FFFFFF;
+    padding: 13px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 5px 14px rgba(49, 88, 63, 0.16);
+}
+
+.assignments-page .assignment-create-button:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+}
+
+/* ASSIGNMENT STATISTICS */
+
+.assignments-page .assignment-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 27px;
+}
+
+.assignments-page .assignment-stat {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 21px;
+    box-shadow: var(--shadow);
+    transition: 0.25s ease;
+}
+
+.assignments-page .assignment-stat:hover {
+    transform: translateY(-4px);
+    border-color: var(--green);
+}
+
+.assignments-page .assignment-stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 20px;
+    margin-bottom: 17px;
+}
+
+.assignments-page .assignment-stat p {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin: 0 0 9px;
+}
+
+.assignments-page .assignment-stat h2 {
+    color: var(--heading);
+    font-size: 29px;
+    margin: 0 0 7px;
+}
+
+.assignments-page .assignment-stat small {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* ASSIGNMENT WORKSPACE */
+
+.assignments-page .assignment-workspace {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+.assignments-page .assignment-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 23px;
+}
+
+.assignments-page .assignment-heading h2 {
+    color: var(--heading);
+    font-size: 20px;
+    margin: 0;
+}
+
+.assignments-page .assignment-session {
+    padding: 9px 13px;
+    border-radius: 8px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* SEARCH AND FILTERS */
+
+.assignments-page .assignment-toolbar {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 0.8fr;
+    gap: 12px;
+    margin-bottom: 23px;
+}
+
+.assignments-page .assignment-toolbar input,
+.assignments-page .assignment-toolbar select {
+    width: 100%;
+    min-width: 0;
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    background: var(--input-bg);
+    color: var(--heading);
+    font-size: 12px;
+}
+
+.assignments-page .assignment-toolbar input:focus,
+.assignments-page .assignment-toolbar select:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px var(--green-light);
+}
+
+/* ASSIGNMENT CARDS */
+
+.assignments-page .assignment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.assignments-page .assignment-card {
+    padding: 21px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: 14px;
+    transition: 0.25s ease;
+}
+
+.assignments-page .assignment-card:hover {
+    border-color: var(--green);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.assignments-page .assignment-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.assignments-page .assignment-category {
+    color: var(--green);
+    background: var(--green-light);
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+.assignments-page .assignment-status {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 6px 11px;
+    border-radius: 20px;
+}
+
+.assignments-page .assignment-status.active {
+    background: #DCEBDD;
+    color: #326A42;
+}
+
+.assignments-page .assignment-status.closed {
+    background: #E9E5DC;
+    color: #82704E;
+}
+
+.assignments-page .assignment-card h3 {
+    color: var(--heading);
+    font-size: 17px;
+    line-height: 1.4;
+    margin: 0 0 7px;
+}
+
+.assignments-page .assignment-course {
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 650;
+    margin: 0 0 15px;
+}
+
+.assignments-page .assignment-description {
+    color: var(--body-text);
+    font-size: 12px;
+    line-height: 1.8;
+    min-height: 62px;
+    margin-bottom: 19px;
+}
+
+.assignments-page .assignment-progress {
+    margin-bottom: 17px;
+}
+
+.assignments-page .assignment-progress > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 9px;
+}
+
+.assignments-page .assignment-progress strong {
+    color: var(--heading);
+}
+
+.assignments-page .progress-track {
+    height: 7px;
+    background: var(--surface-soft);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.assignments-page .progress-track div {
+    height: 100%;
+    background: var(--green);
+    border-radius: 20px;
+}
+
+.assignments-page .assignment-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-top: 1px solid var(--border);
+    padding-top: 15px;
+    margin-bottom: 17px;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.assignments-page .assignment-review-button {
+    width: 100%;
+    padding: 11px;
+    background: var(--green-light);
+    color: var(--green);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.assignments-page .assignment-review-button:hover {
+    background: var(--green);
+    color: #FFFFFF;
+}
+
+.assignments-page .assignment-empty {
+    display: none;
+    text-align: center;
+    padding: 35px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* ASSIGNMENT MODAL */
+
+.assignments-page .assignment-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(10, 20, 14, 0.65);
+    backdrop-filter: blur(5px);
+}
+
+.assignments-page .assignment-modal.show {
+    display: flex;
+}
+
+.assignments-page .assignment-modal-content {
+    width: 100%;
+    max-width: 510px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 27px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+.assignments-page .assignment-modal-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 23px;
+}
+
+.assignments-page .assignment-modal-heading h2 {
+    color: var(--heading);
+    margin: 0;
+    font-size: 21px;
+}
+
+.assignments-page .assignment-modal-heading button {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 8px;
+    background: var(--surface-soft);
+    color: var(--heading);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.assignments-page .assignment-modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.assignments-page .assignment-modal-content label {
+    color: var(--heading);
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 7px;
+}
+
+.assignments-page .assignment-modal-content input,
+.assignments-page .assignment-modal-content select,
+.assignments-page .assignment-modal-content textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--heading);
+    outline: none;
+    font: inherit;
+    font-size: 12px;
+}
+
+.assignments-page .assignment-modal-content textarea {
+    min-height: 95px;
+    resize: vertical;
+}
+
+.assignments-page .assignment-modal-content input:focus,
+.assignments-page .assignment-modal-content select:focus,
+.assignments-page .assignment-modal-content textarea:focus {
+    border-color: var(--green);
+}
+
+.assignments-page .assignment-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+}
+
+.assignments-page .assignment-form-row > div {
+    min-width: 0;
+}
+
+.assignments-page .assignment-modal-content form > button {
+    margin-top: 15px;
+}
+
+/* =========================================================
+   2. GRADES PAGE
+========================================================= */
+
+/* PRIMARY BUTTON */
+
+.grades-page .primary-button {
+    border: none;
+    background: var(--green);
+    color: #FFFFFF;
+    padding: 12px 18px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.grades-page .primary-button:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+}
+
+/* GRADE STATISTICS */
+
+.grades-page .grade-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 17px;
+    margin-bottom: 25px;
+}
+
+.grades-page .grade-stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 21px;
+    box-shadow: var(--shadow);
+    transition: 0.25s ease;
+}
+
+.grades-page .grade-stat-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--green);
+}
+
+.grades-page .grade-stat-card span {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.grades-page .grade-stat-card h2 {
+    color: var(--heading);
+    font-size: 28px;
+    margin: 13px 0 8px;
+}
+
+.grades-page .grade-stat-card small {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* GRADES PANEL */
+
+.grades-page .grades-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+.grades-page .grades-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 23px;
+}
+
+.grades-page .grades-panel-header h2 {
+    color: var(--heading);
+    font-size: 20px;
+    margin: 0 0 7px;
+}
+
+.grades-page .grades-panel-header p {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 0;
+}
+
+.grades-page .academic-year {
+    background: var(--green-light);
+    color: var(--green);
+    border-radius: 8px;
+    padding: 10px 13px;
+    font-size: 10px;
+    font-weight: 750;
+}
+
+/* GRADE FILTERS */
+
+.grades-page .grades-filters {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 0.8fr;
+    gap: 12px;
+    margin-bottom: 21px;
+}
+
+.grades-page .grades-filters input,
+.grades-page .grades-filters select {
+    width: 100%;
+    min-width: 0;
+    height: 43px;
+    padding: 0 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--heading);
+    outline: none;
+    font-size: 11px;
+}
+
+.grades-page .grades-filters input:focus,
+.grades-page .grades-filters select:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px var(--green-light);
+}
+
+/* GRADES TABLE */
+
+.grades-page .grades-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+}
+
+.grades-page .grades-table {
+    width: 100%;
+    min-width: 750px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.grades-page .grades-table thead {
+    background: var(--surface-soft);
+}
+
+.grades-page .grades-table th {
+    padding: 15px 14px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+}
+
+.grades-page .grades-table td {
+    padding: 15px 14px;
+    border-top: 1px solid var(--border);
+    color: var(--body-text);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.grades-page .grades-table tbody tr {
+    transition: 0.2s ease;
+}
+
+.grades-page .grades-table tbody tr:hover {
+    background: var(--green-light);
+}
+
+.grades-page .grades-table td:first-child {
+    color: var(--heading);
+    font-weight: 700;
+}
+
+/* GRADE BADGES */
+
+.grades-page .grade-badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 30px;
+    padding: 6px 9px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.grades-page .grade-a {
+    background: #DCEBDD;
+    color: #326A42;
+}
+
+.grades-page .grade-b {
+    background: #DCE9F0;
+    color: #386B85;
+}
+
+.grades-page .grade-c {
+    background: #F2EBD4;
+    color: #8B7131;
+}
+
+.grades-page .grade-d {
+    background: #F3E1D3;
+    color: #9A5D31;
+}
+
+.grades-page .grade-f {
+    background: #F1DCDC;
+    color: #A44444;
+}
+
+/* EDIT BUTTON */
+
+.grades-page .edit-grade-btn {
+    padding: 7px 13px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.grades-page .edit-grade-btn:hover {
+    background: var(--green);
+    color: #FFFFFF;
+}
+
+/* GRADE MODAL */
+
+.grades-page .grade-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(10, 20, 14, 0.65);
+    backdrop-filter: blur(5px);
+}
+
+.grades-page .grade-modal.show {
+    display: flex;
+}
+
+.grades-page .grade-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+.grades-page .grade-modal-content h2 {
+    color: var(--heading);
+    font-size: 21px;
+    margin: 0 0 8px;
+}
+
+.grades-page .grade-modal-content p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 22px;
+}
+
+.grades-page .grade-modal-content .modal-close {
+    position: absolute;
+    top: 17px;
+    right: 17px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+    background: var(--surface-soft);
+    color: var(--heading);
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.grades-page .grade-modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.grades-page .grade-modal-content label {
+    color: var(--heading);
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 6px;
+}
+
+.grades-page .grade-modal-content input,
+.grades-page .grade-modal-content select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--heading);
+    outline: none;
+    font-size: 12px;
+}
+
+.grades-page .grade-modal-content input:focus,
+.grades-page .grade-modal-content select:focus {
+    border-color: var(--green);
+}
+
+.grades-page .grade-modal-content form button {
+    margin-top: 13px;
+}
+
+/* =========================================================
+   3. TIMETABLE PAGE
+========================================================= */
+
+/* PRINT BUTTON */
+
+.timetable-page .primary-button {
+    border: none;
+    background: var(--green);
+    color: #FFFFFF;
+    padding: 12px 18px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.timetable-page .primary-button:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+}
+
+/* TIMETABLE SUMMARY */
+
+.timetable-page .timetable-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 17px;
+    margin-bottom: 25px;
+}
+
+.timetable-page .timetable-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: 0.25s ease;
+}
+
+.timetable-page .timetable-stat-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--green);
+}
+
+.timetable-page .stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 43px;
+    height: 43px;
+    border-radius: 12px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 20px;
+}
+
+.timetable-page .timetable-stat-card span {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.timetable-page .timetable-stat-card h2 {
+    color: var(--heading);
+    font-size: 25px;
+    margin: 6px 0;
+}
+
+.timetable-page .timetable-stat-card small {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* TIMETABLE PANEL */
+
+.timetable-page .timetable-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+.timetable-page .timetable-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.timetable-page .timetable-panel-header h2 {
+    color: var(--heading);
+    font-size: 20px;
+    margin: 0 0 7px;
+}
+
+.timetable-page .timetable-panel-header p {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 0;
+}
+
+.timetable-page .timetable-week-label {
+    text-align: right;
+    background: var(--green-light);
+    border-radius: 9px;
+    padding: 10px 15px;
+}
+
+.timetable-page .timetable-week-label span {
+    display: block;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.timetable-page .timetable-week-label strong {
+    color: var(--green);
+    font-size: 14px;
+}
+
+/* DAY FILTERS */
+
+.timetable-page .timetable-toolbar {
+    margin-bottom: 21px;
+}
+
+.timetable-page .day-filters {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.timetable-page .day-filter {
+    padding: 9px 15px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--body-text);
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.timetable-page .day-filter:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.timetable-page .day-filter.active {
+    background: var(--green);
+    border-color: var(--green);
+    color: #FFFFFF;
+}
+
+/* TIMETABLE TABLE */
+
+.timetable-page .timetable-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+}
+
+.timetable-page .timetable-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.timetable-page .timetable-table thead {
+    background: var(--surface-soft);
+}
+
+.timetable-page .timetable-table th {
+    padding: 15px 14px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+}
+
+.timetable-page .timetable-table td {
+    padding: 15px 14px;
+    border-top: 1px solid var(--border);
+    color: var(--body-text);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.timetable-page .timetable-table tbody tr {
+    transition: 0.2s ease;
+}
+
+.timetable-page .timetable-table tbody tr:hover {
+    background: var(--green-light);
+}
+
+.timetable-page .timetable-table td:first-child strong,
+.timetable-page .timetable-table td:nth-child(3) strong {
+    display: block;
+    color: var(--heading);
+    font-weight: 750;
+    margin-bottom: 5px;
+}
+
+.timetable-page .timetable-table td:nth-child(3) small {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* SESSION BADGES */
+
+.timetable-page .session-badge {
+    display: inline-block;
+    padding: 7px 11px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 750;
+}
+
+.timetable-page .session-badge.lecture {
+    background: #DCE9F0;
+    color: #386B85;
+}
+
+.timetable-page .session-badge.lab {
+    background: #DCEBDD;
+    color: #326A42;
+}
+
+.timetable-page .session-badge.meeting {
+    background: #EEE5F4;
+    color: #79518F;
+}
+
+/* TIMETABLE NOTE */
+
+.timetable-page .timetable-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 19px;
+    padding: 15px 17px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--green-light);
+}
+
+.timetable-page .timetable-note > span {
+    color: var(--green);
+    font-size: 17px;
+}
+
+.timetable-page .timetable-note p {
+    color: var(--body-text);
+    font-size: 11px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 1100px) {
+    .assignments-page .assignment-stats,
+    .grades-page .grade-stats,
+    .timetable-page .timetable-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .assignments-page .assignment-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 850px) {
+    .portal-page.assignments-page .page-content,
+    .portal-page.grades-page .page-content,
+    .portal-page.timetable-page .page-content {
+        padding: 22px;
+    }
+
+    .assignments-page .assignment-toolbar,
+    .grades-page .grades-filters {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .assignments-page .assignment-toolbar input,
+    .grades-page .grades-filters input {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .portal-page.assignments-page .page-content,
+    .portal-page.grades-page .page-content,
+    .portal-page.timetable-page .page-content {
+        padding: 15px;
+    }
+
+    .portal-page.assignments-page .page-heading,
+    .portal-page.grades-page .page-heading,
+    .portal-page.timetable-page .page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .assignments-page .assignment-stats,
+    .grades-page .grade-stats,
+    .timetable-page .timetable-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 11px;
+    }
+
+    .assignments-page .assignment-stat,
+    .grades-page .grade-stat-card,
+    .timetable-page .timetable-stat-card {
+        padding: 15px;
+    }
+
+    .assignments-page .assignment-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .assignments-page .assignment-toolbar,
+    .grades-page .grades-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .assignments-page .assignment-toolbar input,
+    .grades-page .grades-filters input {
+        grid-column: auto;
+    }
+
+    .assignments-page .assignment-workspace,
+    .grades-page .grades-panel,
+    .timetable-page .timetable-panel {
+        padding: 16px;
+    }
+
+    .assignments-page .assignment-heading,
+    .grades-page .grades-panel-header,
+    .timetable-page .timetable-panel-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .timetable-page .timetable-week-label {
+        text-align: left;
+    }
+
+    .assignments-page .assignment-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .portal-page.assignments-page .dashboard-footer,
+    .portal-page.grades-page .dashboard-footer,
+    .portal-page.timetable-page .dashboard-footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .assignments-page .assignment-modal-content,
+    .grades-page .grade-modal-content {
+        padding: 20px;
+    }
+}
+
+/* =========================================================
+   PRINT TIMETABLE
+========================================================= */
+
+@media print {
+    .timetable-page .faculty-sidebar,
+    .timetable-page .topbar,
+    .timetable-page .timetable-toolbar,
+    .timetable-page .page-heading button,
+    .timetable-page .dashboard-footer,
+    .timetable-page .timetable-note {
+        display: none !important;
+    }
+
+    .timetable-page .dashboard-main {
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .timetable-page .page-content {
+        padding: 0 !important;
+    }
+
+    .timetable-page .timetable-panel,
+    .timetable-page .timetable-table-wrap {
+        box-shadow: none !important;
+        border: 1px solid #CCCCCC !important;
+    }
+
+    .timetable-page .timetable-table th,
+    .timetable-page .timetable-table td {
+        color: #222222 !important;
+        border-color: #CCCCCC !important;
+    }
+}
+
+
+/* =========================================================
+   CAMPUSIQ FACULTY PORTAL
+   ANNOUNCEMENTS + EVENTS + LEAVE REQUESTS
+   Forest Green / Sage Theme
+========================================================= */
+
+/* ---------- PAGE THEME VARIABLES ---------- */
+
+.portal-page.announcements-page,
+.portal-page.events-page,
+.portal-page.leave-page {
+    --page-bg: #EDF3EB;
+    --surface: #F9FBF6;
+    --surface-soft: #E5EDE2;
+    --heading: #26382E;
+    --body-text: #526357;
+    --muted: #849187;
+    --border: #D9E4D7;
+    --green: #426B50;
+    --green-dark: #31583F;
+    --green-light: #DCE9DA;
+    --input-bg: #F5F8F2;
+    --shadow: 0 8px 28px rgba(38, 56, 46, 0.06);
+}
+
+/* DARK MODE */
+
+html[data-theme="dark"] .portal-page.announcements-page,
+html[data-theme="dark"] .portal-page.events-page,
+html[data-theme="dark"] .portal-page.leave-page {
+    --page-bg: #1C2420;
+    --surface: #28332D;
+    --surface-soft: #34443A;
+    --heading: #EDF4EE;
+    --body-text: #C1CEC3;
+    --muted: #91A194;
+    --border: #3D4D41;
+    --green: #8BAF91;
+    --green-dark: #A5C4A8;
+    --green-light: #354B3B;
+    --input-bg: #202B24;
+    --shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- COMMON PAGE STYLING ---------- */
+
+.portal-page.announcements-page,
+.portal-page.events-page,
+.portal-page.leave-page {
+    background: var(--page-bg);
+    color: var(--body-text);
+}
+
+.portal-page.announcements-page .dashboard-main,
+.portal-page.events-page .dashboard-main,
+.portal-page.leave-page .dashboard-main {
+    background: var(--page-bg);
+    min-height: 100vh;
+}
+
+.portal-page.announcements-page .page-content,
+.portal-page.events-page .page-content,
+.portal-page.leave-page .page-content {
+    padding: 30px;
+}
+
+.portal-page.announcements-page .topbar,
+.portal-page.events-page .topbar,
+.portal-page.leave-page .topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.portal-page.announcements-page .breadcrumb,
+.portal-page.events-page .breadcrumb,
+.portal-page.leave-page .breadcrumb {
+    color: var(--muted);
+}
+
+/* COMMON SIDEBAR */
+
+.portal-page.announcements-page .faculty-sidebar,
+.portal-page.events-page .faculty-sidebar,
+.portal-page.leave-page .faculty-sidebar {
+    background: #202D27;
+    color: #DDE9DF;
+}
+
+.portal-page.announcements-page .nav-heading,
+.portal-page.events-page .nav-heading,
+.portal-page.leave-page .nav-heading {
+    color: #91A797;
+}
+
+.portal-page.announcements-page .faculty-nav a,
+.portal-page.events-page .faculty-nav a,
+.portal-page.leave-page .faculty-nav a {
+    color: #B8C8BC;
+    transition: 0.25s ease;
+}
+
+.portal-page.announcements-page .faculty-nav a:hover,
+.portal-page.events-page .faculty-nav a:hover,
+.portal-page.leave-page .faculty-nav a:hover {
+    background: rgba(168, 197, 169, 0.12);
+    color: #FFFFFF;
+}
+
+.portal-page.announcements-page .faculty-nav a.active,
+.portal-page.events-page .faculty-nav a.active,
+.portal-page.leave-page .faculty-nav a.active {
+    background: #354B3B;
+    color: #C5DFC8;
+    border-left: 3px solid #A8C5A9;
+}
+
+.portal-page.announcements-page .sidebar-user,
+.portal-page.events-page .sidebar-user,
+.portal-page.leave-page .sidebar-user {
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* COMMON EYEBROW */
+
+.portal-page.announcements-page .section-eyebrow,
+.portal-page.events-page .section-eyebrow,
+.portal-page.leave-page .section-eyebrow {
+    display: inline-block;
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+/* COMMON FOOTER */
+
+.portal-page.announcements-page .page-footer,
+.portal-page.events-page .page-footer,
+.portal-page.leave-page .page-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px 0 5px;
+    margin-top: 30px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* =========================================================
+   1. ANNOUNCEMENTS PAGE
+========================================================= */
+
+/* WELCOME BANNER */
+
+.announcements-page .announcement-welcome {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    min-height: 205px;
+    padding: 35px 40px;
+    margin-bottom: 25px;
+    border-radius: 18px;
+    background: linear-gradient(115deg, #243B2D, #426B50);
+    color: #FFFFFF;
+}
+
+.announcements-page .announcement-welcome::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    right: 100px;
+    top: -130px;
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 50%;
+}
+
+.announcements-page .announcement-welcome::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    right: 130px;
+    bottom: -120px;
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 50%;
+}
+
+.announcements-page .announcement-welcome .section-eyebrow {
+    color: #BBD6BE;
+}
+
+.announcements-page .announcement-welcome h1 {
+    position: relative;
+    z-index: 1;
+    color: #FFFFFF;
+    font-size: clamp(25px, 3vw, 34px);
+    letter-spacing: -0.8px;
+    margin: 0 0 12px;
+}
+
+.announcements-page .announcement-welcome p {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    color: #D7E5D9;
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.announcements-page .announcement-welcome-icon {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 25px;
+    background: rgba(255,255,255,0.1);
+    color: #D7E9D8;
+    font-size: 50px;
+}
+
+/* ANNOUNCEMENT STATISTICS */
+
+.announcements-page .announcement-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+    margin-bottom: 30px;
+}
+
+.announcements-page .announcement-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    transition: 0.25s ease;
+}
+
+.announcements-page .announcement-stat-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--green);
+}
+
+.announcements-page .announcement-stat-card .stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 20px;
+}
+
+.announcements-page .announcement-stat-card p {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 650;
+    margin: 0 0 7px;
+}
+
+.announcements-page .announcement-stat-card h2 {
+    color: var(--heading);
+    font-size: 25px;
+    margin: 0;
+}
+
+/* ANNOUNCEMENT TOOLBAR */
+
+.announcements-page .announcement-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.announcements-page .announcement-toolbar-title h2 {
+    color: var(--heading);
+    font-size: 21px;
+    margin: 0;
+}
+
+.announcements-page .announcement-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.announcements-page .announcement-controls input,
+.announcements-page .announcement-controls select {
+    height: 42px;
+    padding: 0 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--heading);
+    outline: none;
+    font-size: 11px;
+}
+
+.announcements-page .announcement-controls input {
+    width: 220px;
+}
+
+.announcements-page .announcement-controls select {
+    width: 165px;
+}
+
+.announcements-page .announcement-controls input:focus,
+.announcements-page .announcement-controls select:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px var(--green-light);
+}
+
+/* ANNOUNCEMENT LIST */
+
+.announcements-page .announcement-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.announcements-page .announcement-card {
+    position: relative;
+    padding: 23px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    transition: 0.25s ease;
+}
+
+.announcements-page .announcement-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--green);
+}
+
+.announcements-page .announcement-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.announcements-page .announcement-category {
+    display: inline-block;
+    padding: 7px 11px;
+    border-radius: 6px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+}
+
+.announcements-page .announcement-category.academic {
+    background: #DCEBDD;
+    color: #326A42;
+}
+
+.announcements-page .announcement-category.examination {
+    background: #F1E7D3;
+    color: #876A2E;
+}
+
+.announcements-page .announcement-category.event {
+    background: #E8E0F1;
+    color: #72528B;
+}
+
+.announcements-page .announcement-category.general {
+    background: #DCE9F0;
+    color: #386B85;
+}
+
+.announcements-page .announcement-priority {
+    color: #A27C35;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.announcements-page .announcement-status {
+    color: var(--green);
+    background: var(--green-light);
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 750;
+}
+
+.announcements-page .announcement-card h3 {
+    color: var(--heading);
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 0 10px;
+}
+
+.announcements-page .announcement-card > p {
+    color: var(--body-text);
+    font-size: 12px;
+    line-height: 1.85;
+    margin: 0 0 20px;
+}
+
+.announcements-page .announcement-meta {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 9px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.announcements-page .announcement-empty {
+    grid-column: 1 / -1;
+    padding: 35px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.announcements-page .announcement-empty[hidden] {
+    display: none;
+}
+
+/* =========================================================
+   2. EVENTS PAGE
+========================================================= */
+
+/* EVENTS WELCOME BANNER */
+
+.events-page .events-welcome {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    min-height: 205px;
+    padding: 35px 40px;
+    margin-bottom: 25px;
+    border-radius: 18px;
+    background: linear-gradient(115deg, #243B2D, #426B50);
+    color: #FFFFFF;
+}
+
+.events-page .events-welcome::before {
+    content: "";
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    right: 100px;
+    top: -140px;
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 50%;
+}
+
+.events-page .events-welcome .section-eyebrow {
+    color: #BBD6BE;
+}
+
+.events-page .events-welcome h1 {
+    position: relative;
+    z-index: 1;
+    color: #FFFFFF;
+    font-size: clamp(25px, 3vw, 34px);
+    letter-spacing: -0.8px;
+    margin: 0 0 12px;
+}
+
+.events-page .events-welcome p {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    color: #D7E5D9;
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.events-page .events-welcome-icon {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 25px;
+    background: rgba(255,255,255,0.1);
+    color: #D7E9D8;
+    font-size: 50px;
+}
+
+/* EVENT STATISTICS */
+
+.events-page .events-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+    margin-bottom: 30px;
+}
+
+.events-page .event-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    transition: 0.25s ease;
+}
+
+.events-page .event-stat-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--green);
+}
+
+.events-page .event-stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 21px;
+}
+
+.events-page .event-stat-card p {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 650;
+    margin: 0 0 7px;
+}
+
+.events-page .event-stat-card h2 {
+    color: var(--heading);
+    font-size: 25px;
+    margin: 0;
+}
+
+/* EVENTS SECTION HEADER */
+
+.events-page .events-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.events-page .events-section-header h2 {
+    color: var(--heading);
+    font-size: 21px;
+    margin: 0 0 7px;
+}
+
+.events-page .events-section-header p {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 0;
+}
+
+.events-page .events-filters {
+    display: flex;
+    gap: 10px;
+}
+
+.events-page .events-filters input,
+.events-page .events-filters select {
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--heading);
+    outline: none;
+    font-size: 11px;
+    min-width: 0;
+}
+
+.events-page .events-filters input {
+    width: 190px;
+}
+
+.events-page .events-filters select {
+    width: 145px;
+}
+
+.events-page .events-filters input:focus,
+.events-page .events-filters select:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px var(--green-light);
+}
+
+/* EVENT GRID */
+
+.events-page .events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.events-page .event-card {
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    transition: 0.25s ease;
+}
+
+.events-page .event-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--green);
+    box-shadow: 0 12px 30px rgba(38, 56, 46, 0.1);
+}
+
+/* EVENT CARD BANNERS */
+
+.events-page .event-card-banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 125px;
+    padding: 22px;
+    overflow: hidden;
+}
+
+.events-page .event-card-banner::after {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    right: -25px;
+    bottom: -75px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+}
+
+.events-page .technical-banner {
+    background: linear-gradient(120deg, #294C3A, #527B5D);
+}
+
+.events-page .academic-banner {
+    background: linear-gradient(120deg, #365D57, #6A9681);
+}
+
+.events-page .cultural-banner {
+    background: linear-gradient(120deg, #625078, #9275A2);
+}
+
+.events-page .sports-banner {
+    background: linear-gradient(120deg, #456A4B, #86A36F);
+}
+
+.events-page .event-banner-icon {
+    position: relative;
+    z-index: 1;
+    color: #FFFFFF;
+    font-size: 37px;
+}
+
+.events-page .event-type-label {
+    position: relative;
+    z-index: 1;
+    padding: 7px 10px;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 6px;
+    color: #FFFFFF;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* EVENT CARD CONTENT */
+
+.events-page .event-card-content {
+    position: relative;
+    padding: 21px;
+}
+
+.events-page .event-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 58px;
+    margin-top: -48px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 2;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.events-page .event-date strong {
+    color: var(--green);
+    font-size: 21px;
+    line-height: 1.1;
+}
+
+.events-page .event-date span {
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 800;
+    margin-top: 4px;
+}
+
+.events-page .event-card-content h3 {
+    color: var(--heading);
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0 0 10px;
+}
+
+.events-page .event-card-content > p {
+    color: var(--body-text);
+    font-size: 11px;
+    line-height: 1.8;
+    min-height: 78px;
+    margin: 0 0 16px;
+}
+
+.events-page .event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 13px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.events-page .event-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding-top: 14px;
+}
+
+.events-page .event-status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 750;
+}
+
+.events-page .event-status.upcoming {
+    background: #DCEBDD;
+    color: #326A42;
+}
+
+.events-page .event-status.completed {
+    background: #E7E8E3;
+    color: #70796E;
+}
+
+.events-page .event-category-text {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 650;
+}
+
+.events-page .events-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 35px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.events-page .events-empty[hidden] {
+    display: none;
+}
+
+/* =========================================================
+   3. LEAVE REQUESTS PAGE
+========================================================= */
+
+/* LEAVE WELCOME */
+
+.leave-page .leave-welcome {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    min-height: 190px;
+    padding: 32px 38px;
+    margin-bottom: 25px;
+    border-radius: 18px;
+    background: linear-gradient(115deg, #243B2D, #426B50);
+    color: #FFFFFF;
+}
+
+.leave-page .leave-welcome::before {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    right: 100px;
+    top: -125px;
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 50%;
+}
+
+.leave-page .welcome-tag {
+    display: inline-block;
+    color: #BBD6BE;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
+
+.leave-page .leave-welcome h1 {
+    position: relative;
+    z-index: 1;
+    color: #FFFFFF;
+    font-size: clamp(25px, 3vw, 34px);
+    letter-spacing: -0.8px;
+    margin: 0 0 12px;
+}
+
+.leave-page .leave-welcome p {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    color: #D7E5D9;
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.leave-page .leave-welcome-icon {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 95px;
+    height: 95px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 24px;
+    background: rgba(255,255,255,0.1);
+    color: #D7E9D8;
+    font-size: 36px;
+}
+
+/* LEAVE STATISTICS */
+
+.leave-page .leave-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 27px;
+}
+
+.leave-page .leave-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 19px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    transition: 0.25s ease;
+}
+
+.leave-page .leave-stat-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--green);
+}
+
+.leave-page .leave-stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 17px;
+}
+
+.leave-page .leave-stat-card span {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.leave-page .leave-stat-card h2 {
+    color: var(--heading);
+    font-size: 25px;
+    margin: 5px 0;
+}
+
+.leave-page .leave-stat-card small {
+    color: var(--muted);
+    font-size: 9px;
+}
+
+/* COMMON SECTION HEADINGS */
+
+.leave-page .section-heading {
+    margin-bottom: 22px;
+}
+
+.leave-page .section-heading h2 {
+    color: var(--heading);
+    font-size: 21px;
+    margin: 0 0 7px;
+}
+
+.leave-page .section-heading p {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 0;
+}
+
+/* LEAVE FORM SECTION */
+
+.leave-page .leave-form-section,
+.leave-page .leave-history-section {
+    padding: 25px;
+    margin-bottom: 23px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.leave-page .leave-form {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.leave-page .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.leave-page .form-group label {
+    color: var(--heading);
+    font-size: 11px;
+    font-weight: 750;
+}
+
+.leave-page .form-group input,
+.leave-page .form-group select,
+.leave-page .form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--input-bg);
+    color: var(--heading);
+    outline: none;
+    font-family: inherit;
+    font-size: 12px;
+    transition: 0.2s ease;
+}
+
+.leave-page .form-group input,
+.leave-page .form-group select {
+    min-height: 44px;
+}
+
+.leave-page .form-group textarea {
+    resize: vertical;
+    min-height: 105px;
+    line-height: 1.7;
+}
+
+.leave-page .form-group input:focus,
+.leave-page .form-group select:focus,
+.leave-page .form-group textarea:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px var(--green-light);
+}
+
+.leave-page .form-group input::placeholder,
+.leave-page .form-group textarea::placeholder {
+    color: var(--muted);
+}
+
+.leave-page .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px;
+}
+
+/* FORM FOOTER */
+
+.leave-page .leave-form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.leave-page .leave-form-footer p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.leave-page .leave-form-footer p i {
+    color: var(--green);
+    margin-right: 5px;
+}
+
+.leave-page .leave-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 9px;
+    background: var(--green);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.leave-page .leave-submit-btn:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+}
+
+/* LEAVE HISTORY FILTERS */
+
+.leave-page .leave-filters {
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.leave-page .leave-filters input,
+.leave-page .leave-filters select {
+    height: 43px;
+    width: 100%;
+    padding: 0 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--heading);
+    outline: none;
+    font-size: 11px;
+}
+
+.leave-page .leave-filters input:focus,
+.leave-page .leave-filters select:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px var(--green-light);
+}
+
+/* LEAVE HISTORY TABLE */
+
+.leave-page .leave-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.leave-page .leave-table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.leave-page .leave-table thead {
+    background: var(--surface-soft);
+}
+
+.leave-page .leave-table th {
+    padding: 15px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+}
+
+.leave-page .leave-table td {
+    padding: 15px;
+    border-top: 1px solid var(--border);
+    color: var(--body-text);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.leave-page .leave-table tbody tr {
+    transition: 0.2s ease;
+}
+
+.leave-page .leave-table tbody tr:hover {
+    background: var(--green-light);
+}
+
+.leave-page .leave-table td:first-child {
+    color: var(--heading);
+    font-weight: 700;
+}
+
+/* LEAVE STATUS BADGES */
+
+.leave-page .leave-status {
+    display: inline-block;
+    padding: 7px 11px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.leave-page .leave-status.approved {
+    background: #DCEBDD;
+    color: #326A42;
+}
+
+.leave-page .leave-status.pending {
+    background: #F2EBD4;
+    color: #8B7131;
+}
+
+.leave-page .leave-status.rejected {
+    background: #F1DCDC;
+    color: #A44444;
+}
+
+.leave-page .leave-empty {
+    text-align: center;
+    padding: 25px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.leave-page .leave-empty[hidden] {
+    display: none;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 1100px) {
+    .leave-page .leave-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .events-page .events-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 850px) {
+    .portal-page.announcements-page .page-content,
+    .portal-page.events-page .page-content,
+    .portal-page.leave-page .page-content {
+        padding: 22px;
+    }
+
+    .announcements-page .announcement-toolbar,
+    .events-page .events-section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .announcements-page .announcement-controls,
+    .events-page .events-filters {
+        width: 100%;
+    }
+
+    .announcements-page .announcement-controls input,
+    .events-page .events-filters input {
+        flex: 1;
+        width: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .portal-page.announcements-page .page-content,
+    .portal-page.events-page .page-content,
+    .portal-page.leave-page .page-content {
+        padding: 15px;
+    }
+
+    .announcements-page .announcement-welcome,
+    .events-page .events-welcome,
+    .leave-page .leave-welcome {
+        padding: 25px 22px;
+        min-height: 175px;
+    }
+
+    .announcements-page .announcement-welcome-icon,
+    .events-page .events-welcome-icon,
+    .leave-page .leave-welcome-icon {
+        width: 65px;
+        height: 65px;
+        font-size: 30px;
+    }
+
+    .announcements-page .announcement-stats,
+    .events-page .events-stats {
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
+
+    .leave-page .leave-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .leave-page .leave-stat-card {
+        padding: 13px;
+        gap: 9px;
+    }
+
+    .leave-page .leave-stat-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .announcements-page .announcement-list,
+    .events-page .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .announcements-page .announcement-toolbar,
+    .events-page .events-section-header {
+        align-items: stretch;
+    }
+
+    .announcements-page .announcement-controls,
+    .events-page .events-filters {
+        flex-direction: column;
+    }
+
+    .announcements-page .announcement-controls input,
+    .announcements-page .announcement-controls select,
+    .events-page .events-filters input,
+    .events-page .events-filters select {
+        width: 100%;
+    }
+
+    .announcements-page .announcement-card {
+        padding: 18px;
+    }
+
+    .leave-page .leave-form-section,
+    .leave-page .leave-history-section {
+        padding: 17px;
+    }
+
+    .leave-page .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .leave-page .leave-form-footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .leave-page .leave-submit-btn {
+        width: 100%;
+    }
+
+    .leave-page .leave-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .portal-page.announcements-page .page-footer,
+    .portal-page.events-page .page-footer,
+    .portal-page.leave-page .page-footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+/* Boxed CampusIQ logo for remaining Faculty Portal pages */
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(145deg, #8BAF91, #426B50);
+    color: #FFFFFF;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+
+    font-size: 21px;
+    font-weight: 800;
+    font-family: inherit;
+
+    box-shadow: 0 4px 12px rgba(49, 88, 63, 0.2);
+}
+
+
+/* =====================================
+   CampusIQ - Faculty Login
+   Coffee Brown & Cream Theme
+===================================== */
+
+.faculty-login-page {
+    min-height: 100vh;
+    margin: 0;
+    padding: 30px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(circle at 15% 15%, #E8D5BE 0, transparent 35%),
+        radial-gradient(circle at 85% 85%, #D9C2A8 0, transparent 35%),
+        linear-gradient(135deg, #F7F0E7, #EDE1D2);
+
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Login Card */
+
+.faculty-login-page .login-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 42px 38px 30px;
+    box-sizing: border-box;
+
+    background: #FFFCF7;
+    border: 1px solid #E8DCCB;
+    border-radius: 22px;
+
+    box-shadow: 0 20px 55px rgba(83, 56, 36, 0.13);
+
+    text-align: center;
+}
+
+/* Logo */
+
+.faculty-login-page .brand-symbol {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(145deg, #9A7354, #63452F);
+    color: #FFFFFF;
+
+    border-radius: 17px;
+    font-size: 28px;
+    font-weight: 800;
+
+    box-shadow: 0 7px 18px rgba(99, 69, 47, 0.23);
+}
+
+/* Brand Name */
+
+.faculty-login-page h1 {
+    margin: 0;
+    color: #38271D;
+    font-size: 30px;
+    font-weight: 750;
+    letter-spacing: -1px;
+}
+
+.faculty-login-page h1 span {
+    color: #9A7354;
+}
+
+/* Portal Label */
+
+.faculty-login-page .portal-label {
+    margin: 8px 0 30px;
+    color: #A38B75;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 3px;
+}
+
+/* Welcome Text */
+
+.faculty-login-page h2 {
+    margin: 0 0 9px;
+    color: #38271D;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.faculty-login-page .login-description {
+    margin: 0 0 28px;
+    color: #8B7868;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Form */
+
+.faculty-login-page form {
+    text-align: left;
+}
+
+.faculty-login-page .form-field {
+    margin-bottom: 21px;
+}
+
+.faculty-login-page .form-field label {
+    display: block;
+    margin-bottom: 9px;
+
+    color: #574333;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+/* Input Fields */
+
+.faculty-login-page .form-field input {
+    width: 100%;
+    height: 49px;
+    padding: 0 15px;
+    box-sizing: border-box;
+
+    background: #F8F3EC;
+    border: 1px solid #E6D8C7;
+    border-radius: 10px;
+
+    outline: none;
+    color: #38271D;
+    font-size: 13px;
+
+    transition: 0.25s ease;
+}
+
+.faculty-login-page .form-field input::placeholder {
+    color: #AD9B89;
+}
+
+.faculty-login-page .form-field input:focus {
+    background: #FFFFFF;
+    border-color: #98704F;
+    box-shadow: 0 0 0 3px rgba(152, 112, 79, 0.13);
+}
+
+/* Password */
+
+.faculty-login-page .password-wrapper {
+    width: 100%;
+}
+
+/* Sign In Button */
+
+.faculty-login-page .login-button {
+    width: 100%;
+    height: 50px;
+    margin-top: 9px;
+
+    border: none;
+    border-radius: 11px;
+
+    background: linear-gradient(110deg, #98704F, #60412D);
+    color: #FFFFFF;
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    box-shadow: 0 7px 16px rgba(96, 65, 45, 0.19);
+}
+
+.faculty-login-page .login-button:hover {
+    background: linear-gradient(110deg, #805B3F, #4D3323);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(96, 65, 45, 0.24);
+}
+
+.faculty-login-page .login-button:active {
+    transform: translateY(0);
+}
+
+/* Login Message */
+
+.faculty-login-page .login-message {
+    min-height: 18px;
+    margin: 13px 0 0;
+    text-align: center;
+    font-size: 12px;
+    color: #A34F42;
+}
+
+/* Footer */
+
+.faculty-login-page .login-footer {
+    margin-top: 29px;
+    padding-top: 19px;
+
+    border-top: 1px solid #EDE3D7;
+
+    color: #A18C78;
+    font-size: 11px;
+    letter-spacing: 0.3px;
+}
+
+/* Responsive */
+
+@media (max-width: 480px) {
+    .faculty-login-page {
+        padding: 18px 13px;
+    }
+
+    .faculty-login-page .login-card {
+        padding: 35px 23px 25px;
+        border-radius: 18px;
+    }
+
+    .faculty-login-page h1 {
+        font-size: 27px;
+    }
+
+    .faculty-login-page h2 {
+        font-size: 23px;
+    }
+}
+
+/* ==========================================
+   CampusIQ - Faculty Profile Page
+   Premium Sage Green Theme
+========================================== */
+
+.profile-page {
+    --profile-bg: #EDF3EB;
+    --profile-card: #F9FBF6;
+    --profile-soft: #E5EDE2;
+    --profile-heading: #26382E;
+    --profile-text: #526357;
+    --profile-muted: #849187;
+    --profile-border: #D9E4D7;
+    --profile-green: #426B50;
+    --profile-green-dark: #31583F;
+    --profile-green-light: #DCE9DA;
+
+    min-height: 100vh;
+    margin: 0;
+    background: var(--profile-bg);
+    color: var(--profile-text);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+html[data-theme="dark"] .profile-page {
+    --profile-bg: #1C2420;
+    --profile-card: #28332D;
+    --profile-soft: #34443A;
+    --profile-heading: #EDF4EE;
+    --profile-text: #C1CEC3;
+    --profile-muted: #91A194;
+    --profile-border: #3D4D41;
+    --profile-green: #8BAF91;
+    --profile-green-dark: #A5C4A8;
+    --profile-green-light: #354B3B;
+}
+
+/* Main Layout */
+
+.profile-page .profile-main {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.profile-page .profile-content {
+    width: min(1150px, calc(100% - 64px));
+    margin: 0 auto;
+    padding: 28px 0 20px;
+}
+
+/* Topbar */
+
+.profile-page .profile-topbar {
+    min-height: 88px;
+    padding: 16px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    background: var(--profile-card);
+    border-bottom: 1px solid var(--profile-border);
+}
+
+.profile-page .profile-header-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.profile-page .profile-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 15px;
+
+    background: var(--profile-soft);
+    color: var(--profile-green-dark);
+    border-radius: 9px;
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 650;
+    transition: 0.25s ease;
+}
+
+.profile-page .profile-back:hover {
+    background: var(--profile-green-light);
+    transform: translateX(-3px);
+}
+
+.profile-page .profile-topbar h2 {
+    margin: 0 0 5px;
+    color: var(--profile-heading);
+    font-size: 23px;
+    font-weight: 750;
+}
+
+.profile-page .profile-topbar p {
+    margin: 0;
+    color: var(--profile-muted);
+    font-size: 12px;
+}
+
+.profile-page .theme-toggle {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--profile-border);
+    border-radius: 12px;
+
+    background: var(--profile-soft);
+    color: var(--profile-green-dark);
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.25s ease;
+}
+
+.profile-page .theme-toggle:hover {
+    background: var(--profile-green);
+    color: white;
+}
+
+/* Profile Hero */
+
+.profile-page .profile-hero {
+    padding: 30px 34px;
+    margin-bottom: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    background: linear-gradient(115deg, #31583F, #52785A);
+    border-radius: 19px;
+    color: white;
+
+    box-shadow: 0 12px 28px rgba(49, 88, 63, 0.13);
+}
+
+.profile-page .profile-hero-left {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.profile-page .profile-avatar {
+    width: 82px;
+    height: 82px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.18);
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    border-radius: 22px;
+
+    color: white;
+    font-size: 34px;
+    font-weight: 750;
+}
+
+.profile-page .profile-role {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #D8E9D9;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 2px;
+}
+
+.profile-page .profile-hero-info h1 {
+    margin: 0 0 5px;
+    color: white;
+    font-size: 27px;
+    font-weight: 750;
+}
+
+.profile-page .profile-hero-info p {
+    margin: 0 0 12px;
+    color: #E0EBE0;
+    font-size: 13px;
+}
+
+.profile-page .profile-department {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #E3EEE3;
+    font-size: 12px;
+}
+
+.profile-page .profile-id {
+    min-width: 155px;
+    padding: 15px 18px;
+
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 13px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.profile-page .profile-id > span:first-child {
+    color: #D3E3D4;
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: 1.5px;
+}
+
+.profile-page .profile-id strong {
+    color: white;
+    font-size: 17px;
+}
+
+.profile-page .profile-account-status {
+    color: #D7EAD8;
+    font-size: 10px;
+}
+
+.profile-page .profile-account-status i {
+    color: #B6E3B7;
+    font-size: 8px;
+    margin-right: 4px;
+}
+
+/* Overview Card */
+
+.profile-page .profile-overview {
+    padding: 30px 32px;
+    margin-bottom: 22px;
+
+    background: var(--profile-card);
+    border: 1px solid var(--profile-border);
+    border-radius: 17px;
+
+    box-shadow: 0 5px 18px rgba(38, 56, 46, 0.035);
+}
+
+.profile-page .profile-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 28px;
+}
+
+.profile-page .profile-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+
+    color: var(--profile-green);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+.profile-page .profile-section-heading h2,
+.profile-page .profile-subheading h2 {
+    margin: 0 0 7px;
+    color: var(--profile-heading);
+    font-size: 20px;
+    font-weight: 750;
+}
+
+.profile-page .profile-section-heading p {
+    margin: 0;
+    color: var(--profile-muted);
+    font-size: 12px;
+}
+
+/* Edit Button */
+
+.profile-page .profile-edit-btn {
+    padding: 11px 17px;
+
+    background: var(--profile-green-light);
+    color: var(--profile-green-dark);
+
+    border: 1px solid var(--profile-border);
+    border-radius: 9px;
+
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.profile-page .profile-edit-btn:hover {
+    background: var(--profile-green);
+    color: white;
+}
+
+/* Profile Fields Grid */
+
+.profile-page .profile-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 25px;
+}
+
+.profile-page .profile-field {
+    min-width: 0;
+}
+
+.profile-page .profile-field label {
+    display: block;
+    margin-bottom: 9px;
+
+    color: var(--profile-heading);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.profile-page .profile-input-wrap {
+    min-height: 48px;
+    padding: 0 13px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: var(--profile-bg);
+    border: 1px solid var(--profile-border);
+    border-radius: 10px;
+
+    transition: 0.25s ease;
+}
+
+.profile-page .profile-input-wrap:focus-within {
+    border-color: var(--profile-green);
+    box-shadow: 0 0 0 3px rgba(66, 107, 80, 0.1);
+}
+
+.profile-page .profile-input-wrap > i {
+    width: 16px;
+    flex-shrink: 0;
+    color: var(--profile-green);
+    font-size: 13px;
+}
+
+.profile-page .profile-input-wrap input,
+.profile-page .profile-input-wrap select {
+    width: 100%;
+    min-width: 0;
+    height: 46px;
+
+    background: transparent;
+    border: none;
+    outline: none;
+
+    color: var(--profile-heading);
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.profile-page .profile-input-wrap input:disabled,
+.profile-page .profile-input-wrap select:disabled {
+    opacity: 1;
+    color: var(--profile-text);
+    cursor: default;
+    -webkit-text-fill-color: var(--profile-text);
+}
+
+.profile-page .profile-input-wrap input::placeholder {
+    color: var(--profile-muted);
+}
+
+.profile-page .profile-input-wrap select {
+    cursor: pointer;
+}
+
+/* Professional Information */
+
+.profile-page .profile-subheading {
+    margin: 35px 0 22px;
+    padding-top: 25px;
+    border-top: 1px solid var(--profile-border);
+}
+
+/* Action Buttons */
+
+.profile-page .profile-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid var(--profile-border);
+}
+
+.profile-page .profile-actions[hidden] {
+    display: none;
+}
+
+.profile-page .profile-reset-btn,
+.profile-page .profile-save-btn {
+    min-width: 115px;
+    padding: 12px 18px;
+    border-radius: 9px;
+
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.profile-page .profile-reset-btn {
+    background: transparent;
+    border: 1px solid var(--profile-border);
+    color: var(--profile-text);
+}
+
+.profile-page .profile-reset-btn:hover {
+    background: var(--profile-soft);
+}
+
+.profile-page .profile-save-btn {
+    background: var(--profile-green);
+    border: 1px solid var(--profile-green);
+    color: white;
+}
+
+.profile-page .profile-save-btn:hover {
+    background: var(--profile-green-dark);
+    transform: translateY(-2px);
+}
+
+/* Account Information */
+
+.profile-page .profile-account-card {
+    padding: 21px 25px;
+    margin-bottom: 25px;
+
+    display: flex;
+    align-items: center;
+    gap: 17px;
+
+    background: var(--profile-card);
+    border: 1px solid var(--profile-border);
+    border-radius: 15px;
+}
+
+.profile-page .profile-account-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--profile-green-light);
+    color: var(--profile-green);
+    border-radius: 13px;
+    font-size: 19px;
+}
+
+.profile-page .profile-account-card h3 {
+    margin: 0 0 6px;
+    color: var(--profile-heading);
+    font-size: 14px;
+}
+
+.profile-page .profile-account-card p {
+    margin: 0;
+    color: var(--profile-muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.profile-page .account-active {
+    margin-left: auto;
+    padding: 7px 13px;
+
+    background: var(--profile-green-light);
+    color: var(--profile-green-dark);
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 750;
+}
+
+/* Footer */
+
+.profile-page .profile-footer {
+    padding: 17px 0 8px;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    border-top: 1px solid var(--profile-border);
+    color: var(--profile-muted);
+    font-size: 10px;
+}
+
+.profile-page .profile-footer p {
+    margin: 0;
+}
+
+.profile-page .profile-footer span {
+    text-align: right;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .profile-page .profile-content {
+        width: calc(100% - 32px);
+    }
+
+    .profile-page .profile-hero {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .profile-page .profile-id {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .profile-page .profile-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-page .profile-overview {
+        padding: 23px 20px;
+    }
+
+    .profile-page .profile-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-page .profile-topbar {
+        padding: 15px;
+    }
+
+    .profile-page .profile-header-left {
+        gap: 12px;
+    }
+
+    .profile-page .profile-topbar h2 {
+        font-size: 19px;
+    }
+
+    .profile-page .profile-topbar p {
+        font-size: 10px;
+    }
+
+    .profile-page .profile-back {
+        padding: 9px;
+        font-size: 11px;
+    }
+
+    .profile-page .profile-content {
+        width: calc(100% - 24px);
+        padding-top: 17px;
+    }
+
+    .profile-page .profile-hero {
+        padding: 23px 19px;
+    }
+
+    .profile-page .profile-hero-left {
+        gap: 14px;
+    }
+
+    .profile-page .profile-avatar {
+        width: 65px;
+        height: 65px;
+        font-size: 27px;
+    }
+
+    .profile-page .profile-hero-info h1 {
+        font-size: 21px;
+    }
+
+    .profile-page .profile-account-card {
+        flex-wrap: wrap;
+        padding: 17px;
+    }
+
+    .profile-page .account-active {
+        margin-left: 65px;
+    }
+
+    .profile-page .profile-footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-page .profile-footer span {
+        text-align: center;
+    }
+}
+
