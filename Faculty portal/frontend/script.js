@@ -1,10 +1,81 @@
+/* =====================================================
+   CAMPUSIQ FACULTY API CONNECTION
+   Keep this URL aligned with the Java backend port.
+===================================================== */
+const CAMPUSIQ_API_BASE = "http://localhost:8081/api";
+
+async function campusIQRequest(endpoint, options = {}) {
+    const token = localStorage.getItem("campusiqFacultyToken");
+    const headers = {
+        "Content-Type": "application/json",
+        ...(options.headers || {})
+    };
+
+    if (token) headers.Authorization = `Bearer ${token}`;
+
+    const response = await fetch(`${CAMPUSIQ_API_BASE}${endpoint}`, {
+        ...options,
+        headers
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+        throw new Error(data.error || data.message || `Request failed (${response.status})`);
+    }
+
+    return data;
+}
+
 
 /* =====================================================
    CAMPUSIQ - FACULTY PORTAL
    Complete Shared JavaScript
 ===================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => { 
+/* ==========================================
+   FACULTY DASHBOARD - LIVE API DATA
+========================================== */
+
+    async function loadFacultyDashboard() {
+    const dashboardSection = document.querySelector(".overview-grid");
+
+    if (!dashboardSection) return;
+
+    const token = localStorage.getItem("campusiqFacultyToken");
+
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    try {
+        const data = await campusIQRequest("/dashboard");
+        const cards = dashboardSection.querySelectorAll(".overview-card");
+
+        if (cards[0]) cards[0].querySelector("h3").textContent = data.courses ?? 0;
+        if (cards[1]) cards[1].querySelector("h3").textContent = data.students ?? 0;
+
+        if (cards[2]) {
+            cards[2].querySelector("h3").textContent = data.assignments ?? 0;
+            cards[2].querySelector("small").textContent =
+                `${data.pendingReviews ?? 0} pending reviews`;
+        }
+
+        if (cards[3]) {
+            const timetable = await campusIQRequest("/timetable");
+            cards[3].querySelector("h3").textContent =
+                Array.isArray(timetable) ? timetable.length : 0;
+            cards[3].querySelector("small").textContent = "Scheduled sessions";
+        }
+
+    } catch (error) {
+        console.error("Dashboard loading failed:", error);
+    }
+}
+
+    loadFacultyDashboard();
 
     /* =================================================
        1. LOGIN - SHOW / HIDE PASSWORD
@@ -31,25 +102,59 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginMessage = document.getElementById("loginMessage");
 
     if (loginForm) {
-        loginForm.addEventListener("submit", (event) => {
+        loginForm.addEventListener("submit", async (event) => {
             event.preventDefault();
 
             const email = document.getElementById("facultyEmail");
             const password = document.getElementById("facultyPassword");
+            const submitButton = loginForm.querySelector('button[type="submit"], input[type="submit"]');
 
             if (!email || !password) return;
 
             if (!email.value.trim() || !password.value.trim()) {
-                if (loginMessage) {
-                    loginMessage.textContent =
-                        "Please enter your email and password.";
-                }
+                if (loginMessage) loginMessage.textContent = "Please enter your email and password.";
                 return;
             }
 
+            if (submitButton) submitButton.disabled = true;
             if (loginMessage) {
-                loginMessage.textContent =
-                    "Login form is ready. Connect your backend to verify your account.";
+                loginMessage.textContent = "Signing in...";
+                loginMessage.style.color = "";
+            }
+
+            try {
+                const result = await campusIQRequest("/login", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        email: email.value.trim(),
+                        password: password.value
+                    })
+                });
+
+                if (!result.token || !result.faculty) {
+                    throw new Error("The server returned an incomplete login response.");
+                }
+
+                localStorage.setItem("campusiqFacultyToken", result.token);
+                localStorage.setItem("campusiqFacultyUser", JSON.stringify(result.faculty));
+
+                if (loginMessage) {
+                    loginMessage.textContent = "Login successful. Opening your dashboard...";
+                    loginMessage.style.color = "green";
+                }
+
+                window.location.href = "dashboard.html";
+            } catch (error) {
+                if (loginMessage) {
+                    loginMessage.textContent = error.message === "Failed to fetch"
+                        ? "Cannot connect to the backend. Start the Java server on port 8081."
+                        : error.message;
+                    loginMessage.style.color = "#c0392b";
+                } else {
+                    alert(error.message);
+                }
+            } finally {
+                if (submitButton) submitButton.disabled = false;
             }
         });
     }
@@ -1618,4 +1723,1252 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initial setup
     loadProfile();
     setEditing(false);
+});
+  /* ==========================================
+   FACULTY COURSES - DATABASE CONNECTION
+========================================== */
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const coursePage = document.querySelector(".courses-panel");
+
+    if (!coursePage) return;
+
+    const courseGrid = document.getElementById("courseGrid");
+    const courseCount = document.getElementById("courseCount");
+    const searchInput = document.getElementById("courseSearch");
+    const noCoursesMessage = document.getElementById("noCoursesMessage");
+
+    if (!courseGrid) return;
+
+    try {
+
+        const courses = await campusIQRequest("/courses");
+
+        courseGrid.innerHTML = "";
+
+        if (courseCount) {
+            courseCount.textContent = String(courses.length).padStart(2, "0");
+        }
+
+        courses.forEach(course => {
+
+            const card = document.createElement("article");
+            card.className = "course-card";
+
+            card.innerHTML = `
+                <div class="course-card-top">
+                    <span class="course-code">${course.code}</span>
+                    <span class="status-active">Active</span>
+                </div>
+
+                <div class="course-icon">⌘</div>
+
+                <h3>${course.title}</h3>
+
+                <p class="course-department">${course.department}</p>
+
+                <div class="course-details">
+                    <span>♙ ${course.students} Students</span>
+                    <span>${course.credits} Credits</span>
+                </div>
+
+                <div class="course-footer">
+                    <span>Semester ${course.semester}</span>
+                    <a href="attendance.html">Manage Course →</a>
+                </div>
+            `;
+
+            courseGrid.appendChild(card);
+
+        });
+
+        if (searchInput) {
+            searchInput.dispatchEvent(new Event("input"));
+        }
+
+        if (noCoursesMessage) {
+            noCoursesMessage.hidden = courses.length !== 0;
+        }
+
+    } catch (error) {
+        console.error("Unable to load courses:", error);
+    }
+
+});
+
+/* ==========================================
+   FACULTY ATTENDANCE - DATABASE CONNECTION
+========================================== */
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const tableBody = document.getElementById("attendanceTableBody");
+
+    if (!tableBody) return;
+
+    const presentCount = document.getElementById("presentCount");
+    const absentCount = document.getElementById("absentCount");
+    const attendanceRate = document.getElementById("attendanceRate");
+    const courseFilter = document.getElementById("courseFilter");
+    const statusFilter = document.getElementById("statusFilter");
+    const searchInput = document.getElementById("attendanceSearch");
+    const emptyMessage = document.getElementById("attendanceEmpty");
+    const resultCount = document.getElementById("attendanceResultCount");
+    const resetButton = document.getElementById("resetAttendance");
+
+    let attendanceRecords = [];
+
+    function renderAttendance() {
+
+        const course = courseFilter?.value || "all";
+        const status = statusFilter?.value || "all";
+        const search = searchInput?.value.toLowerCase().trim() || "";
+
+        const filtered = attendanceRecords.filter(record => {
+            const matchesCourse = course === "all" || record.course === course;
+            const matchesStatus = status === "all" || record.status === status;
+            const matchesSearch =
+                record.student_name.toLowerCase().includes(search) ||
+                record.student_id.toLowerCase().includes(search);
+
+            return matchesCourse && matchesStatus && matchesSearch;
+        });
+
+        tableBody.innerHTML = "";
+
+        filtered.forEach(record => {
+
+            const row = document.createElement("tr");
+            row.dataset.course = record.course;
+
+            const statusClass = record.status.toLowerCase() === "present"
+                ? "present"
+                : "absent";
+
+            row.innerHTML = `
+                <td>${record.student_id}</td>
+                <td>${record.student_name}</td>
+                <td>${record.course}</td>
+                <td>
+                    <span class="attendance-status ${statusClass}">
+                        ${record.status}
+                    </span>
+                </td>
+                <td>
+                    <button class="attendance-action" disabled>
+                        Change Status
+                    </button>
+                </td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+
+        if (emptyMessage) {
+            emptyMessage.style.display = filtered.length ? "none" : "block";
+        }
+
+        if (resultCount) {
+            resultCount.textContent =
+                `Showing ${filtered.length} student records`;
+        }
+    }
+
+    try {
+
+        attendanceRecords = await campusIQRequest("/attendance");
+
+        const present = attendanceRecords.filter(
+            record => record.status.toLowerCase() === "present"
+        ).length;
+
+        const absent = attendanceRecords.filter(
+            record => record.status.toLowerCase() === "absent"
+        ).length;
+
+        if (presentCount) presentCount.textContent = present;
+        if (absentCount) absentCount.textContent = absent;
+
+        if (attendanceRate) {
+            const total = present + absent;
+            attendanceRate.textContent =
+                total ? `${((present / total) * 100).toFixed(1)}%` : "0%";
+        }
+
+        renderAttendance();
+
+        courseFilter?.addEventListener("change", renderAttendance);
+        statusFilter?.addEventListener("change", renderAttendance);
+        searchInput?.addEventListener("input", renderAttendance);
+
+        resetButton?.addEventListener("click", () => {
+            if (courseFilter) courseFilter.value = "all";
+            if (statusFilter) statusFilter.value = "all";
+            if (searchInput) searchInput.value = "";
+            renderAttendance();
+        });
+
+    } catch (error) {
+        console.error("Attendance loading failed:", error);
+    }
+
+});
+
+/* ==========================================
+   FACULTY ASSIGNMENTS - DATABASE CONNECTION
+========================================== */
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const assignmentGrid = document.getElementById("assignmentGrid");
+
+    if (!assignmentGrid) return;
+
+    const totalAssignments = document.getElementById("totalAssignments");
+    const activeAssignments = document.getElementById("activeAssignments");
+    const totalSubmissions = document.getElementById("totalSubmissions");
+    const pendingReviews = document.getElementById("pendingReviews");
+
+    const searchInput = document.getElementById("assignmentSearch");
+    const courseFilter = document.getElementById("assignmentCourseFilter");
+    const statusFilter = document.getElementById("assignmentStatusFilter");
+    const emptyMessage = document.getElementById("assignmentEmpty");
+
+    let assignments = [];
+
+    function escapeHTML(value) {
+        return String(value ?? "").replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        })[char]);
+    }
+
+    function getCategory(course) {
+        const categories = {
+            "Java Programming": "PROGRAMMING",
+            "Data Structures": "COMPUTER SCIENCE",
+            "Database Management": "DATABASE",
+            "Web Technologies": "WEB DEVELOPMENT"
+        };
+
+        return categories[course] || "ACADEMIC TASK";
+    }
+
+    function renderAssignments() {
+
+        const search = searchInput?.value.toLowerCase().trim() || "";
+        const course = courseFilter?.value || "all";
+        const status = statusFilter?.value || "all";
+
+        const filtered = assignments.filter(item => {
+
+            const matchesSearch =
+                item.title.toLowerCase().includes(search) ||
+                item.course.toLowerCase().includes(search);
+
+            const matchesCourse =
+                course === "all" || item.course === course;
+
+            const matchesStatus =
+                status === "all" || item.status === status;
+
+            return matchesSearch && matchesCourse && matchesStatus;
+        });
+
+        assignmentGrid.innerHTML = filtered.map(item => {
+
+            const submitted = Number(item.submissions) || 0;
+            const total = Number(item.total_students) || 0;
+            const progress = total > 0
+                ? Math.min(100, (submitted / total) * 100)
+                : 0;
+
+            const statusClass =
+                item.status.toLowerCase() === "active" ? "active" : "closed";
+
+            const dueDate = new Date(item.due_date + "T00:00:00")
+                .toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                });
+
+            return `
+                <article class="assignment-card"
+                    data-course="${escapeHTML(item.course)}"
+                    data-status="${escapeHTML(item.status)}">
+
+                    <div class="assignment-card-top">
+                        <span class="assignment-category">
+                            ${getCategory(item.course)}
+                        </span>
+                        <span class="assignment-status ${statusClass}">
+                            ${escapeHTML(item.status)}
+                        </span>
+                    </div>
+
+                    <h3>${escapeHTML(item.title)}</h3>
+
+                    <p class="assignment-course">
+                        ${escapeHTML(item.course)}
+                    </p>
+
+                    <div class="assignment-description">
+                        ${escapeHTML(item.description)}
+                    </div>
+
+                    <div class="assignment-progress">
+                        <div>
+                            <span>Submissions</span>
+                            <strong>${submitted} / ${total}</strong>
+                        </div>
+
+                        <div class="progress-track">
+                            <div style="width:${progress}%"></div>
+                        </div>
+                    </div>
+
+                    <div class="assignment-meta">
+                        <span>◷ Due: ${dueDate}</span>
+                        <span>${Number(item.maximum_marks)} Marks</span>
+                    </div>
+
+                    <button class="assignment-review-button" disabled>
+                        Review Submissions
+                    </button>
+
+                </article>
+            `;
+        }).join("");
+
+        if (emptyMessage) {
+            emptyMessage.style.display =
+                filtered.length ? "none" : "block";
+        }
+    }
+
+    try {
+
+        assignments = await campusIQRequest("/assignments");
+
+        const active = assignments.filter(
+            item => item.status.toLowerCase() === "active"
+        ).length;
+
+        const submissions = assignments.reduce(
+            (sum, item) => sum + Number(item.submissions || 0), 0
+        );
+
+        const pending = assignments.reduce(
+            (sum, item) => sum + Math.max(
+                0,
+                Number(item.total_students || 0) -
+                Number(item.submissions || 0)
+            ), 0
+        );
+
+        if (totalAssignments) totalAssignments.textContent = assignments.length;
+        if (activeAssignments) activeAssignments.textContent = active;
+        if (totalSubmissions) totalSubmissions.textContent = submissions;
+        if (pendingReviews) pendingReviews.textContent = pending;
+
+        renderAssignments();
+
+        searchInput?.addEventListener("input", renderAssignments);
+        courseFilter?.addEventListener("change", renderAssignments);
+        statusFilter?.addEventListener("change", renderAssignments);
+
+    } catch (error) {
+        console.error("Assignments loading failed:", error);
+    }
+
+});
+
+/* ==========================================
+   FACULTY GRADES - DATABASE CONNECTION
+========================================== */
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const tableBody = document.getElementById("gradesTableBody");
+
+    if (!tableBody) return;
+
+    const totalStudents = document.getElementById("totalStudents");
+    const classAverage = document.getElementById("classAverage");
+    const topPerformers = document.getElementById("topPerformers");
+    const needsImprovement = document.getElementById("needsImprovement");
+
+    const searchInput = document.getElementById("gradeSearch");
+    const courseFilter = document.getElementById("courseFilter");
+    const gradeFilter = document.getElementById("gradeFilter");
+
+    let gradeRecords = [];
+
+    function getGrade(percentage) {
+        if (percentage >= 85) return "A";
+        if (percentage >= 70) return "B";
+        if (percentage >= 60) return "C";
+        if (percentage >= 50) return "D";
+        return "F";
+    }
+
+    function escapeHTML(value) {
+        return String(value ?? "").replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        })[char]);
+    }
+
+    function renderGrades() {
+
+        const search = searchInput?.value.toLowerCase().trim() || "";
+        const course = courseFilter?.value || "all";
+        const selectedGrade = gradeFilter?.value || "all";
+
+        const filtered = gradeRecords.filter(record => {
+
+            const percentage = Number(record.total_marks) > 0
+                ? (Number(record.marks) / Number(record.total_marks)) * 100
+                : 0;
+
+            const grade = getGrade(percentage);
+
+            return (
+                (record.student_name.toLowerCase().includes(search) ||
+                 record.student_id.toLowerCase().includes(search)) &&
+                (course === "all" || record.course === course) &&
+                (selectedGrade === "all" || grade === selectedGrade)
+            );
+        });
+
+        tableBody.innerHTML = filtered.map(record => {
+
+            const marks = Number(record.marks);
+            const total = Number(record.total_marks);
+            const percentage = total > 0 ? (marks / total) * 100 : 0;
+            const grade = getGrade(percentage);
+
+            return `
+                <tr>
+                    <td>${escapeHTML(record.student_name)}</td>
+                    <td>${escapeHTML(record.student_id)}</td>
+                    <td>${escapeHTML(record.course)}</td>
+                    <td>${marks} / ${total}</td>
+                    <td>${percentage.toFixed(1)}%</td>
+                    <td>
+                        <span class="grade-badge grade-${grade.toLowerCase()}">
+                            ${grade}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="edit-grade-btn" disabled>
+                            Edit
+                        </button>
+                    </td>
+                </tr>
+            `;
+        }).join("");
+    }
+
+    try {
+
+        gradeRecords = await campusIQRequest("/grades");
+
+        const percentages = gradeRecords.map(record =>
+            Number(record.total_marks) > 0
+                ? (Number(record.marks) / Number(record.total_marks)) * 100
+                : 0
+        );
+
+        const average = percentages.length
+            ? percentages.reduce((sum, value) => sum + value, 0) / percentages.length
+            : 0;
+
+        const topCount = percentages.filter(value => value >= 85).length;
+        const improvementCount = percentages.filter(value => value < 50).length;
+
+        if (totalStudents) totalStudents.textContent = gradeRecords.length;
+        if (classAverage) classAverage.textContent = `${average.toFixed(1)}%`;
+        if (topPerformers) topPerformers.textContent = topCount;
+        if (needsImprovement) needsImprovement.textContent = improvementCount;
+
+        renderGrades();
+
+        searchInput?.addEventListener("input", renderGrades);
+        courseFilter?.addEventListener("change", renderGrades);
+        gradeFilter?.addEventListener("change", renderGrades);
+
+    } catch (error) {
+        console.error("Grades loading failed:", error);
+    }
+
+});
+
+/* ==========================================
+   FACULTY TIMETABLE - DATABASE CONNECTION
+========================================== */
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const timetableBody = document.getElementById("timetableBody");
+
+    if (!timetableBody) return;
+
+    const weeklyClasses = document.getElementById("weeklyClasses");
+    const teachingHours = document.getElementById("teachingHours");
+    const assignedCourses = document.getElementById("assignedCourses");
+    const classrooms = document.getElementById("classrooms");
+
+    const dayButtons = document.querySelectorAll(".day-filter");
+
+    let timetableRecords = [];
+
+    function escapeHTML(value) {
+        return String(value ?? "").replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        })[char]);
+    }
+
+    function calculateHours(start, end) {
+        const [startHour, startMinute] = start.split(":").map(Number);
+        const [endHour, endMinute] = end.split(":").map(Number);
+
+        return (endHour * 60 + endMinute - startHour * 60 - startMinute) / 60;
+    }
+
+    function renderTimetable(selectedDay = "all") {
+
+        const filtered = timetableRecords.filter(record =>
+            selectedDay === "all" || record.day === selectedDay
+        );
+
+        timetableBody.innerHTML = filtered.map(record => {
+
+            const type = record.session_type || "Lecture";
+            const typeClass = type.toLowerCase() === "practical"
+                ? "lab"
+                : type.toLowerCase() === "meeting"
+                    ? "meeting"
+                    : "lecture";
+
+            return `
+                <tr data-day="${escapeHTML(record.day)}">
+                    <td><strong>${escapeHTML(record.day)}</strong></td>
+
+                    <td>
+                        ${escapeHTML(record.start_time)}
+                        – ${escapeHTML(record.end_time)}
+                    </td>
+
+                    <td>
+                        <strong>${escapeHTML(record.course)}</strong>
+                        <small>${escapeHTML(record.course_code)}</small>
+                    </td>
+
+                    <td>III CSE – ${escapeHTML(record.section)}</td>
+
+                    <td>${escapeHTML(record.classroom)}</td>
+
+                    <td>
+                        <span class="session-badge ${typeClass}">
+                            ${escapeHTML(type)}
+                        </span>
+                    </td>
+                </tr>
+            `;
+        }).join("");
+    }
+
+    try {
+
+        timetableRecords = await campusIQRequest("/timetable");
+
+        const totalHours = timetableRecords.reduce(
+            (sum, record) =>
+                sum + calculateHours(record.start_time, record.end_time),
+            0
+        );
+
+        const uniqueCourses = new Set(
+            timetableRecords
+                .filter(record => record.session_type !== "Meeting")
+                .map(record => record.course)
+        );
+
+        const uniqueClassrooms = new Set(
+            timetableRecords.map(record => record.classroom)
+        );
+
+        if (weeklyClasses) {
+            weeklyClasses.textContent = timetableRecords.length;
+        }
+
+        if (teachingHours) {
+            teachingHours.textContent = `${totalHours} hrs`;
+        }
+
+        if (assignedCourses) {
+            assignedCourses.textContent = uniqueCourses.size;
+        }
+
+        if (classrooms) {
+            classrooms.textContent = uniqueClassrooms.size;
+        }
+
+        renderTimetable();
+
+        dayButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                dayButtons.forEach(item =>
+                    item.classList.remove("active")
+                );
+
+                button.classList.add("active");
+
+                renderTimetable(button.dataset.day);
+            });
+
+        });
+
+    } catch (error) {
+        console.error("Timetable loading failed:", error);
+    }
+
+    // Print timetable
+    document.getElementById("printTimetableBtn")
+        ?.addEventListener("click", () => window.print());
+
+});
+
+
+/* ==========================================
+   FACULTY ANNOUNCEMENTS - DATABASE CONNECTION
+========================================== */
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const announcementList = document.getElementById("announcementList");
+
+    if (!announcementList) return;
+
+    const searchInput = document.getElementById("announcementSearch");
+    const categoryFilter = document.getElementById("announcementCategory");
+    const emptyMessage = document.getElementById("announcementEmpty");
+
+    const totalElement = document.getElementById("totalAnnouncements");
+    const importantElement = document.getElementById("importantAnnouncements");
+    const recentElement = document.getElementById("recentAnnouncements");
+
+    let announcements = [];
+
+    function escapeHTML(value) {
+        return String(value ?? "").replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        })[char]);
+    }
+
+    function formatDate(dateString) {
+        if (!dateString) return "Date unavailable";
+
+        const date = new Date(dateString + "T00:00:00");
+
+        if (isNaN(date.getTime())) return escapeHTML(dateString);
+
+        return date.toLocaleDateString("en-IN", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        });
+    }
+
+    function getCategoryClass(category) {
+        const value = category.toLowerCase();
+
+        if (value === "events" || value === "event") return "event";
+        if (value === "examination") return "examination";
+        if (value === "general") return "general";
+
+        return "academic";
+    }
+
+    function renderAnnouncements() {
+
+        const searchText = searchInput.value.toLowerCase().trim();
+        const selectedCategory = categoryFilter.value.toLowerCase();
+
+        const filtered = announcements.filter(item => {
+
+            const matchesSearch =
+                item.title.toLowerCase().includes(searchText) ||
+                item.body.toLowerCase().includes(searchText) ||
+                item.posted_by.toLowerCase().includes(searchText);
+
+            const matchesCategory =
+                selectedCategory === "all" ||
+                item.category.toLowerCase() === selectedCategory ||
+                (selectedCategory === "event" &&
+                    item.category.toLowerCase() === "events");
+
+            return matchesSearch && matchesCategory;
+        });
+
+        announcementList.querySelectorAll(".announcement-card")
+            .forEach(card => card.remove());
+
+        filtered.forEach(item => {
+
+            const categoryClass = getCategoryClass(item.category);
+            const important = item.priority.toLowerCase() === "important";
+            const isNew = item.priority.toLowerCase() === "new update";
+
+            const card = document.createElement("article");
+
+            card.className = "announcement-card";
+            card.dataset.category = categoryClass;
+            card.dataset.important = String(important);
+
+            card.innerHTML = `
+                <div class="announcement-card-top">
+
+                    <span class="announcement-category ${categoryClass}">
+                        ${escapeHTML(item.category)}
+                    </span>
+
+                    ${important
+                        ? `<span class="announcement-priority">★ Important</span>`
+                        : isNew
+                            ? `<span class="announcement-status">New Update</span>`
+                            : ""
+                    }
+
+                </div>
+
+                <h3>${escapeHTML(item.title)}</h3>
+
+                <p>${escapeHTML(item.body)}</p>
+
+                <div class="announcement-meta">
+                    <span>▦ ${escapeHTML(item.posted_by)}</span>
+                    <span>◷ ${formatDate(item.posted_date)}</span>
+                </div>
+            `;
+
+            announcementList.insertBefore(card, emptyMessage);
+        });
+
+        emptyMessage.hidden = filtered.length !== 0;
+    }
+
+    try {
+
+        announcements = await campusIQRequest("/announcements");
+
+        totalElement.textContent = announcements.length;
+
+        importantElement.textContent = announcements.filter(
+            item => item.priority.toLowerCase() === "important"
+        ).length;
+
+        const recentCount = announcements.filter(item => {
+            const date = new Date(item.posted_date + "T00:00:00");
+            const today = new Date();
+            const difference = (today - date) / (1000 * 60 * 60 * 24);
+
+            return difference >= 0 && difference <= 7;
+        }).length;
+
+        recentElement.textContent = recentCount;
+
+        renderAnnouncements();
+
+        searchInput.addEventListener("input", renderAnnouncements);
+        categoryFilter.addEventListener("change", renderAnnouncements);
+
+    } catch (error) {
+        console.error("Announcements loading failed:", error);
+    }
+
+});
+
+
+/* ==========================================
+   FACULTY EVENTS - DATABASE CONNECTION
+========================================== */
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const eventsGrid = document.getElementById("eventsGrid");
+
+    if (!eventsGrid) return;
+
+    const searchInput = document.getElementById("eventSearch");
+    const categoryFilter = document.getElementById("eventCategory");
+    const statusFilter = document.getElementById("eventStatus");
+    const emptyMessage = document.getElementById("eventsEmpty");
+
+    const totalElement = document.getElementById("totalEvents");
+    const upcomingElement = document.getElementById("upcomingEvents");
+    const completedElement = document.getElementById("completedEvents");
+
+    let events = [];
+
+    function escapeHTML(value) {
+        return String(value ?? "").replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        })[char]);
+    }
+
+    function formatEventDate(dateString) {
+        const date = new Date(dateString + "T00:00:00");
+
+        return {
+            day: date.toLocaleDateString("en-IN", { day: "2-digit" }),
+            month: date.toLocaleDateString("en-IN", { month: "short" }).toUpperCase()
+        };
+    }
+
+    function getCategoryClass(category) {
+        const value = category.toLowerCase();
+
+        if (value === "technical") return "technical";
+        if (value === "cultural") return "cultural";
+        if (value === "sports") return "sports";
+
+        return "academic";
+    }
+
+    function getCategoryIcon(category) {
+        const icons = {
+            technical: "⌘",
+            academic: "▤",
+            cultural: "✧",
+            sports: "◎"
+        };
+
+        return icons[category.toLowerCase()] || "◇";
+    }
+
+    function renderEvents() {
+
+        const searchText = searchInput.value.toLowerCase().trim();
+        const selectedCategory = categoryFilter.value.toLowerCase();
+        const selectedStatus = statusFilter.value.toLowerCase();
+
+        const filteredEvents = events.filter(event => {
+
+            const matchesSearch =
+                event.title.toLowerCase().includes(searchText) ||
+                event.description.toLowerCase().includes(searchText) ||
+                event.venue.toLowerCase().includes(searchText);
+
+            const matchesCategory =
+                selectedCategory === "all" ||
+                event.category.toLowerCase() === selectedCategory;
+
+            const matchesStatus =
+                selectedStatus === "all" ||
+                event.status.toLowerCase() === selectedStatus;
+
+            return matchesSearch && matchesCategory && matchesStatus;
+        });
+
+        eventsGrid.querySelectorAll(".event-card")
+            .forEach(card => card.remove());
+
+        filteredEvents.forEach(event => {
+
+            const categoryClass = getCategoryClass(event.category);
+            const date = formatEventDate(event.event_date);
+            const status = event.status.toLowerCase();
+
+            const card = document.createElement("article");
+
+            card.className = "event-card";
+            card.dataset.category = categoryClass;
+            card.dataset.status = status;
+
+            card.innerHTML = `
+                <div class="event-card-banner ${categoryClass}-banner">
+                    <span class="event-banner-icon">
+                        ${getCategoryIcon(event.category)}
+                    </span>
+                    <span class="event-type-label">
+                        ${escapeHTML(event.category.toUpperCase())}
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <div class="event-date">
+                        <strong>${date.day}</strong>
+                        <span>${date.month}</span>
+                    </div>
+
+                    <h3>${escapeHTML(event.title)}</h3>
+
+                    <p>${escapeHTML(event.description)}</p>
+
+                    <div class="event-details">
+                        <span>◷ ${escapeHTML(event.event_time)}</span>
+                        <span>⌖ ${escapeHTML(event.venue)}</span>
+                    </div>
+
+                    <div class="event-card-footer">
+                        <span class="event-status ${status}">
+                            ${escapeHTML(event.status)}
+                        </span>
+                        <span class="event-category-text">
+                            ${escapeHTML(event.category)}
+                        </span>
+                    </div>
+
+                </div>
+            `;
+
+            eventsGrid.insertBefore(card, emptyMessage);
+        });
+
+        emptyMessage.hidden = filteredEvents.length !== 0;
+    }
+
+    try {
+
+        events = await campusIQRequest("/events");
+
+        totalElement.textContent = events.length;
+
+        upcomingElement.textContent = events.filter(
+            event => event.status.toLowerCase() === "upcoming"
+        ).length;
+
+        completedElement.textContent = events.filter(
+            event => event.status.toLowerCase() === "completed"
+        ).length;
+
+        renderEvents();
+
+        searchInput.addEventListener("input", renderEvents);
+        categoryFilter.addEventListener("change", renderEvents);
+        statusFilter.addEventListener("change", renderEvents);
+
+    } catch (error) {
+        console.error("Events loading failed:", error);
+    }
+
+});
+
+
+/* ==========================================
+   FACULTY LEAVE MANAGEMENT - DATABASE
+========================================== */
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const leaveTableBody = document.getElementById("leaveTableBody");
+
+    if (!leaveTableBody) return;
+
+    const leaveForm = document.getElementById("leaveForm");
+    const searchInput = document.getElementById("leaveSearch");
+    const statusFilter = document.getElementById("leaveStatusFilter");
+    const emptyMessage = document.getElementById("leaveEmpty");
+
+    const pendingElement = document.getElementById("pendingLeaves");
+    const approvedElement = document.getElementById("approvedLeaves");
+    const rejectedElement = document.getElementById("rejectedLeaves");
+
+    let leaveRecords = [];
+
+    function escapeHTML(value) {
+        return String(value ?? "").replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        })[char]);
+    }
+
+    function renderLeaveRecords() {
+
+        const searchText = searchInput.value.toLowerCase().trim();
+        const selectedStatus = statusFilter.value.toLowerCase();
+
+        const filtered = leaveRecords.filter(leave => {
+
+            const matchesSearch =
+                leave.leave_type.toLowerCase().includes(searchText) ||
+                leave.reason.toLowerCase().includes(searchText);
+
+            const matchesStatus =
+                selectedStatus === "all" ||
+                leave.status.toLowerCase() === selectedStatus;
+
+            return matchesSearch && matchesStatus;
+        });
+
+        leaveTableBody.innerHTML = filtered.map(leave => {
+
+            const statusClass = leave.status.toLowerCase();
+
+            return `
+                <tr data-status="${escapeHTML(statusClass)}">
+                    <td>${escapeHTML(leave.leave_type)}</td>
+                    <td>${escapeHTML(leave.start_date)}</td>
+                    <td>${escapeHTML(leave.end_date)}</td>
+                    <td>${escapeHTML(leave.reason)}</td>
+                    <td>
+                        <span class="leave-status ${escapeHTML(statusClass)}">
+                            ${escapeHTML(leave.status)}
+                        </span>
+                    </td>
+                </tr>
+            `;
+        }).join("");
+
+        emptyMessage.hidden = filtered.length !== 0;
+    }
+
+    async function loadLeaveRecords() {
+
+        leaveRecords = await campusIQRequest("/leaves");
+
+        pendingElement.textContent = leaveRecords.filter(
+            leave => leave.status.toLowerCase() === "pending"
+        ).length;
+
+        approvedElement.textContent = leaveRecords.filter(
+            leave => leave.status.toLowerCase() === "approved"
+        ).length;
+
+        rejectedElement.textContent = leaveRecords.filter(
+            leave => leave.status.toLowerCase() === "rejected"
+        ).length;
+
+        renderLeaveRecords();
+    }
+
+    try {
+        await loadLeaveRecords();
+    } catch (error) {
+        console.error("Leave records loading failed:", error);
+    }
+
+    searchInput.addEventListener("input", renderLeaveRecords);
+    statusFilter.addEventListener("change", renderLeaveRecords);
+
+    // Submit a new leave application
+    leaveForm.addEventListener("submit", async event => {
+
+        event.preventDefault();
+
+        const leaveType = document.getElementById("leaveType").value;
+        const startDate = document.getElementById("startDate").value;
+        const endDate = document.getElementById("endDate").value;
+        const reason = document.getElementById("leaveReason").value.trim();
+
+        if (endDate < startDate) {
+            alert("End date cannot be earlier than start date.");
+            return;
+        }
+
+        const submitButton = leaveForm.querySelector(
+            'button[type="submit"]'
+        );
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+
+        try {
+
+            await campusIQRequest("/leaves", {
+                method: "POST",
+                body: JSON.stringify({
+                    leaveType,
+                    startDate,
+                    endDate,
+                    reason
+                })
+            });
+
+            alert("Leave request submitted successfully!");
+
+            leaveForm.reset();
+            await loadLeaveRecords();
+
+        } catch (error) {
+            console.error("Leave submission failed:", error);
+            alert("Unable to submit leave request: " + error.message);
+        } finally {
+            submitButton.disabled = false;
+            submitButton.innerHTML =
+                '<i class="fas fa-paper-plane"></i> Submit Request';
+        }
+
+    });
+
+});
+
+
+/* ==========================================
+   FACULTY PROFILE - DATABASE CONNECTION
+========================================== */
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const form = document.getElementById("profileForm");
+    if (!form) return;
+
+    const editBtn = document.getElementById("editProfileBtn");
+    const cancelBtn = document.getElementById("cancelEditBtn");
+    const actions = document.getElementById("profileActions");
+
+    const editableFields = [
+        "fullName",
+        "phone",
+        "gender",
+        "address",
+        "designation",
+        "department",
+        "qualification",
+        "experience"
+    ];
+
+    const allFields = [
+        ...editableFields,
+        "email",
+        "dateOfBirth",
+        "facultyId",
+        "joiningDate"
+    ];
+
+    let originalProfile = {};
+
+    function showProfile(profile) {
+
+        allFields.forEach(field => {
+            const input = document.getElementById(field);
+            if (input) input.value = profile[field] ?? "";
+        });
+
+        document.getElementById("displayName").textContent =
+            profile.fullName || "Faculty Member";
+
+        document.getElementById("displayDesignation").textContent =
+            profile.designation || "Faculty Member";
+
+        document.getElementById("displayDepartment").textContent =
+            profile.department || "Department";
+
+        document.getElementById("displayFacultyId").textContent =
+            profile.facultyId || "";
+
+        document.getElementById("profileAvatar").textContent =
+            (profile.fullName || "F").trim().charAt(0).toUpperCase();
+    }
+
+    function setEditMode(enabled) {
+
+        editableFields.forEach(field => {
+            document.getElementById(field).disabled = !enabled;
+        });
+
+        editBtn.hidden = enabled;
+        actions.hidden = !enabled;
+    }
+
+    async function loadProfile() {
+
+        const profile = await campusIQRequest("/profile");
+
+        originalProfile = { ...profile };
+        showProfile(profile);
+    }
+
+    editBtn.addEventListener("click", async () => {
+
+        await loadProfile();
+        setEditMode(true);
+
+    });
+
+    cancelBtn.addEventListener("click", () => {
+
+        showProfile(originalProfile);
+        setEditMode(false);
+
+    });
+
+    form.addEventListener("submit", async event => {
+
+        event.preventDefault();
+
+        const updatedProfile = {};
+
+        editableFields.forEach(field => {
+            updatedProfile[field] =
+                document.getElementById(field).value.trim();
+        });
+
+        const saveBtn = form.querySelector('button[type="submit"]');
+
+        saveBtn.disabled = true;
+        saveBtn.textContent = "Saving...";
+
+        try {
+
+            await campusIQRequest("/profile", {
+                method: "PUT",
+                body: JSON.stringify(updatedProfile)
+            });
+
+            await loadProfile();
+            setEditMode(false);
+
+            alert("Profile updated successfully!");
+
+        } catch (error) {
+
+            console.error("Profile update failed:", error);
+            alert("Profile update failed: " + error.message);
+
+        } finally {
+
+            saveBtn.disabled = false;
+            saveBtn.innerHTML =
+                '<i class="fas fa-save"></i> Save Changes';
+
+        }
+    });
+
+    try {
+        await loadProfile();
+        setEditMode(false);
+    } catch (error) {
+        console.error("Profile loading failed:", error);
+        alert("Unable to load profile: " + error.message);
+    }
+
 });

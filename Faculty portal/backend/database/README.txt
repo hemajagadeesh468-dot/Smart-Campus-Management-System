@@ -1,0 +1,2 @@
+-- Schema is created automatically by DatabaseInitializer.java on first run.
+-- Database file: database/faculty_portal.db

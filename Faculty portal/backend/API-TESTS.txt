@@ -1,0 +1,23 @@
+# PowerShell API tests
+# Start server first: .\run.bat
+
+Invoke-RestMethod "http://localhost:8081/health"
+
+$login = Invoke-RestMethod -Method Post `
+  -Uri "http://localhost:8081/api/login" `
+  -ContentType "application/json" `
+  -Body '{"email":"faculty@campusiq.edu","password":"Faculty@123"}'
+
+$token = $login.token
+$headers = @{ Authorization = "Bearer $token" }
+
+Invoke-RestMethod "http://localhost:8081/api/profile" -Headers $headers
+Invoke-RestMethod "http://localhost:8081/api/dashboard" -Headers $headers
+Invoke-RestMethod "http://localhost:8081/api/courses" -Headers $headers
+Invoke-RestMethod "http://localhost:8081/api/attendance" -Headers $headers
+Invoke-RestMethod "http://localhost:8081/api/assignments" -Headers $headers
+Invoke-RestMethod "http://localhost:8081/api/grades" -Headers $headers
+Invoke-RestMethod "http://localhost:8081/api/timetable" -Headers $headers
+Invoke-RestMethod "http://localhost:8081/api/events" -Headers $headers
+Invoke-RestMethod "http://localhost:8081/api/announcements" -Headers $headers
+Invoke-RestMethod "http://localhost:8081/api/leaves" -Headers $headers
